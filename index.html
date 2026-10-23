@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阿諾 ✕ 雷諾奇 ✕ 雲青 | 官方入口與攝影委託規約</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+    :root {
+      --matte-black: #0a0b0e;
+      --matte-card: #12141a;
+      --crimson: #e63946;
+      --crimson-glow: rgba(230, 57, 70, 0.18);
+      --border-hairline: rgba(255, 255, 255, 0.08);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+    }
+
+    .font-editorial {
+      font-family: 'Cinzel', serif;
+    }
+
+    .font-mono-tech {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* 電腦版三分割與平滑展開動畫 */
+    @media (min-width: 768px) {
+      .split-panel {
+        flex: 1;
+        transition: flex 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+      }
+      #panel-container:not(.has-active) .split-panel:hover {
+        flex: 1.35;
+      }
+      .split-panel.is-active {
+        flex: 9;
+        cursor: default;
+      }
+      .split-panel.is-inactive {
+        flex: 0.2;
+        opacity: 0.4;
+        cursor: pointer;
+      }
+      .split-panel.is-inactive:hover {
+        opacity: 0.85;
+      }
+      .split-panel.is-inactive .collapsed-title {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+      }
+      .split-panel.is-inactive .collapsed-desc,
+      .split-panel.is-inactive .collapsed-cta,
+      .split-panel.is-inactive .collapsed-badge {
+        display: none;
+      }
+    }
+
+    /* 手機版三分割與滿版展開 */
+    @media (max-width: 767px) {
+      .split-panel {
+        height: 33.33vh;
+        min-height: 200px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .split-panel.is-active {
+        position: fixed;
+        inset: 0;
+        height: 100vh;
+        z-index: 50;
+        overflow-y: auto;
+        background-color: #0a0b0e;
+      }
+    }
+
+    .glass-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .glass-btn {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.25s ease;
+    }
+    .glass-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* 第三區塊：純文字暗黑雜誌風專屬樣式 */
+    .matte-dark-bg {
+      background-color: var(--matte-black);
+      background-image: 
+        radial-gradient(circle at 80% 20%, rgba(230, 57, 70, 0.08) 0%, transparent 45%),
+        radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+      background-size: 100% 100%, 22px 22px;
+    }
+
+    .editorial-glass {
+      background: rgba(18, 20, 26, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-hairline);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .editorial-glass-hover:hover {
+      border-color: rgba(230, 57, 70, 0.45);
+      box-shadow: 0 12px 32px var(--crimson-glow);
+      transform: translateY(-2px);
+    }
+
+    .watermark-text {
+      position: absolute;
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.028);
+      line-height: 0.82;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      letter-spacing: -0.04em;
+    }
+
+    .photo-slide {
+      display: none;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .photo-slide.slide-active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up-item {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .photo-slide.slide-active .fade-up-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.06s; }
+    .delay-2 { transition-delay: 0.14s; }
+    .delay-3 { transition-delay: 0.22s; }
+    .delay-4 { transition-delay: 0.30s; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 h-screen w-screen overflow-hidden select-none">
+
+  <!-- ==================== 頂部浮動列：阿諾個人簡介快速導覽 ==================== -->
+  <nav id="top-global-nav" class="fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between pointer-events-none transition-opacity duration-300">
+    
+    <!-- 站長簡介按鈕 -->
+    <div class="pointer-events-auto flex items-center gap-2.5 bg-slate-900/90 backdrop-blur-md px-3 sm:px-4 py-2 rounded-full border border-slate-700/70 shadow-xl cursor-pointer hover:border-amber-400/50 transition-all"
+         onclick="openBioModal()">
+      <div class="w-8 h-8 rounded-full overflow-hidden bg-gradient-to-tr from-amber-500 via-orange-500 to-red-500 p-0.5 flex items-center justify-center">
+        <span class="text-xs font-black text-white">阿諾</span>
+      </div>
+      <div>
+        <div class="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5">
+          <span>阿諾 (Arnold)</span>
+          <span class="text-[10px] bg-red-500/20 text-red-400 px-1.5 py-0.2 rounded border border-red-500/30">獅子座 ♌️</span>
+        </div>
+        <div class="text-[10px] text-slate-400">苦命保全 ✕ 自由攝影 ✕ 兩隻毛 🐾 (點擊看自介)</div>
+      </div>
+    </div>
+
+    <!-- 社交按鈕列 -->
+    <div class="pointer-events-auto flex items-center gap-1.5 sm:gap-2 bg-slate-900/90 backdrop-blur-md px-3 py-2 rounded-full border border-slate-700/70 shadow-xl text-slate-300">
+      <a href="https://instagram.com/punk_photo23?psln=MWI5eXZjcHJjcnQ3bg%3D%3D" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full glass-btn text-pink-400 flex items-center justify-center" title="Instagram (最常用)">
+        <i class="fa-brands fa-instagram text-xs sm:text-sm"></i>
+      </a>
+      <a href="https://www.facebook.com/share/1FNWYQXgBV/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full glass-btn text-blue-400 flex items-center justify-center" title="Facebook (定期刪好友🙂)">
+        <i class="fa-brands fa-facebook-f text-xs sm:text-sm"></i>
+      </a>
+      <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full glass-btn text-purple-300 flex items-center justify-center relative group" title="Twitter / X (🔞 慎入)">
+        <i class="fa-brands fa-x-twitter text-xs sm:text-sm"></i>
+        <span class="absolute -bottom-1 -right-1 text-[8px] bg-red-600 text-white px-1 rounded-full font-bold">18</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ==================== 三分割互動主容器 ==================== -->
+  <main id="panel-container" class="w-full h-full flex flex-col md:flex-row overflow-hidden">
+
+    <!-- ==================== 1. 雷諾奇 (柴犬・天偶毛) ==================== -->
+    <section id="panel-1" onclick="handlePanelClick(1)" 
+             class="split-panel relative overflow-hidden flex flex-col justify-end group border-b md:border-b-0 md:border-r border-slate-800/80">
+      
+      <!-- 背景圖：由 JS 設定物件控制，預設讀取 https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg -->
+      <div class="absolute inset-0 -z-10 overflow-hidden">
+        <img id="img-renoqi-bg" src="https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg" onerror="this.onerror=null; this.src='./https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg';" alt="雷諾奇" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-slate-950/20"></div>
+        <div class="absolute inset-0 bg-amber-950/25 mix-blend-color"></div>
+      </div>
+
+      <!-- 首頁折疊狀態 -->
+      <div class="collapsed-view p-5 sm:p-8 md:p-10 transition-all duration-300 z-10">
+        <div class="collapsed-badge w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-amber-500/20 backdrop-blur-md text-amber-400 flex items-center justify-center text-xl sm:text-2xl mb-2 sm:mb-3 border border-amber-500/30 shadow-lg">
+          🐕
+        </div>
+        <div class="text-[11px] sm:text-xs uppercase tracking-widest text-amber-400 font-bold">01 / Fursuit Character</div>
+        <h2 class="text-xl sm:text-3xl md:text-4xl font-black text-white mt-0.5 collapsed-title">雷諾奇 (Renoqi)</h2>
+        <p class="collapsed-desc text-xs sm:text-sm text-slate-300 mt-1 sm:mt-2 line-clamp-2 md:max-w-xs leading-relaxed">
+          一隻超可愛的柴犬！能給予滿滿的情緒價值 🐾 天偶毛工作室出品。
+        </p>
+        <div class="collapsed-cta mt-3 inline-flex items-center gap-2 text-xs font-semibold text-amber-300 group-hover:translate-x-2 transition-transform">
+          <span>點擊進入柴柴專區</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </div>
+      </div>
+
+      <!-- 展開後的詳細專頁 -->
+      <div class="expanded-view hidden opacity-0 transition-opacity duration-500 z-20 h-full w-full overflow-y-auto p-5 sm:p-8 md:p-12 pt-20 sm:pt-24 select-text bg-slate-950/95">
+        <div class="max-w-4xl mx-auto">
+          
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
+            <div>
+              <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Fursuit 01</span>
+              <h1 class="text-2xl sm:text-4xl font-black text-white mt-1">雷諾奇</h1>
+            </div>
+            <button onclick="event.stopPropagation(); closePanels();" 
+                    class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full glass-card hover:bg-slate-800 text-xs text-slate-300 flex items-center gap-1.5 transition-colors">
+              <i class="fa-solid fa-xmark"></i>
+              <span>返回首頁</span>
+            </button>
+          </div>
+
+          <!-- 角色名片 -->
+          <div class="glass-card p-5 rounded-2xl border-l-4 border-l-amber-500 mb-6">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">柴犬</span>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">情緒價值擔當</span>
+            </div>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              雷諾奇是一隻超可愛的柴犬，他的超能力就是給予大家滿滿的情緒價值！場次出沒遇到歡迎抱抱、握手或合照～
+            </p>
+            <div class="mt-4 pt-3 border-t border-slate-800/80 text-xs text-slate-400">
+              毛裝工作室：<span class="text-amber-400 font-bold">天偶毛工作室</span>
+            </div>
+          </div>
+
+          <!-- 社群按鈕 -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <a href="https://www.facebook.com/share/1FNWYQXgBV/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
+               class="glass-card hover:border-blue-500/60 p-4 sm:p-5 rounded-2xl flex items-center justify-between group transition-all">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <div>
+                  <div class="text-[10px] text-slate-400">最新活動貼文與動態</div>
+                  <div class="text-sm font-bold text-white group-hover:text-blue-300">雷諾奇 Facebook 粉專</div>
+                </div>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-white mr-1"></i>
+            </a>
+
+            <a href="https://instagram.com/punk_photo23?psln=MWI5eXZjcHJjcnQ3bg%3D%3D" target="_blank" rel="noopener noreferrer"
+               class="glass-card hover:border-pink-500/60 p-4 sm:p-5 rounded-2xl flex items-center justify-between group transition-all">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-pink-600/20 text-pink-400 flex items-center justify-center text-xl">
+                  <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div>
+                  <div class="text-[10px] text-slate-400">最常用的社群平台</div>
+                  <div class="text-sm font-bold text-white group-hover:text-pink-300">雷諾奇 Instagram</div>
+                </div>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-white mr-1"></i>
+            </a>
+          </div>
+
+          <!-- 精選寫真：由 JS 動態注入外部圖片 -->
+          <div class="mb-12">
+            <h3 class="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-camera text-amber-400"></i> 雷諾奇的精選寫真
+            </h3>
+            <div id="renoqi-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div class="aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group/img relative bg-slate-900 border border-slate-800" onclick="event.stopPropagation(); openLightbox('https://i.postimg.cc/vc96L94v/renoqi-01.jpg', '雷諾奇 - 戶外萌拍')">
+                <img src="https://i.postimg.cc/vc96L94v/renoqi-01.jpg" onerror="this.onerror=null; this.src='./https://i.postimg.cc/vc96L94v/renoqi-01.jpg';" class="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" alt="雷諾奇 - 戶外萌拍">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity p-3 flex items-end">
+                  <span class="text-xs text-white">雷諾奇 - 戶外萌拍</span>
+                </div>
+              </div>
+              <div class="aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group/img relative bg-slate-900 border border-slate-800" onclick="event.stopPropagation(); openLightbox('https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg', '雷諾奇 - 場次出沒花絮')">
+                <img src="https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg" onerror="this.onerror=null; this.src='./https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg';" class="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" alt="雷諾奇 - 場次出沒花絮">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity p-3 flex items-end">
+                  <span class="text-xs text-white">雷諾奇 - 場次出沒花絮</span>
+                </div>
+              </div>
+              <div class="aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group/img relative bg-slate-900 border border-slate-800" onclick="event.stopPropagation(); openLightbox('https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg', '雷諾奇 - 棚拍大頭貼特寫')">
+                <img src="https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg" onerror="this.onerror=null; this.src='./https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg';" class="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" alt="雷諾奇 - 棚拍大頭貼特寫">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity p-3 flex items-end">
+                  <span class="text-xs text-white">雷諾奇 - 棚拍大頭貼特寫</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. 雲青 (Qing Yun 海洋小熊) ==================== -->
+    <section id="panel-2" onclick="handlePanelClick(2)" 
+             class="split-panel relative overflow-hidden flex flex-col justify-end group border-b md:border-b-0 md:border-r border-slate-800/80">
+      
+      <!-- 雲青主背景圖：由 JS 設定物件控制，預設讀取 https://i.postimg.cc/vc96L94z/bear-bg.jpg -->
+      <div class="absolute inset-0 -z-10 overflow-hidden bg-slate-900">
+        <img id="img-bear-bg" src="https://i.postimg.cc/vc96L94z/bear-bg.jpg" onerror="this.onerror=null; this.src='./https://i.postimg.cc/vc96L94z/bear-bg.jpg';" alt="雲青背景" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-slate-950/20"></div>
+        <div class="absolute inset-0 bg-sky-950/35 mix-blend-color"></div>
+      </div>
+
+      <!-- 首頁折疊狀態 -->
+      <div class="collapsed-view p-5 sm:p-8 md:p-10 transition-all duration-300 z-10">
+        <div class="collapsed-badge w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-sky-500/20 backdrop-blur-md text-sky-400 flex items-center justify-center text-xl sm:text-2xl mb-2 sm:mb-3 border border-sky-500/30 shadow-lg">
+          🐻🌊
+        </div>
+        <div class="text-[11px] sm:text-xs uppercase tracking-widest text-sky-400 font-bold">02 / Fursuit Character</div>
+        <h2 class="text-xl sm:text-3xl md:text-4xl font-black text-white mt-0.5 collapsed-title">雲青 (Qing Yun)</h2>
+        <p class="collapsed-desc text-xs sm:text-sm text-slate-300 mt-1 sm:mt-2 line-clamp-2 md:max-w-xs leading-relaxed">
+          藍色海洋小熊～身上的白紋是海水的波光！目標做大家心目中的可愛偶像 ✨
+        </p>
+        <div class="collapsed-cta mt-3 inline-flex items-center gap-2 text-xs font-semibold text-sky-300 group-hover:translate-x-2 transition-transform">
+          <span>進入雲青的專屬天地</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </div>
+      </div>
+
+      <!-- 展開後的詳細專頁 -->
+      <div class="expanded-view hidden opacity-0 transition-opacity duration-500 z-20 h-full w-full overflow-y-auto p-5 sm:p-8 md:p-12 pt-20 sm:pt-24 select-text bg-slate-950/95">
+        <div class="max-w-4xl mx-auto">
+          
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
+            <div>
+              <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Fursuit 02</span>
+              <h1 class="text-2xl sm:text-4xl font-black text-white mt-1">雲青 (Qing Yun)</h1>
+            </div>
+            <button onclick="event.stopPropagation(); closePanels();" 
+                    class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full glass-card hover:bg-slate-800 text-xs text-slate-300 flex items-center gap-1.5 transition-colors">
+              <i class="fa-solid fa-xmark"></i>
+              <span>返回首頁</span>
+            </button>
+          </div>
+
+          <!-- 雲青的故事卡片 -->
+          <div class="glass-card p-5 sm:p-6 rounded-2xl border-l-4 border-l-sky-400 mb-6 leading-relaxed">
+            <h3 class="text-base font-bold text-sky-300 mb-2">大家好！我叫雲青 🌊</h3>
+            <p class="text-sm text-slate-300 mb-3">
+              我是隻可愛的藍色海洋小熊呦～身上的藍色是海洋的顏色呦，白色花紋是海水的波光！
+            </p>
+            <p class="text-xs sm:text-sm text-slate-400 mb-3 italic bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+              「為什麼要叫雲青呢？因為雲青的心像雲一樣自由高遠，像青天一樣廣闊，身體同時擁有包容整座海洋的胸襟。」
+            </p>
+            <div class="flex flex-wrap gap-2 text-xs text-slate-300 pt-1">
+              <span class="px-2.5 py-1 bg-sky-500/15 text-sky-300 rounded-lg border border-sky-500/25">🎵 聽音樂</span>
+              <span class="px-2.5 py-1 bg-sky-500/15 text-sky-300 rounded-lg border border-sky-500/25">📷 拍照</span>
+              <span class="px-2.5 py-1 bg-sky-500/15 text-sky-300 rounded-lg border border-sky-500/25">🎮 玩遊戲</span>
+              <span class="px-2.5 py-1 bg-sky-500/15 text-sky-300 rounded-lg border border-sky-500/25">🛏️ 慵懶躺平</span>
+              <span class="px-2.5 py-1 bg-sky-500/15 text-sky-300 rounded-lg border border-sky-500/25">💃 跳舞＆穿睡衣跑來跑去</span>
+            </div>
+            <div class="mt-4 text-xs font-semibold text-pink-300">
+              目標：做一個大家心目中的可愛偶像！不管怎樣還是請大家多多指教囉🫶
+            </div>
+          </div>
+
+          <!-- 雲青 Facebook 專屬粉專按鈕 -->
+          <a href="https://www.facebook.com/share/1HWvTFsz7q/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
+             class="glass-card hover:border-sky-400/60 p-4 sm:p-5 rounded-2xl flex items-center justify-between mb-8 group transition-all">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl">
+                <i class="fa-brands fa-facebook-f"></i>
+              </div>
+              <div>
+                <div class="text-xs text-slate-400">雲青的日常出沒與寫真</div>
+                <div class="text-sm sm:text-base font-bold text-white group-hover:text-sky-300">追蹤 雲青 Facebook 粉絲專頁 🐾</div>
+              </div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-white mr-2"></i>
+          </a>
+
+          <!-- 精選寫真：由 JS 動態注入外部圖片 -->
+          <div class="mb-12">
+            <h3 class="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-camera text-sky-400"></i> 雲青的偶像日常
+            </h3>
+            <div id="bear-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div class="aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group/img relative bg-slate-900 border border-slate-800" onclick="event.stopPropagation(); openLightbox('https://i.postimg.cc/qNT6mRKn/bear-01.jpg', '雲青 - 霓虹階梯帥氣寫真')">
+                <img src="https://i.postimg.cc/qNT6mRKn/bear-01.jpg" onerror="this.onerror=null; this.src='./https://i.postimg.cc/qNT6mRKn/bear-01.jpg';" class="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" alt="雲青 - 霓虹階梯帥氣寫真">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity p-3 flex items-end">
+                  <span class="text-xs text-white">雲青 - 霓虹階梯帥氣寫真</span>
+                </div>
+              </div>
+              <div class="aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group/img relative bg-slate-900 border border-slate-800" onclick="event.stopPropagation(); openLightbox('https://i.postimg.cc/rKWtCWDN/bear-02.jpg', '雲青 - 活力起飛大跳躍！')">
+                <img src="https://i.postimg.cc/rKWtCWDN/bear-02.jpg" onerror="this.onerror=null; this.src='https://i.postimg.cc/rKWtCWDN/bear-02.jpg';" class="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" alt="雲青 - 活力起飛大跳躍！">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity p-3 flex items-end">
+                  <span class="text-xs text-white">雲青 - 活力起飛大跳躍！</span>
+                </div>
+              </div>
+              <div class="aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group/img relative bg-slate-900 border border-slate-800" onclick="event.stopPropagation(); openLightbox('https://i.postimg.cc/YhgmfgvQ/bear-03.jpg', '雲青 - 藍粉肉球擊掌互動 🐾')">
+                <img src="https://i.postimg.cc/YhgmfgvQ/bear-03.jpg" onerror="this.onerror=null; this.src='https://i.postimg.cc/YhgmfgvQ/bear-03.jpg';" class="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" alt="雲青 - 藍粉肉球擊掌互動 🐾">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity p-3 flex items-end">
+                  <span class="text-xs text-white">雲青 - 藍粉肉球擊掌互動 🐾</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. 攝影師服務與價目委託專區 (純文字暗黑雜誌簡報風) ==================== -->
+    <section id="panel-3" onclick="handlePanelClick(3)" 
+             class="split-panel relative overflow-hidden flex flex-col justify-end group matte-dark-bg">
+      
+      <!-- 折疊狀態背景：純暗黑消光黑 + 大號排版浮水印 -->
+      <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div class="watermark-text right-[-8%] top-[12%] text-[28vw] md:text-[14vw]">03</div>
+        <div class="watermark-text left-[-5%] bottom-[18%] text-[22vw] md:text-[11vw]">PORTRAIT</div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0b0e] via-[#0a0b0e]/70 to-transparent"></div>
+      </div>
+
+      <!-- 首頁折疊狀態 (Collapsed) -->
+      <div class="collapsed-view p-5 sm:p-8 md:p-10 transition-all duration-300 z-10">
+        <div class="collapsed-badge w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#e63946]/15 backdrop-blur-md text-[#e63946] flex items-center justify-center text-sm sm:text-base font-mono-tech font-bold mb-2 sm:mb-3 border border-[#e63946]/35 shadow-lg">
+          03
+        </div>
+        <div class="text-[11px] sm:text-xs uppercase tracking-widest text-[#e63946] font-mono-tech font-bold">03 / Editorial Commission</div>
+        <h2 class="text-xl sm:text-3xl md:text-4xl font-black text-white mt-0.5 collapsed-title">把現場，留成記憶</h2>
+        <p class="collapsed-desc text-xs sm:text-sm text-zinc-400 mt-1 sm:mt-2 line-clamp-2 md:max-w-xs leading-relaxed">
+          人像攝影・活動紀錄｜價目方案、委託流程與合約規範（5 頁互動簡報）
+        </p>
+        <div class="collapsed-cta mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#e63946] group-hover:translate-x-2 transition-transform">
+          <span>進入攝影服務與價目簡報</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </div>
+      </div>
+
+      <!-- 展開後的 5 大投影片互動簡報系統 (Expanded) -->
+      <div class="expanded-view hidden opacity-0 transition-opacity duration-500 z-30 h-full w-full flex flex-col justify-between matte-dark-bg select-text relative overflow-hidden"
+           onclick="event.stopPropagation();">
+        
+        <!-- 簡報頂部導覽列 -->
+        <header class="w-full px-5 sm:px-10 pt-5 pb-3 flex items-center justify-between border-b border-white/10 z-20 bg-[#0a0b0e]/80 backdrop-blur-md">
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-[#e63946] animate-pulse"></span>
+            <span class="font-editorial tracking-widest text-xs sm:text-sm font-bold text-white uppercase">ARNOLD PHOTOGRAPHY</span>
+            <span class="hidden sm:inline-block text-[10px] font-mono-tech text-zinc-500 border-l border-zinc-800 pl-3">EDITORIAL TARIFF & PROTOCOL</span>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <!-- 投影片數字計數器 -->
+            <div class="flex items-center gap-2 font-mono-tech text-xs">
+              <span id="photo-slide-num" class="text-[#e63946] font-bold text-sm">01</span>
+              <span class="text-zinc-600">/ 05</span>
+              <div class="w-16 sm:w-24 h-1 bg-zinc-800 rounded-full overflow-hidden ml-1">
+                <div id="photo-slide-bar" class="h-full bg-[#e63946] transition-all duration-500" style="width: 20%;"></div>
+              </div>
+            </div>
+
+            <button onclick="closePanels();" 
+                    class="px-3.5 py-1.5 rounded-full editorial-glass hover:border-[#e63946] text-xs text-zinc-300 hover:text-white flex items-center gap-1.5 transition-all">
+              <i class="fa-solid fa-xmark text-[#e63946]"></i>
+              <span>返回三分割首頁</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- 簡報投影片主視窗 (5 Slides) -->
+        <div id="photo-slider-viewport" class="flex-1 w-full overflow-y-auto px-5 sm:px-10 md:px-16 py-6 sm:py-10 relative flex items-center">
+          
+          <!-- ========== SLIDE 01：攝影師簡介與 Slogan ========== -->
+          <div class="photo-slide slide-active w-full max-w-5xl mx-auto relative z-10" data-slide="0">
+            <div class="watermark-text right-[-4%] top-[-15%] text-[24vw] sm:text-[16vw]">01</div>
+            <div class="watermark-text left-[-2%] bottom-[-12%] text-[18vw] sm:text-[13vw]">MOMENT</div>
+
+            <div class="fade-up-item delay-1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e63946]/10 border border-[#e63946]/30 text-[#e63946] text-[11px] font-mono-tech font-bold tracking-widest uppercase mb-4">
+              <span>SLIDE 01 // PHOTOGRAPHER PROFILE</span>
+            </div>
+
+            <h1 class="fade-up-item delay-2 text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-tight mb-3">
+              「把現場，<span class="text-[#e63946]">留成記憶</span>」
+            </h1>
+
+            <div class="fade-up-item delay-2 text-xs sm:text-sm font-mono-tech tracking-widest text-zinc-400 uppercase mb-8 flex flex-wrap items-center gap-3">
+              <span class="text-white font-semibold">人像攝影・活動紀錄</span>
+              <span class="text-zinc-700">|</span>
+              <span>PORTRAIT & EVENT DOCUMENTARY</span>
+              <span class="text-zinc-700">|</span>
+              <a href="https://instagram.com/punk_photo23?psln=MWI5eXZjcHJjcnQ3bg%3D%3D" target="_blank" class="text-[#e63946] hover:underline">@punk_photo23</a>
+            </div>
+
+            <div class="fade-up-item delay-3 grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+              <!-- 關於我短文 -->
+              <div class="md:col-span-7 editorial-glass editorial-glass-hover p-6 sm:p-8 rounded-2xl border-l-2 border-l-[#e63946] flex flex-col justify-between">
+                <div>
+                  <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest mb-1">ABOUT ME</div>
+                  <h3 class="text-lg font-bold text-white mb-3">關於我・阿諾 (Arnold)</h3>
+                  <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed space-y-3">
+                    我是阿諾，一位長期游走於光影邊界、獨立樂團衝撞現場與獸圈文化場次的自由攝影師。<br><br>
+                    不追求過度失真的塑膠修圖，而是專注於凝結現場的空氣感、眼神的溫度與瞬間爆發的肢體張力。無論是個人肖像的情緒獨白，或是整場活動的沸騰汗水，我用快門替你把當下的真實留存為不可複製的記憶。
+                  </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-white/10 grid grid-cols-3 gap-2 text-center font-mono-tech">
+                  <div>
+                    <div class="text-lg sm:text-xl font-bold text-white"><span class="count-num" data-target="14">0</span>d</div>
+                    <div class="text-[10px] text-zinc-500">最長交件天數</div>
+                  </div>
+                  <div>
+                    <div class="text-lg sm:text-xl font-bold text-[#e63946]"><span class="count-num" data-target="100">0</span>%</div>
+                    <div class="text-[10px] text-zinc-500">現場情緒還原</div>
+                  </div>
+                  <div>
+                    <div class="text-lg sm:text-xl font-bold text-white"><span class="count-num" data-target="5">0</span>大</div>
+                    <div class="text-[10px] text-zinc-500">標準透明流程</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 實績經歷列表 -->
+              <div class="md:col-span-5 editorial-glass editorial-glass-hover p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+                <div>
+                  <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest mb-1">EXPERIENCE & ARCHIVE</div>
+                  <h3 class="text-lg font-bold text-white mb-4">實績經歷列表</h3>
+                  <ul class="space-y-3.5 text-xs sm:text-sm text-zinc-300">
+                    <li class="flex items-start gap-3 pb-3 border-b border-white/5">
+                      <span class="font-mono-tech text-[#e63946] font-bold">01</span>
+                      <div>
+                        <div class="font-bold text-white">獸圈各大展會與毛毛外拍寫真</div>
+                        <div class="text-[11px] text-zinc-500 mt-0.5">Infurnity 獸無限、獸宴、戶外街頭毛裝特寫與場次速報</div>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-3 pb-3 border-b border-white/5">
+                      <span class="font-mono-tech text-[#e63946] font-bold">02</span>
+                      <div>
+                        <div class="font-bold text-white">獨立樂團現場與音樂祭動態紀實</div>
+                        <div class="text-[11px] text-zinc-500 mt-0.5">龐克 / Metal 現場光影、舞台瞬間張力與觀眾互動紀錄</div>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="font-mono-tech text-[#e63946] font-bold">03</span>
+                      <div>
+                        <div class="font-bold text-white">個人肖像與主題企劃創作委託</div>
+                        <div class="text-[11px] text-zinc-500 mt-0.5">街頭暗黑風格人像、自然光情緒寫真、社群形象照拍攝</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <button onclick="changePhotoSlide(1)" class="mt-6 w-full py-2.5 rounded-xl bg-[#e63946] hover:bg-rose-700 text-white text-xs font-bold tracking-wider transition-all flex items-center justify-center gap-2">
+                  <span>NEXT: 人像攝影價目表</span>
+                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========== SLIDE 02：人像攝影價目表 ========== -->
+          <div class="photo-slide w-full max-w-5xl mx-auto relative z-10" data-slide="1">
+            <div class="watermark-text right-[-4%] top-[-15%] text-[24vw] sm:text-[16vw]">02</div>
+            <div class="watermark-text left-[-3%] bottom-[-10%] text-[17vw] sm:text-[12vw]">PORTRAIT</div>
+
+            <div class="fade-up-item delay-1 flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-4 border-b border-white/10 gap-2">
+              <div>
+                <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest">SLIDE 02 // PORTRAIT TARIFF</div>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">人像攝影價目表</h2>
+              </div>
+              <div class="text-xs font-mono-tech text-zinc-400">個人寫真・毛裝外拍・街頭企劃</div>
+            </div>
+
+            <div class="fade-up-item delay-2 grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+              
+              <!-- Essential $1500 -->
+              <div class="editorial-glass editorial-glass-hover p-6 rounded-2xl flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-mono-tech text-zinc-400 uppercase tracking-widest">TIER 01</span>
+                    <span class="text-[10px] font-mono-tech px-2 py-0.5 rounded bg-white/5 text-zinc-400">輕量體驗</span>
+                  </div>
+                  <h3 class="text-xl font-black text-white mt-2">Essential</h3>
+                  <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
+                    <span class="text-xs font-mono-tech text-zinc-400">NT$</span>
+                    <span class="text-3xl font-mono-tech font-black text-white count-num" data-target="1500">1500</span>
+                  </div>
+                  <ul class="space-y-2.5 text-xs text-zinc-300">
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 拍攝時數：1 ~ 1.5 小時</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 單一指定場景、1 套造型</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 精修調色成品：6 ~ 8 張</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 當日調色毛片篩選後全數交付</li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-3 border-t border-white/5 text-[11px] font-mono-tech text-zinc-500">
+                  適合快速形象紀錄與單點街拍
+                </div>
+              </div>
+
+              <!-- Signature $2800 主打 -->
+              <div class="editorial-glass editorial-glass-hover p-6 rounded-2xl flex flex-col justify-between relative border-2 border-[#e63946] shadow-2xl">
+                <div class="absolute -top-3 right-5 px-3 py-0.5 rounded-full bg-[#e63946] text-white text-[10px] font-mono-tech font-bold tracking-widest uppercase">
+                  FEATURED 主打方案
+                </div>
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-mono-tech text-[#e63946] uppercase tracking-widest">TIER 02</span>
+                    <span class="text-[10px] font-mono-tech px-2 py-0.5 rounded bg-[#e63946]/15 text-[#e63946]">標準推薦</span>
+                  </div>
+                  <h3 class="text-xl font-black text-white mt-2">Signature</h3>
+                  <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
+                    <span class="text-xs font-mono-tech text-[#e63946]">NT$</span>
+                    <span class="text-3xl font-mono-tech font-black text-[#e63946] count-num" data-target="2800">2800</span>
+                  </div>
+                  <ul class="space-y-2.5 text-xs text-zinc-200">
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 拍攝時數：2.5 ~ 3 小時</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 可更換 2 套服裝或雙點移動</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 精修調色成品：15 張</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 全數可用毛片基礎曝光校正交付</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 拍攝前專屬構圖與氛圍討論</li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-3 border-t border-white/10 text-[11px] font-mono-tech text-[#e63946]">
+                  ★ 最受歡迎的完整敘事寫真規格
+                </div>
+              </div>
+
+              <!-- Professional $4800起 -->
+              <div class="editorial-glass editorial-glass-hover p-6 rounded-2xl flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-mono-tech text-zinc-400 uppercase tracking-widest">TIER 03</span>
+                    <span class="text-[10px] font-mono-tech px-2 py-0.5 rounded bg-white/5 text-zinc-400">高階專案</span>
+                  </div>
+                  <h3 class="text-xl font-black text-white mt-2">Professional</h3>
+                  <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
+                    <span class="text-xs font-mono-tech text-zinc-400">NT$</span>
+                    <span class="text-3xl font-mono-tech font-black text-white count-num" data-target="4800">4800</span>
+                    <span class="text-xs font-mono-tech text-zinc-400">起</span>
+                  </div>
+                  <ul class="space-y-2.5 text-xs text-zinc-300">
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 拍攝時數：4 ~ 6 小時（半日企劃）</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 多場景、特殊燈光與主題視覺企劃</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 精修調色成品：25 ~ 30 張以上</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 支援多人合拍或大型設定集專案</li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-3 border-t border-white/5 text-[11px] font-mono-tech text-zinc-500">
+                  依企劃複雜度與燈具需求客製報價
+                </div>
+              </div>
+
+            </div>
+
+            <!-- 交通費、加修、延時說明 -->
+            <div class="fade-up-item delay-3 editorial-glass p-4 sm:p-5 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono-tech">
+              <div class="flex items-start gap-2.5">
+                <span class="text-[#e63946] font-bold">[交通費]</span>
+                <span class="text-zinc-300">主場域免車馬費；跨縣市或偏遠外拍點依大眾運輸/高鐵實報實銷。</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="text-[#e63946] font-bold">[額外加修]</span>
+                <span class="text-zinc-300">精修加購 NT$ 150 ~ 200 / 張（依細節複雜度計）。</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="text-[#e63946] font-bold">[延時說明]</span>
+                <span class="text-zinc-300">現場超時加拍 NT$ 800 / 小時（未滿半小時以半小時計）。</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========== SLIDE 03：活動紀錄攝影價目表 ========== -->
+          <div class="photo-slide w-full max-w-5xl mx-auto relative z-10" data-slide="2">
+            <div class="watermark-text right-[-4%] top-[-15%] text-[24vw] sm:text-[16vw]">03</div>
+            <div class="watermark-text left-[-2%] bottom-[-10%] text-[18vw] sm:text-[13vw]">MOMENT</div>
+
+            <div class="fade-up-item delay-1 flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-4 border-b border-white/10 gap-2">
+              <div>
+                <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest">SLIDE 03 // EVENT DOCUMENTARY TARIFF</div>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">活動紀錄攝影價目表</h2>
+              </div>
+              <div class="text-xs font-mono-tech text-zinc-400">展會聚會・樂團演出・專場全程紀實</div>
+            </div>
+
+            <div class="fade-up-item delay-2 grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+              
+              <!-- Short $3000 -->
+              <div class="editorial-glass editorial-glass-hover p-6 rounded-2xl flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-mono-tech text-zinc-400 uppercase tracking-widest">EVENT 01</span>
+                    <span class="text-[10px] font-mono-tech px-2 py-0.5 rounded bg-white/5 text-zinc-400">短時段紀錄</span>
+                  </div>
+                  <h3 class="text-xl font-black text-white mt-2">Short</h3>
+                  <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
+                    <span class="text-xs font-mono-tech text-zinc-400">NT$</span>
+                    <span class="text-3xl font-mono-tech font-black text-white count-num" data-target="3000">3000</span>
+                  </div>
+                  <ul class="space-y-2.5 text-xs text-zinc-300">
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 拍攝時數：2 小時內</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 動態抓拍、互動花絮與大合照</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 交付張數：至少 100+ 張調色檔</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 隔日提供 5 張精選公關速報</li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-3 border-t border-white/5 text-[11px] font-mono-tech text-zinc-500">
+                  適合單場演出 Set、小型毛聚或慶生派對
+                </div>
+              </div>
+
+              <!-- Standard $5500 主打 -->
+              <div class="editorial-glass editorial-glass-hover p-6 rounded-2xl flex flex-col justify-between relative border-2 border-[#e63946] shadow-2xl">
+                <div class="absolute -top-3 right-5 px-3 py-0.5 rounded-full bg-[#e63946] text-white text-[10px] font-mono-tech font-bold tracking-widest uppercase">
+                  FEATURED 主打方案
+                </div>
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-mono-tech text-[#e63946] uppercase tracking-widest">EVENT 02</span>
+                    <span class="text-[10px] font-mono-tech px-2 py-0.5 rounded bg-[#e63946]/15 text-[#e63946]">半日專場</span>
+                  </div>
+                  <h3 class="text-xl font-black text-white mt-2">Standard</h3>
+                  <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
+                    <span class="text-xs font-mono-tech text-[#e63946]">NT$</span>
+                    <span class="text-3xl font-mono-tech font-black text-[#e63946] count-num" data-target="5500">5500</span>
+                  </div>
+                  <ul class="space-y-2.5 text-xs text-zinc-200">
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 拍攝時數：4 小時完整紀錄</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 彩排準備、舞台演出至會後交流</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 交付張數：至少 250+ 張調色成品</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 包含重點畫面精細光影強化 25 張</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 24hr 內極速釋出首波精選速報</li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-3 border-t border-white/10 text-[11px] font-mono-tech text-[#e63946]">
+                  ★ 專場活動與半日展會最穩健配置
+                </div>
+              </div>
+
+              <!-- Full Day $9500起 -->
+              <div class="editorial-glass editorial-glass-hover p-6 rounded-2xl flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-mono-tech text-zinc-400 uppercase tracking-widest">EVENT 03</span>
+                    <span class="text-[10px] font-mono-tech px-2 py-0.5 rounded bg-white/5 text-zinc-400">全日駐場</span>
+                  </div>
+                  <h3 class="text-xl font-black text-white mt-2">Full Day</h3>
+                  <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
+                    <span class="text-xs font-mono-tech text-zinc-400">NT$</span>
+                    <span class="text-3xl font-mono-tech font-black text-white count-num" data-target="9500">9500</span>
+                    <span class="text-xs font-mono-tech text-zinc-400">起</span>
+                  </div>
+                  <ul class="space-y-2.5 text-xs text-zinc-300">
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 拍攝時數：8 小時全日隨行</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 進場佈置、全天議程、晚宴閉幕</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 交付張數：500+ 張全紀錄調色檔</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 專屬雲端空間分類歸檔與備份</li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-3 border-t border-white/5 text-[11px] font-mono-tech text-zinc-500">
+                  適合大型慶典、全日獸展或跨日活動
+                </div>
+              </div>
+
+            </div>
+
+            <!-- 超時與交通費說明 -->
+            <div class="fade-up-item delay-3 editorial-glass p-4 sm:p-5 rounded-2xl grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono-tech">
+              <div class="flex items-start gap-2.5">
+                <span class="text-[#e63946] font-bold">[超時加計規範]</span>
+                <span class="text-zinc-300">活動流程延誤或臨時加時拍攝，超時費為 NT$ 1,200 / 小時。</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="text-[#e63946] font-bold">[交通與住宿說明]</span>
+                <span class="text-zinc-300">外縣市專場依台鐵/高鐵/計程車實報實銷；若為跨夜或早場活動須由主辦方提供住宿補貼。</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========== SLIDE 04：委託流程與注意事項 ========== -->
+          <div class="photo-slide w-full max-w-5xl mx-auto relative z-10" data-slide="3">
+            <div class="watermark-text right-[-4%] top-[-15%] text-[24vw] sm:text-[16vw]">04</div>
+            <div class="watermark-text left-[-2%] bottom-[-10%] text-[17vw] sm:text-[12vw]">PROCESS</div>
+
+            <div class="fade-up-item delay-1 flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-4 border-b border-white/10 gap-2">
+              <div>
+                <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest">SLIDE 04 // WORKFLOW & NOTICE</div>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">委託流程與注意事項</h2>
+              </div>
+              <div class="text-xs font-mono-tech text-zinc-400">5 STEPS STANDARD PROCEDURE</div>
+            </div>
+
+            <!-- 01-05 委託流程 -->
+            <div class="fade-up-item delay-2 grid grid-cols-1 sm:grid-cols-5 gap-3.5 mb-6">
+              
+              <div class="editorial-glass editorial-glass-hover p-4 rounded-2xl border-t-2 border-t-[#e63946]">
+                <div class="font-mono-tech text-xs font-bold text-[#e63946]">01</div>
+                <div class="text-sm font-bold text-white mt-1">私訊需求</div>
+                <p class="text-[11px] text-zinc-400 mt-1.5 leading-relaxed">
+                  透過 IG 私訊告知預計拍攝日期、地點、人數、方案類型與參考風格。
+                </p>
+              </div>
+
+              <div class="editorial-glass editorial-glass-hover p-4 rounded-2xl border-t-2 border-t-zinc-700">
+                <div class="font-mono-tech text-xs font-bold text-[#e63946]">02</div>
+                <div class="text-sm font-bold text-white mt-1">確認報價</div>
+                <p class="text-[11px] text-zinc-400 mt-1.5 leading-relaxed">
+                  攝影師評估檔期、車馬費與特殊需求後，提供最終確認之報價單。
+                </p>
+              </div>
+
+              <div class="editorial-glass editorial-glass-hover p-4 rounded-2xl border-t-2 border-t-[#e63946]">
+                <div class="font-mono-tech text-xs font-bold text-[#e63946]">03</div>
+                <div class="text-sm font-bold text-white mt-1">支付訂金</div>
+                <p class="text-[11px] text-zinc-400 mt-1.5 leading-relaxed">
+                  預付總費用 30% 作為檔期保留訂金，款項入帳後委託即正式成立。
+                </p>
+              </div>
+
+              <div class="editorial-glass editorial-glass-hover p-4 rounded-2xl border-t-2 border-t-zinc-700">
+                <div class="font-mono-tech text-xs font-bold text-[#e63946]">04</div>
+                <div class="text-sm font-bold text-white mt-1">拍攝執行</div>
+                <p class="text-[11px] text-zinc-400 mt-1.5 leading-relaxed">
+                  當日依約進行拍攝與動作引導，拍攝完畢後於現場結清剩餘 70% 尾款。
+                </p>
+              </div>
+
+              <div class="editorial-glass editorial-glass-hover p-4 rounded-2xl border-t-2 border-t-[#e63946]">
+                <div class="font-mono-tech text-xs font-bold text-[#e63946]">05</div>
+                <div class="text-sm font-bold text-white mt-1">挑片交付</div>
+                <p class="text-[11px] text-zinc-400 mt-1.5 leading-relaxed">
+                  提供毛片挑選精修張數，後製完成後透過雲端連結交付高畫質成品。
+                </p>
+              </div>
+
+            </div>
+
+            <!-- 3 大關鍵注意事項 -->
+            <div class="fade-up-item delay-3 grid grid-cols-1 md:grid-cols-3 gap-4">
+              
+              <div class="editorial-glass p-5 rounded-2xl border-l-2 border-l-[#e63946]">
+                <div class="text-xs font-mono-tech text-[#e63946] font-bold uppercase mb-1">TURNAROUND // 交件時間</div>
+                <div class="text-base font-bold text-white mb-1">交件時間 <span class="count-num" data-target="3">3</span> - <span class="count-num" data-target="14">14</span> 天</div>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  自確認挑片清單起算 3 至 14 個工作天內完成精修交付；若有活動急件需求可提前加購急件處理。
+                </p>
+              </div>
+
+              <div class="editorial-glass p-5 rounded-2xl border-l-2 border-l-zinc-500">
+                <div class="text-xs font-mono-tech text-zinc-400 font-bold uppercase mb-1">RAW POLICY // 檔案格式</div>
+                <div class="text-base font-bold text-white mb-1">RAW 檔不含在交付範圍</div>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  所有方案均交付高解析度 JPG 圖檔，恕不提供相機原始 RAW 檔；毛片均會經過基礎曝光與色溫校正。
+                </p>
+              </div>
+
+              <div class="editorial-glass p-5 rounded-2xl border-l-2 border-l-[#e63946]">
+                <div class="text-xs font-mono-tech text-[#e63946] font-bold uppercase mb-1">PRIVACY // 肖像與公開</div>
+                <div class="text-base font-bold text-white mb-1">作品公開須雙方同意</div>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  攝影師於社群或作品集公開展示照片前，必先徵得委託人同意；若為不公開私密委託請於預約時告知。
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ========== SLIDE 05：委託攝影合約摘要 ========== -->
+          <div class="photo-slide w-full max-w-5xl mx-auto relative z-10" data-slide="4">
+            <div class="watermark-text right-[-4%] top-[-15%] text-[24vw] sm:text-[16vw]">05</div>
+            <div class="watermark-text left-[-2%] bottom-[-10%] text-[16vw] sm:text-[11vw]">CONTRACT</div>
+
+            <div class="fade-up-item delay-1 flex flex-col sm:flex-row sm:items-end justify-between mb-5 pb-3 border-b border-white/10 gap-2">
+              <div>
+                <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest">SLIDE 05 // COMMISSION CONTRACT SUMMARY</div>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">委託攝影合約摘要</h2>
+              </div>
+              <div class="text-xs font-mono-tech text-zinc-400">左欄填寫產生預約單・右欄詳閱 01-06 條款</div>
+            </div>
+
+            <div class="fade-up-item delay-2 grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
+              
+              <!-- 左欄：基本資料填寫表 -->
+              <div class="md:col-span-5 editorial-glass p-5 sm:p-6 rounded-2xl border-t-2 border-t-[#e63946]">
+                <div class="text-xs font-mono-tech text-[#e63946] font-bold uppercase mb-1">COMMISSION FORM</div>
+                <h3 class="text-base font-bold text-white mb-4">委託人基本資料填寫表</h3>
+
+                <form onsubmit="submitCommissionForm(event)" class="space-y-3 text-xs">
+                  <div>
+                    <label class="block text-zinc-400 font-mono-tech mb-1">委託人稱呼 / 獸設名稱 *</label>
+                    <input type="text" id="comm-name" required placeholder="例如：孟孟 / 雷諾奇" 
+                           class="w-full px-3 py-2 rounded-lg bg-[#0a0b0e] border border-zinc-800 text-white focus:outline-none focus:border-[#e63946]">
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-2.5">
+                    <div>
+                      <label class="block text-zinc-400 font-mono-tech mb-1">選擇委託方案 *</label>
+                      <select id="comm-plan" class="w-full px-3 py-2 rounded-lg bg-[#0a0b0e] border border-zinc-800 text-zinc-200 focus:outline-none focus:border-[#e63946]">
+                        <option value="人像 Essential ($1,500)">人像 Essential ($1,500)</option>
+                        <option value="人像 Signature ($2,800)" selected>人像 Signature ($2,800)</option>
+                        <option value="人像 Professional ($4,800起)">人像 Professional ($4,800起)</option>
+                        <option value="活動 Short ($3,000)">活動 Short ($3,000)</option>
+                        <option value="活動 Standard ($5,500)">活動 Standard ($5,500)</option>
+                        <option value="活動 Full Day ($9,500起)">活動 Full Day ($9,500起)</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="block text-zinc-400 font-mono-tech mb-1">預計拍攝日期 *</label>
+                      <input type="date" id="comm-date" required 
+                             class="w-full px-3 py-2 rounded-lg bg-[#0a0b0e] border border-zinc-800 text-zinc-200 focus:outline-none focus:border-[#e63946]">
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-zinc-400 font-mono-tech mb-1">聯絡帳號 (IG / FB / Line) *</label>
+                    <input type="text" id="comm-contact" required placeholder="請填寫方便聯繫的 ID" 
+                           class="w-full px-3 py-2 rounded-lg bg-[#0a0b0e] border border-zinc-800 text-white focus:outline-none focus:border-[#e63946]">
+                  </div>
+
+                  <div>
+                    <label class="block text-zinc-400 font-mono-tech mb-1">拍攝地點與需求備註</label>
+                    <textarea id="comm-note" rows="2" placeholder="外拍場景、是否可公開作品、特殊需求..." 
+                              class="w-full px-3 py-2 rounded-lg bg-[#0a0b0e] border border-zinc-800 text-white focus:outline-none focus:border-[#e63946]"></textarea>
+                  </div>
+
+                  <button type="submit" 
+                          class="w-full py-2.5 rounded-xl bg-[#e63946] hover:bg-rose-700 text-white font-bold tracking-wider transition-all shadow-lg shadow-[#e63946]/25">
+                    一鍵複製委託單並前往 IG 私訊
+                  </button>
+                </form>
+              </div>
+
+              <!-- 右欄：01-06 合約條款說明 -->
+              <div class="md:col-span-7 editorial-glass p-5 sm:p-6 rounded-2xl">
+                <div class="text-xs font-mono-tech text-[#e63946] font-bold uppercase mb-1">TERMS & CONDITIONS</div>
+                <h3 class="text-base font-bold text-white mb-4">01 - 06 合約條款說明</h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs">
+                  
+                  <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5">
+                    <div class="font-mono-tech text-[#e63946] font-bold">01 / 檔期與訂金規範</div>
+                    <p class="text-zinc-400 text-[11px] mt-1 leading-relaxed">
+                      確認報價後須預付 30% 訂金始保留檔期；尾款 70% 於拍攝當日結束後結清。
+                    </p>
+                  </div>
+
+                  <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5">
+                    <div class="font-mono-tech text-[#e63946] font-bold">02 / 改期與取消條款</div>
+                    <p class="text-zinc-400 text-[11px] mt-1 leading-relaxed">
+                      遇天災或豪雨可免費順延改期乙次；若因個人因素於拍攝前 3 日內取消，訂金恕不退還。
+                    </p>
+                  </div>
+
+                  <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5">
+                    <div class="font-mono-tech text-[#e63946] font-bold">03 / 交件與挑片時程</div>
+                    <p class="text-zinc-400 text-[11px] mt-1 leading-relaxed">
+                      挑片確認後 3 至 14 日內交付精修成品；全方案皆交付高畫質 JPG，不包含 RAW 原始檔。
+                    </p>
+                  </div>
+
+                  <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5">
+                    <div class="font-mono-tech text-[#e63946] font-bold">04 / 後製風格與重修</div>
+                    <p class="text-zinc-400 text-[11px] mt-1 leading-relaxed">
+                      委託前請確認熟悉攝影師之光影調色風格；精修成品提供微調乙次，不接受大幅度改色或合成。
+                    </p>
+                  </div>
+
+                  <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5">
+                    <div class="font-mono-tech text-[#e63946] font-bold">05 / 著作權與商業授權</div>
+                    <p class="text-zinc-400 text-[11px] mt-1 leading-relaxed">
+                      攝影師保有著作人格權；委託人享個人非營利公開分享權，若需印製販售周邊須另簽商用授權。
+                    </p>
+                  </div>
+
+                  <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5">
+                    <div class="font-mono-tech text-[#e63946] font-bold">06 / 肖像公開與隱私</div>
+                    <p class="text-zinc-400 text-[11px] mt-1 leading-relaxed">
+                      作品公開展示須經雙方同意。未獲授權之私密設定或內部照片，攝影師絕不外流或擅自發布。
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 簡報底部導覽列 (跳頁切換 + 左右鍵控制) -->
+        <footer class="w-full px-5 sm:px-10 py-4 border-t border-white/10 z-20 bg-[#0a0b0e]/90 backdrop-blur-md flex flex-wrap items-center justify-between gap-3">
+          
+          <!-- 5 大投影片快速跳頁按鈕 -->
+          <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full py-0.5">
+            <button onclick="changePhotoSlide(0)" class="photo-nav-btn px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all bg-[#e63946] text-white font-bold" data-idx="0">01 簡介</button>
+            <button onclick="changePhotoSlide(1)" class="photo-nav-btn px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5" data-idx="1">02 人像價目</button>
+            <button onclick="changePhotoSlide(2)" class="photo-nav-btn px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5" data-idx="2">03 活動價目</button>
+            <button onclick="changePhotoSlide(3)" class="photo-nav-btn px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5" data-idx="3">04 委託流程</button>
+            <button onclick="changePhotoSlide(4)" class="photo-nav-btn px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5" data-idx="4">05 合約摘要</button>
+          </div>
+
+          <!-- 左右切換鍵與操作提示 -->
+          <div class="flex items-center gap-2 ml-auto">
+            <span class="hidden lg:inline-block text-[10px] font-mono-tech text-zinc-500 mr-2">支援鍵盤 ← → 或手指左右滑動</span>
+            <button onclick="prevPhotoSlide()" class="w-8 h-8 rounded-full editorial-glass hover:border-[#e63946] text-zinc-300 hover:text-white flex items-center justify-center transition-all" title="上一頁">
+              <i class="fa-solid fa-chevron-left text-xs"></i>
+            </button>
+            <button onclick="nextPhotoSlide()" class="w-8 h-8 rounded-full bg-[#e63946] hover:bg-rose-700 text-white flex items-center justify-center transition-all shadow-lg shadow-[#e63946]/30" title="下一頁">
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+          </div>
+
+        </footer>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 阿諾完整自介彈窗 ==================== -->
+  <div id="bio-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4" onclick="closeBioModal()">
+    <div class="glass-card max-w-lg w-full max-h-[85vh] rounded-3xl p-6 sm:p-7 overflow-y-auto border border-slate-700 select-text" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-tr from-amber-500 to-red-500 p-0.5 flex items-center justify-center">
+            <span class="text-sm font-black text-white">阿諾</span>
+          </div>
+          <div>
+            <h2 class="text-lg font-black text-white">阿諾 (Arnold) 的標頂自介</h2>
+            <div class="text-xs text-amber-400">想到就會持續補充，本人很懶以上 🐾</div>
+          </div>
+        </div>
+        <button onclick="closeBioModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="mt-4 space-y-3.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <div class="flex items-start gap-2">
+          <span class="text-base">📏</span>
+          <div>身高只有 <strong>161 cm</strong>，體重 <strong>81 kg</strong>（努力減肥中！💪）</div>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-base">🐆</span>
+          <div>男友是一隻豹 🐾</div>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-base">🎸</span>
+          <div><strong>台派、台獨仔、龐克仔、metal仔</strong>！身上有刺青，本人超變態 🔥</div>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-base">♌️</span>
+          <div><strong>78 的獅子座</strong>！</div>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-base">🤘</span>
+          <div>音樂唯一信仰：<strong>血肉果汁機（GIGO 一生推！）</strong>，愛團：<strong>滅火器</strong> 🔥</div>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-base">💼</span>
+          <div>職業是一名<strong>苦命保全</strong>，同時也是一位<strong>自由攝影師</strong>！</div>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-base">🎮</span>
+          <div>遊戲常打 <strong>LOL</strong>、<strong>怪物彈珠</strong>...</div>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="text-base">❤️</span>
+          <div>喜歡攝影、喜歡聽團、喜歡毛毛，還有喜歡大肌肌？💪</div>
+        </div>
+        
+        <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 mt-4">
+          <div class="font-bold text-amber-300 mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-heart"></i> 與阿諾的相處說明書
+          </div>
+          <p class="leading-relaxed">
+            本人有憂鬱、焦慮症，很沒自信、很常玻璃心 🥺 但可以適時地給我糖，我會很開心！很愛講幹話跟聊天 🙂
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-red-950/20 border border-red-900/40 text-xs text-red-200">
+          <div class="font-bold text-red-400 mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-triangle-exclamation"></i> 社交追蹤必看
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300">
+            <li><strong>Facebook</strong>：會定期刪好友，不認識、不熟、不知道你是誰的都會刪 🙂</li>
+            <li><strong>Instagram</strong>：最常用，日常都在這！</li>
+            <li><strong>Twitter / X</strong>：有是有啦，但 🔞 內容請慎入 😒</li>
+            <li>我就跟瘋狗一樣 😤 請小心食用！</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-6 text-center">
+        <button onclick="closeBioModal()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-red-600 text-white font-bold text-xs shadow-lg">
+          瞭解！關閉自介
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 全螢幕 Lightbox 燈箱 ==================== -->
+  <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex items-center justify-center p-4" onclick="closeLightbox()">
+    <button class="absolute top-5 right-5 text-slate-400 hover:text-white text-3xl focus:outline-none" onclick="closeLightbox()">&times;</button>
+    <div class="max-w-3xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="大圖" class="max-h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-2xl">
+      <p id="lightbox-caption" class="text-xs sm:text-sm text-slate-300 mt-3 text-center"></p>
+    </div>
+  </div>
+
+  <!-- ==================== JavaScript 控制腳本 ==================== -->
+  <script>
+    /* ==========================================================================
+       【可隨時動態修改的相片設定中心 (GALLERY CONFIG)】
+       日後想更換照片或新增照片，只要在下方清單修改檔名或圖片網址即可！
+       支援：
+       1. 倉庫裡的相對檔名（如 'https://i.postimg.cc/qNT6mRKn/bear-01.jpg'）
+       2. 外部圖床完整網址（如 'https://i.imgur.com/xxx.jpg'）
+       ========================================================================== */
+    const SITE_CONFIG = {
+      // 1. 雷諾奇專區
+      renoqi: {
+        background: 'https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg',
+        photos: [
+          { src: 'https://i.postimg.cc/vc96L94v/renoqi-01.jpg', caption: '雷諾奇 - 戶外萌拍' },
+          { src: 'https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg', caption: '雷諾奇 - 場次出沒花絮' },
+          { src: 'https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg', caption: '雷諾奇 - 棚拍大頭貼特寫' }
+        ]
+      },
+      // 2. 雲青專區
+      bear: {
+        background: 'https://i.postimg.cc/vc96L94z/bear-bg.jpg',
+        photos: [
+          { src: 'https://i.postimg.cc/qNT6mRKn/bear-01.jpg', caption: '雲青 - 霓虹階梯帥氣寫真' },
+          { src: 'https://i.postimg.cc/rKWtCWDN/bear-02.jpg', caption: '雲青 - 活力起飛大跳躍！' },
+          { src: 'https://i.postimg.cc/YhgmfgvQ/bear-03.jpg', caption: '雲青 - 藍粉肉球擊掌互動 🐾' }
+        ]
+      }
+    };
+
+    // 智能容錯尋圖工具（若找不到 .jpg 會自動嘗試 .jpeg）
+    function smartSrcFallback(imgEl, originalSrc) {
+      imgEl.onerror = () => {
+        if (originalSrc.endsWith('.jpg')) {
+          imgEl.src = originalSrc.replace('.jpg', '.jpeg');
+        } else if (originalSrc.endsWith('.jpeg')) {
+          imgEl.src = originalSrc.replace('.jpeg', '.jpg');
+        }
+        imgEl.onerror = null;
+      };
+      imgEl.src = originalSrc;
+    }
+
+    // 動態載入並渲染所有照片與相簿
+    function initDynamicGalleries() {
+      // 設置雷諾奇背景
+      const renoqiBg = document.getElementById('img-renoqi-bg');
+      if (renoqiBg) smartSrcFallback(renoqiBg, SITE_CONFIG.renoqi.background);
+
+      // 設置雲青背景
+      const bearBg = document.getElementById('img-bear-bg');
+      if (bearBg) smartSrcFallback(bearBg, SITE_CONFIG.bear.background);
+
+      // 渲染雷諾奇相簿
+      const renoqiBox = document.getElementById('renoqi-gallery');
+      if (renoqiBox) {
+        renoqiBox.innerHTML = '';
+        SITE_CONFIG.renoqi.photos.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group/img relative bg-slate-900 border border-slate-800';
+          card.onclick = (e) => {
+            e.stopPropagation();
+            openLightbox(item.src, item.caption);
+          };
+          card.innerHTML = `
+            <img src="${item.src}" class="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" alt="${item.caption}">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity p-3 flex items-end">
+              <span class="text-xs text-white">${item.caption}</span>
+            </div>
+          `;
+          smartSrcFallback(card.querySelector('img'), item.src);
+          renoqiBox.appendChild(card);
+        });
+      }
+
+      // 渲染雲青相簿
+      const bearBox = document.getElementById('bear-gallery');
+      if (bearBox) {
+        bearBox.innerHTML = '';
+        SITE_CONFIG.bear.photos.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group/img relative bg-slate-900 border border-slate-800';
+          card.onclick = (e) => {
+            e.stopPropagation();
+            openLightbox(item.src, item.caption);
+          };
+          card.innerHTML = `
+            <img src="${item.src}" class="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" alt="${item.caption}">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity p-3 flex items-end">
+              <span class="text-xs text-white">${item.caption}</span>
+            </div>
+          `;
+          smartSrcFallback(card.querySelector('img'), item.src);
+          bearBox.appendChild(card);
+        });
+      }
+    }
+
+    // 頁面初始化
+    document.addEventListener('DOMContentLoaded', initDynamicGalleries);
+
+    // ==================== 頁面互動與投影片控制 ====================
+    let activeIndex = null;
+    let currentPhotoSlide = 0;
+    const totalPhotoSlides = 5;
+
+    function handlePanelClick(index) {
+      if (activeIndex === index) return;
+      openPanel(index);
+    }
+
+    function openPanel(index) {
+      activeIndex = index;
+      const container = document.getElementById('panel-container');
+      const topNav = document.getElementById('top-global-nav');
+      container.classList.add('has-active');
+
+      if (index === 3) {
+        topNav.classList.add('opacity-0', 'pointer-events-none');
+        setTimeout(() => triggerSlideCounters(currentPhotoSlide), 180);
+      } else {
+        topNav.classList.remove('opacity-0');
+      }
+
+      [1, 2, 3].forEach(i => {
+        const panel = document.getElementById(`panel-${i}`);
+        const collapsed = panel.querySelector('.collapsed-view');
+        const expanded = panel.querySelector('.expanded-view');
+
+        if (i === index) {
+          panel.classList.remove('is-inactive');
+          panel.classList.add('is-active');
+          collapsed.classList.add('hidden');
+          expanded.classList.remove('hidden');
+          setTimeout(() => expanded.classList.remove('opacity-0'), 80);
+        } else {
+          panel.classList.remove('is-active');
+          panel.classList.add('is-inactive');
+          collapsed.classList.remove('hidden');
+          expanded.classList.add('hidden', 'opacity-0');
+        }
+      });
+    }
+
+    function closePanels() {
+      activeIndex = null;
+      const container = document.getElementById('panel-container');
+      const topNav = document.getElementById('top-global-nav');
+      container.classList.remove('has-active');
+      topNav.classList.remove('opacity-0');
+
+      [1, 2, 3].forEach(i => {
+        const panel = document.getElementById(`panel-${i}`);
+        const collapsed = panel.querySelector('.collapsed-view');
+        const expanded = panel.querySelector('.expanded-view');
+
+        panel.classList.remove('is-active', 'is-inactive');
+        collapsed.classList.remove('hidden');
+        expanded.classList.add('hidden', 'opacity-0');
+      });
+    }
+
+    // 簡報切換
+    function changePhotoSlide(idx) {
+      if (idx < 0) idx = totalPhotoSlides - 1;
+      if (idx >= totalPhotoSlides) idx = 0;
+      currentPhotoSlide = idx;
+
+      const slides = document.querySelectorAll('.photo-slide');
+      const navBtns = document.querySelectorAll('.photo-nav-btn');
+      const numEl = document.getElementById('photo-slide-num');
+      const barEl = document.getElementById('photo-slide-bar');
+      const viewport = document.getElementById('photo-slider-viewport');
+
+      if (viewport) viewport.scrollTop = 0;
+
+      slides.forEach((s, i) => {
+        if (i === currentPhotoSlide) {
+          s.classList.add('slide-active');
+        } else {
+          s.classList.remove('slide-active');
+        }
+      });
+
+      navBtns.forEach((btn, i) => {
+        if (i === currentPhotoSlide) {
+          btn.className = 'photo-nav-btn px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all bg-[#e63946] text-white font-bold';
+        } else {
+          btn.className = 'photo-nav-btn px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5';
+        }
+      });
+
+      if (numEl) numEl.textContent = `0${currentPhotoSlide + 1}`;
+      if (barEl) barEl.style.width = `${((currentPhotoSlide + 1) / totalPhotoSlides) * 100}%`;
+
+      triggerSlideCounters(currentPhotoSlide);
+    }
+
+    function nextPhotoSlide() {
+      changePhotoSlide(currentPhotoSlide + 1);
+    }
+
+    function prevPhotoSlide() {
+      changePhotoSlide(currentPhotoSlide - 1);
+    }
+
+    // 數字計數動畫
+    function triggerSlideCounters(slideIdx) {
+      const activeSlideEl = document.querySelector(`.photo-slide[data-slide="${slideIdx}"]`);
+      if (!activeSlideEl) return;
+      const counters = activeSlideEl.querySelectorAll('.count-num');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'), 10);
+        if (isNaN(target)) return;
+        const duration = 650;
+        const startTime = performance.now();
+
+        function updateCounter(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const currentVal = Math.floor(easeOut * target);
+          counter.textContent = currentVal.toLocaleString();
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target.toLocaleString();
+          }
+        }
+        requestAnimationFrame(updateCounter);
+      });
+    }
+
+    // 委託表單跳轉
+    function submitCommissionForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('comm-name').value;
+      const plan = document.getElementById('comm-plan').value;
+      const date = document.getElementById('comm-date').value;
+      const contact = document.getElementById('comm-contact').value;
+      const note = document.getElementById('comm-note').value || '無特殊備註';
+
+      const summary = `【阿諾攝影委託預約單】\n・委託人：${name}\n・預約方案：${plan}\n・預計日期：${date}\n・聯絡方式：${contact}\n・需求備註：${note}\n（我已詳閱並同意 01-06 委託條款）`;
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(summary).then(() => {
+          alert('已自動複製委託預約單內容！即將為您開啟阿諾攝影 IG (@punk_photo23)，直接貼上私訊即可！');
+          window.open('https://instagram.com/punk_photo23?psln=MWI5eXZjcHJjcnQ3bg%3D%3D', '_blank');
+        }).catch(() => {
+          alert(summary);
+        });
+      } else {
+        alert(summary);
+      }
+    }
+
+    // 阿諾自介彈窗控制
+    function openBioModal() {
+      document.getElementById('bio-modal').classList.remove('hidden');
+    }
+    function closeBioModal() {
+      document.getElementById('bio-modal').classList.add('hidden');
+    }
+
+    // Lightbox 控制
+    function openLightbox(url, caption) {
+      const modal = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const cap = document.getElementById('lightbox-caption');
+      smartSrcFallback(img, url);
+      cap.textContent = caption || '';
+      modal.classList.remove('hidden');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.add('hidden');
+    }
+
+    // 鍵盤左右鍵切換投影片 & ESC 返回
+    document.addEventListener('keydown', (e) => {
+      const tag = e.target.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+      if (e.key === 'Escape') {
+        const bio = document.getElementById('bio-modal');
+        const lb = document.getElementById('lightbox');
+        if (!bio.classList.contains('hidden')) {
+          closeBioModal();
+        } else if (!lb.classList.contains('hidden')) {
+          closeLightbox();
+        } else if (activeIndex !== null) {
+          closePanels();
+        }
+        return;
+      }
+
+      if (activeIndex === 3) {
+        if (e.key === 'ArrowRight') {
+          nextPhotoSlide();
+        } else if (e.key === 'ArrowLeft') {
+          prevPhotoSlide();
+        }
+      }
+    });
+
+    // 手機觸控左右滑動切換投影片
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const panel3El = document.getElementById('panel-3');
+    panel3El.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    panel3El.addEventListener('touchend', (e) => {
+      if (activeIndex !== 3) return;
+      const touchEndX = e.changedTouches[0].screenX;
+      const touchEndY = e.changedTouches[0].screenY;
+      const diffX = touchStartX - touchEndX;
+      const diffY = Math.abs(touchStartY - touchEndY);
+
+      if (Math.abs(diffX) > 60 && diffY < 50) {
+        if (diffX > 0) {
+          nextPhotoSlide();
+        } else {
+          prevPhotoSlide();
+        }
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
