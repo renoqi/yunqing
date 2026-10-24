@@ -6,9 +6,9 @@
   <title>阿諾 ✕ 雷諾奇 ✕ 雲青 | 官方入口與攝影委託規約</title>
   
   <!-- 社群分享預覽 (LINE / FB / Discord 貼連結時顯示) -->
-  <meta name="description" content="阿諾 (Arnold) 官方個人入口網站｜柴犬雷諾奇、海洋小熊雲青專屬天地，以及人像攝影・活動紀錄價目與委託規約。">
+  <meta name="description" content="阿諾 (Arnold) 官方個人入口網站｜柴犬雷諾奇、海洋小熊雲青專屬天地，以及獸圈外拍・聽團現場紀錄攝影價目與委託規約。">
   <meta property="og:title" content="阿諾 ✕ 雷諾奇 ✕ 雲青 | 官方入口與攝影委託規約">
-  <meta property="og:description" content="把現場，留成記憶。瀏覽雷諾奇與雲青的精選寫真，或查看人像與活動紀錄攝影 5 頁互動簡報與線上預約。">
+  <meta property="og:description" content="把現場，留成記憶。瀏覽雷諾奇與雲青的精選寫真，以及獸圈外拍、獨立樂團現場動態畫廊與線上預約。">
   <meta property="og:image" content="https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0a0b0e">
@@ -55,6 +55,15 @@
     }
     ::-webkit-scrollbar-thumb:hover {
       background: var(--crimson);
+    }
+
+    /* 隱藏橫向捲軸但保留滑動功能 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     /* 電腦版三分割與平滑展開動畫 */
@@ -212,6 +221,12 @@
       touch-action: pan-y;
     }
 
+    /* 移動式膠卷左右邊緣漸層遮罩 */
+    .marquee-mask {
+      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    }
+
     /* 日期選擇器暗黑模式圖示修復 */
     input[type="date"]::-webkit-calendar-picker-indicator {
       filter: invert(0.8);
@@ -266,7 +281,7 @@
       
       <!-- 背景圖 -->
       <div class="absolute inset-0 -z-10 overflow-hidden bg-slate-900">
-        <img id="img-renoqi-bg" src="https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg" alt="雷諾奇背景" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+        <img id="img-renoqi-bg" src="./images/renoqi-bg.jpg" alt="雷諾奇背景" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-slate-950/20"></div>
         <div class="absolute inset-0 bg-amber-950/25 mix-blend-color"></div>
       </div>
@@ -317,7 +332,7 @@
             </p>
             <div class="mt-4 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
               <div>毛裝製作：<span class="text-amber-400 font-bold">天偶毛工作室</span></div>
-              <div class="text-[11px] text-slate-500">點擊下方照片可開啟全螢幕相簿檢視</div>
+              <div class="text-[11px] text-slate-500">點擊下方照片可開啟全螢幕高清相簿檢視</div>
             </div>
           </div>
 
@@ -352,13 +367,13 @@
             </a>
           </div>
 
-          <!-- 精選寫真：由 JS 動態渲染並支援左右切換燈箱 -->
+          <!-- 精選寫真 -->
           <div>
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                 <i class="fa-solid fa-camera text-amber-400"></i> 雷諾奇的精選寫真
               </h3>
-              <span class="text-xs text-slate-400"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊放大檢視</span>
+              <span class="text-xs text-slate-400"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊放大高清原圖</span>
             </div>
             <div id="renoqi-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-5"></div>
           </div>
@@ -373,7 +388,7 @@
       
       <!-- 雲青主背景圖 -->
       <div class="absolute inset-0 -z-10 overflow-hidden bg-slate-900">
-        <img id="img-bear-bg" src="https://i.postimg.cc/vc96L94z/bear-bg.jpg" alt="雲青背景" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+        <img id="img-bear-bg" src="./images/bear-bg.jpg" alt="雲青背景" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-slate-950/20"></div>
         <div class="absolute inset-0 bg-sky-950/35 mix-blend-color"></div>
       </div>
@@ -448,13 +463,13 @@
             <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-white mr-2"></i>
           </a>
 
-          <!-- 精選寫真：由 JS 動態渲染並支援左右切換燈箱 -->
+          <!-- 精選寫真 -->
           <div>
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                 <i class="fa-solid fa-camera text-sky-400"></i> 雲青的偶像日常
               </h3>
-              <span class="text-xs text-slate-400"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊放大檢視</span>
+              <span class="text-xs text-slate-400"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊放大高清原圖</span>
             </div>
             <div id="bear-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-5"></div>
           </div>
@@ -463,7 +478,7 @@
       </div>
     </section>
 
-    <!-- ==================== 3. 攝影師服務與價目委託專區 (純文字暗黑雜誌簡報風) ==================== -->
+    <!-- ==================== 3. 攝影師服務與價目委託專區 (含移動式膠卷 & 投影式放映畫廊) ==================== -->
     <section id="panel-3" onclick="handlePanelClick(3)" 
              class="split-panel relative overflow-hidden flex flex-col justify-end group matte-dark-bg cursor-pointer">
       
@@ -482,10 +497,10 @@
         <div class="collapsed-sub text-[11px] sm:text-xs uppercase tracking-widest text-[#e63946] font-mono-tech font-bold">03 / Editorial Commission</div>
         <h2 class="text-xl sm:text-3xl md:text-4xl font-black text-white mt-0.5 collapsed-title">把現場，留成記憶</h2>
         <p class="collapsed-desc text-xs sm:text-sm text-zinc-400 mt-1 sm:mt-2 line-clamp-2 md:max-w-xs leading-relaxed">
-          人像攝影・活動紀錄｜價目方案、委託流程與合約規範（5 頁互動簡報）
+          獸圈外拍・聽團紀實｜動態膠卷與投影作品集、價目與線上預約
         </p>
         <div class="collapsed-cta mt-2.5 sm:mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#e63946] group-hover:translate-x-2 transition-transform">
-          <span>進入攝影服務與價目簡報</span>
+          <span>進入作品集與價目簡報</span>
           <i class="fa-solid fa-arrow-right text-[10px]"></i>
         </div>
       </div>
@@ -499,7 +514,7 @@
           <div class="flex items-center gap-2.5 sm:gap-3">
             <span class="w-2 h-2 rounded-full bg-[#e63946] animate-pulse"></span>
             <span class="font-editorial tracking-widest text-xs sm:text-sm font-bold text-white uppercase">ARNOLD PHOTOGRAPHY</span>
-            <span class="hidden md:inline-block text-[10px] font-mono-tech text-zinc-500 border-l border-zinc-800 pl-3">EDITORIAL TARIFF & PROTOCOL</span>
+            <span class="hidden md:inline-block text-[10px] font-mono-tech text-zinc-500 border-l border-zinc-800 pl-3">DYNAMIC PORTFOLIO & TARIFF</span>
           </div>
 
           <div class="flex items-center gap-3 sm:gap-4">
@@ -522,43 +537,42 @@
         </header>
 
         <!-- 簡報投影片主視窗 (5 Slides) -->
-        <div id="photo-slider-viewport" class="flex-1 w-full overflow-y-auto px-4 sm:px-10 md:px-16 py-6 sm:py-10 relative block md:flex md:items-center" style="-webkit-overflow-scrolling: touch; overscroll-behavior-y: contain;">
+        <div id="photo-slider-viewport" class="flex-1 w-full overflow-y-auto px-4 sm:px-10 md:px-16 py-6 sm:py-8 relative block" style="-webkit-overflow-scrolling: touch; overscroll-behavior-y: contain;">
           
-          <!-- ========== SLIDE 01：攝影師簡介與 Slogan ========== -->
-          <div class="photo-slide slide-active w-full max-w-5xl mx-auto relative z-10" data-slide="0">
-            <div class="watermark-text right-[-4%] top-[-15%] text-[24vw] sm:text-[16vw]">01</div>
-            <div class="watermark-text left-[-2%] bottom-[-12%] text-[18vw] sm:text-[13vw]">MOMENT</div>
+          <!-- ========== SLIDE 01：攝影師簡介 + 移動式膠卷 / 投影式放映雙模式作品集 ========== -->
+          <div class="photo-slide slide-active w-full max-w-5xl mx-auto relative z-10 pb-8" data-slide="0">
+            <div class="watermark-text right-[-4%] top-[-3%] text-[24vw] sm:text-[15vw]">01</div>
+            <div class="watermark-text left-[-2%] bottom-[20%] text-[18vw] sm:text-[12vw]">GALLERY</div>
 
-            <div class="fade-up-item delay-1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e63946]/10 border border-[#e63946]/30 text-[#e63946] text-[11px] font-mono-tech font-bold tracking-widest uppercase mb-4">
-              <span>SLIDE 01 // PHOTOGRAPHER PROFILE</span>
+            <div class="fade-up-item delay-1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e63946]/10 border border-[#e63946]/30 text-[#e63946] text-[11px] font-mono-tech font-bold tracking-widest uppercase mb-3">
+              <span>SLIDE 01 // PHOTOGRAPHER PROFILE & DYNAMIC REEL</span>
             </div>
 
-            <h1 class="fade-up-item delay-2 text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-tight mb-3">
+            <h1 class="fade-up-item delay-2 text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight mb-2.5">
               「把現場，<span class="text-[#e63946]">留成記憶</span>」
             </h1>
 
-            <div class="fade-up-item delay-2 text-xs sm:text-sm font-mono-tech tracking-widest text-zinc-400 uppercase mb-7 flex flex-wrap items-center gap-2 sm:gap-3">
-              <span class="text-white font-semibold">人像攝影・活動紀錄</span>
-              <span class="text-zinc-700">|</span>
-              <span>PORTRAIT & EVENT DOCUMENTARY</span>
+            <div class="fade-up-item delay-2 text-xs sm:text-sm font-mono-tech tracking-widest text-zinc-400 uppercase mb-6 flex flex-wrap items-center gap-2 sm:gap-3">
+              <span class="text-white font-semibold">人像攝影・獸圈外拍・聽團紀錄</span>
               <span class="text-zinc-700">|</span>
               <a href="https://instagram.com/punk_photo23?psln=MWI5eXZjcHJjcnQ3bg%3D%3D" target="_blank" rel="noopener noreferrer" class="text-[#e63946] hover:underline flex items-center gap-1">
                 <i class="fa-brands fa-instagram"></i>@punk_photo23
               </a>
             </div>
 
-            <div class="fade-up-item delay-3 grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+            <!-- 簡介與實績雙欄 -->
+            <div class="fade-up-item delay-3 grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch mb-6">
               <!-- 關於我短文 -->
-              <div class="md:col-span-7 editorial-glass editorial-glass-hover p-6 sm:p-8 rounded-2xl border-l-2 border-l-[#e63946] flex flex-col justify-between">
+              <div class="md:col-span-7 editorial-glass editorial-glass-hover p-5 sm:p-7 rounded-2xl border-l-2 border-l-[#e63946] flex flex-col justify-between">
                 <div>
                   <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest mb-1">ABOUT ME</div>
-                  <h3 class="text-lg font-bold text-white mb-3">關於我・阿諾 (Arnold)</h3>
+                  <h3 class="text-lg font-bold text-white mb-2.5">關於我・阿諾 (Arnold)</h3>
                   <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
                     我是阿諾，一位長期游走於光影邊界、獨立樂團衝撞現場與獸圈文化場次的自由攝影師。<br><br>
-                    不追求過度失真的塑膠修圖，而是專注於凝結現場的空氣感、眼神的溫度與瞬間爆發的肢體張力。無論是個人肖像的情緒獨白，或是整場活動的沸騰汗水，我用快門替你把當下的真實留存為不可複製的記憶。
+                    不追求過度失真的塑膠修圖，而是專注於凝結現場的空氣感、眼神的溫度與瞬間爆發的肢體張力。無論是毛毛外拍的生動互動，或是整場樂團演出的沸騰汗水，我用快門替你把當下的真實留存為不可複製的記憶。
                   </p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-white/10 grid grid-cols-3 gap-2 text-center font-mono-tech">
+                <div class="mt-5 pt-4 border-t border-white/10 grid grid-cols-3 gap-2 text-center font-mono-tech">
                   <div>
                     <div class="text-lg sm:text-xl font-bold text-white"><span class="count-num" data-target="14">0</span>d</div>
                     <div class="text-[10px] text-zinc-500">最長交件天數</div>
@@ -575,41 +589,197 @@
               </div>
 
               <!-- 實績經歷列表 -->
-              <div class="md:col-span-5 editorial-glass editorial-glass-hover p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+              <div class="md:col-span-5 editorial-glass editorial-glass-hover p-5 sm:p-7 rounded-2xl flex flex-col justify-between">
                 <div>
                   <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest mb-1">EXPERIENCE & ARCHIVE</div>
-                  <h3 class="text-lg font-bold text-white mb-4">實績經歷列表</h3>
-                  <ul class="space-y-3.5 text-xs sm:text-sm text-zinc-300">
-                    <li class="flex items-start gap-3 pb-3 border-b border-white/5">
-                      <span class="font-mono-tech text-[#e63946] font-bold">01</span>
-                      <div>
-                        <div class="font-bold text-white">獸圈各大展會與毛毛外拍寫真</div>
-                        <div class="text-[11px] text-zinc-500 mt-0.5">Infurnity 獸無限、獸宴、戶外街頭毛裝特寫與場次速報</div>
+                  <h3 class="text-lg font-bold text-white mb-3.5">實績經歷列表</h3>
+                  <ul class="space-y-3 text-xs sm:text-sm text-zinc-300">
+                    <li class="flex items-start justify-between gap-2 pb-2.5 border-b border-white/5">
+                      <div class="flex items-start gap-2.5">
+                        <span class="font-mono-tech text-amber-400 font-bold">01</span>
+                        <div>
+                          <div class="font-bold text-white">獸圈各大展會與毛毛外拍寫真</div>
+                          <div class="text-[11px] text-zinc-500 mt-0.5">Infurnity 獸無限、獸宴、街頭毛裝特寫</div>
+                        </div>
                       </div>
+                      <button type="button" onclick="switchPortfolioCategory('furry', true)" class="shrink-0 px-2 py-1 rounded bg-amber-500/15 hover:bg-amber-500/30 text-amber-300 text-[10px] font-mono-tech border border-amber-500/30 transition-colors">
+                        看獸圈 →
+                      </button>
                     </li>
-                    <li class="flex items-start gap-3 pb-3 border-b border-white/5">
-                      <span class="font-mono-tech text-[#e63946] font-bold">02</span>
-                      <div>
-                        <div class="font-bold text-white">獨立樂團現場與音樂祭動態紀實</div>
-                        <div class="text-[11px] text-zinc-500 mt-0.5">龐克 / Metal 現場光影、舞台瞬間張力與觀眾互動紀錄</div>
+                    <li class="flex items-start justify-between gap-2 pb-2.5 border-b border-white/5">
+                      <div class="flex items-start gap-2.5">
+                        <span class="font-mono-tech text-[#e63946] font-bold">02</span>
+                        <div>
+                          <div class="font-bold text-white">獨立樂團現場與音樂祭動態紀實</div>
+                          <div class="text-[11px] text-zinc-500 mt-0.5">龐克 / Metal 現場光影、舞台張力與衝撞紀錄</div>
+                        </div>
                       </div>
+                      <button type="button" onclick="switchPortfolioCategory('band', true)" class="shrink-0 px-2 py-1 rounded bg-[#e63946]/15 hover:bg-[#e63946]/30 text-[#e63946] text-[10px] font-mono-tech border border-[#e63946]/30 transition-colors">
+                        看聽團 →
+                      </button>
                     </li>
-                    <li class="flex items-start gap-3">
-                      <span class="font-mono-tech text-[#e63946] font-bold">03</span>
+                    <li class="flex items-start gap-2.5">
+                      <span class="font-mono-tech text-zinc-400 font-bold">03</span>
                       <div>
                         <div class="font-bold text-white">個人肖像與主題企劃創作委託</div>
-                        <div class="text-[11px] text-zinc-500 mt-0.5">街頭暗黑風格人像、自然光情緒寫真、社群形象照拍攝</div>
+                        <div class="text-[11px] text-zinc-500 mt-0.5">街頭暗黑風格人像、自然光情緒寫真拍攝</div>
                       </div>
                     </li>
                   </ul>
                 </div>
 
-                <button type="button" onclick="changePhotoSlide(1)" class="mt-6 w-full py-2.5 rounded-xl bg-[#e63946] hover:bg-rose-700 text-white text-xs font-bold tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#e63946]/20">
-                  <span>NEXT: 人像攝影價目表</span>
+                <button type="button" onclick="changePhotoSlide(1)" class="mt-5 w-full py-2.5 rounded-xl bg-[#e63946] hover:bg-rose-700 text-white text-xs font-bold tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#e63946]/20">
+                  <span>NEXT: 查看人像與活動價目表</span>
                   <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </button>
               </div>
             </div>
+
+            <!-- ========== 升級版：移動式膠卷 (Marquee) ✕ 投影式放映機 (Projector) 雙模式作品集 ========== -->
+            <div id="portfolio-showcase" class="fade-up-item delay-4 editorial-glass p-5 sm:p-7 rounded-2xl border border-white/10">
+              
+              <!-- 控制列 Header：左側切換「獸圈 / 聽團」，右側切換「移動式膠卷 / 投影式放映」 -->
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 mb-4 border-b border-white/10">
+                <div>
+                  <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest flex items-center gap-2">
+                    <i class="fa-solid fa-film"></i> DYNAMIC PORTFOLIO // 實拍紀錄動態畫廊
+                  </div>
+                  <h3 class="text-base sm:text-xl font-black text-white mt-0.5">
+                    看到喜歡的照片直接「點擊」即可全螢幕放大檢視
+                  </h3>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <!-- 1. 獸圈 / 聽團 分類切換 -->
+                  <div class="inline-flex p-1 rounded-xl bg-[#0a0b0e] border border-zinc-800">
+                    <button type="button" id="tab-btn-furry" onclick="switchPortfolioCategory('furry', false)"
+                            class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 bg-[#e63946] text-white shadow-md">
+                      <span>🐾 獸圈紀錄</span>
+                      <span id="count-badge-furry" class="text-[10px] font-mono-tech px-1.5 py-0.2 rounded-full bg-black/30">12</span>
+                    </button>
+                    <button type="button" id="tab-btn-band" onclick="switchPortfolioCategory('band', false)"
+                            class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 text-zinc-400 hover:text-white">
+                      <span>🎸 聽團現場</span>
+                      <span id="count-badge-band" class="text-[10px] font-mono-tech px-1.5 py-0.2 rounded-full bg-white/5">12</span>
+                    </button>
+                  </div>
+
+                  <!-- 2. 移動式膠卷 / 投影式放映 模式切換 -->
+                  <div class="inline-flex p-1 rounded-xl bg-[#0a0b0e] border border-zinc-800">
+                    <button type="button" id="mode-btn-marquee" onclick="switchDisplayMode('marquee')"
+                            class="px-3 py-1.5 rounded-lg text-xs font-mono-tech font-bold transition-all flex items-center gap-1.5 bg-white/15 text-white">
+                      <i class="fa-solid fa-Water"></i>
+                      <span>🔄 移動式膠卷</span>
+                    </button>
+                    <button type="button" id="mode-btn-projector" onclick="switchDisplayMode('projector')"
+                            class="px-3 py-1.5 rounded-lg text-xs font-mono-tech font-bold transition-all flex items-center gap-1.5 text-zinc-400 hover:text-white">
+                      <i class="fa-solid fa-tv"></i>
+                      <span>📽️ 投影式放映</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 狀態列與手動快轉控制 -->
+              <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 mb-3">
+                <p id="portfolio-cat-desc" class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                  <span>目前顯示：<strong>🐾 獸圈場次與毛毛外拍</strong>（滑鼠移上或手指按住可暫停流動，點擊照片放大）</span>
+                </p>
+
+                <!-- 膠卷專用控制鈕 -->
+                <div id="marquee-controls" class="flex items-center gap-1.5">
+                  <button type="button" onclick="nudgeMarquee(-320)" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 text-[11px] font-mono-tech flex items-center gap-1 transition-colors" title="往左快轉">
+                    <i class="fa-solid fa-backward-step"></i>
+                  </button>
+                  <button type="button" id="marquee-pause-btn" onclick="toggleMarqueePause()" class="px-3 py-1 rounded-lg bg-white/10 hover:bg-[#e63946] text-white text-[11px] font-mono-tech flex items-center gap-1.5 transition-colors">
+                    <i id="marquee-pause-icon" class="fa-solid fa-pause text-[10px]"></i>
+                    <span id="marquee-pause-text">暫停流動</span>
+                  </button>
+                  <button type="button" onclick="nudgeMarquee(320)" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 text-[11px] font-mono-tech flex items-center gap-1 transition-colors" title="往右快轉">
+                    <i class="fa-solid fa-forward-step"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- ==================== 模式 A：移動式膠卷跑馬燈 (Marquee View) ==================== -->
+              <div id="view-marquee" class="relative w-full">
+                <div id="marquee-viewport" 
+                     class="w-full overflow-x-auto no-scrollbar marquee-mask py-2 cursor-grab active:cursor-grabbing"
+                     onmouseenter="isMarqueeHovered = true"
+                     onmouseleave="isMarqueeHovered = false"
+                     ontouchstart="isMarqueeHovered = true"
+                     ontouchend="setTimeout(() => isMarqueeHovered = false, 1200)">
+                  <div id="marquee-track" class="flex items-center gap-4 w-max">
+                    <!-- 由 JS 自動注入 2 倍無縫循環照片卡片 -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- ==================== 模式 B：投影式大銀幕自動輪播 (Projector View) ==================== -->
+              <div id="view-projector" class="hidden">
+                <!-- 主投影幕 -->
+                <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] max-h-[52vh] rounded-2xl overflow-hidden bg-black border border-white/15 shadow-2xl group/proj">
+                  
+                  <!-- 點擊放大主圖 -->
+                  <img id="projector-main-img" src="" alt="投影作品" 
+                       onclick="openLightbox(currentPortfolioCategory, projectorIndex)"
+                       class="w-full h-full object-contain cursor-pointer transition-all duration-500 hover:scale-[1.02]">
+
+                  <!-- 左上角張數與標籤 -->
+                  <div class="absolute top-3.5 left-3.5 flex items-center gap-2 pointer-events-none">
+                    <span id="projector-counter" class="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md text-xs font-mono-tech text-white border border-white/15">
+                      01 / 12
+                    </span>
+                    <span id="projector-tag" class="px-2.5 py-1 rounded-full bg-[#e63946]/80 backdrop-blur-md text-[10px] font-mono-tech font-bold text-white uppercase">
+                      FURSUIT
+                    </span>
+                  </div>
+
+                  <!-- 右上角自動播放開關 & 全螢幕放大鈕 -->
+                  <div class="absolute top-3.5 right-3.5 flex items-center gap-2">
+                    <button type="button" onclick="toggleProjectorAutoplay()" id="projector-play-btn"
+                            class="px-3 py-1.5 rounded-full bg-black/75 hover:bg-white/20 backdrop-blur-md text-xs font-mono-tech text-white border border-white/15 flex items-center gap-1.5 transition-all">
+                      <i id="projector-play-icon" class="fa-solid fa-pause text-[10px] text-[#e63946]"></i>
+                      <span id="projector-play-text">自動投影中</span>
+                    </button>
+                    <button type="button" onclick="openLightbox(currentPortfolioCategory, projectorIndex)"
+                            class="px-3 py-1.5 rounded-full bg-[#e63946] hover:bg-rose-700 text-xs font-bold text-white shadow-lg flex items-center gap-1.5 transition-all">
+                      <i class="fa-solid fa-expand text-[10px]"></i>
+                      <span>放大原圖</span>
+                    </button>
+                  </div>
+
+                  <!-- 左右切換鍵 -->
+                  <button type="button" onclick="stepProjector(-1)" aria-label="上一張"
+                          class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-[#e63946] text-white flex items-center justify-center border border-white/15 transition-all">
+                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                  </button>
+                  <button type="button" onclick="stepProjector(1)" aria-label="下一張"
+                          class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-[#e63946] text-white flex items-center justify-center border border-white/15 transition-all">
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                  </button>
+
+                  <!-- 底部圖說與自動輪播進度條 -->
+                  <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent pt-8 pb-3.5 px-5 flex items-end justify-between pointer-events-none">
+                    <div>
+                      <div class="text-[10px] font-mono-tech text-zinc-400">CLICK IMAGE TO ENLARGE // 點擊畫面可全螢幕放大</div>
+                      <div id="projector-caption" class="text-sm sm:text-base font-bold text-white mt-0.5">作品說明</div>
+                    </div>
+                  </div>
+                  <div class="absolute bottom-0 left-0 right-0 h-1 bg-white/10">
+                    <div id="projector-progress" class="h-full bg-[#e63946] transition-all duration-100" style="width: 0%;"></div>
+                  </div>
+                </div>
+
+                <!-- 底部縮圖快速導覽列 (Filmstrip Thumbnails) -->
+                <div id="projector-thumbs" class="flex items-center gap-2 overflow-x-auto no-scrollbar mt-3 py-1">
+                  <!-- 由 JS 動態生成 10-20 張縮圖 -->
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
           <!-- ========== SLIDE 02：人像攝影價目表 ========== -->
@@ -620,7 +790,7 @@
             <div class="fade-up-item delay-1 flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-4 border-b border-white/10 gap-2">
               <div>
                 <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest">SLIDE 02 // PORTRAIT TARIFF</div>
-                <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">人像攝影價目表</h2>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">人像與毛毛外拍價目表</h2>
               </div>
               <div class="text-xs font-mono-tech text-zinc-400">點擊方案按鈕可直接帶入第 5 頁預約單</div>
             </div>
@@ -641,7 +811,7 @@
                   </div>
                   <ul class="space-y-2.5 text-xs text-zinc-300">
                     <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 拍攝時數：1 ~ 1.5 小時</li>
-                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 單一指定場景、1 套造型</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 單一指定場景、1 套造型/毛裝</li>
                     <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 精修調色成品：6 ~ 8 張</li>
                     <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 當日調色毛片篩選後全數交付</li>
                   </ul>
@@ -704,7 +874,7 @@
                     <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 拍攝時數：4 ~ 6 小時（半日企劃）</li>
                     <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 多場景、特殊燈光與主題視覺企劃</li>
                     <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 精修調色成品：25 ~ 30 張以上</li>
-                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 支援多人合拍或大型設定集專案</li>
+                    <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 支援多人毛毛合拍或大型設定集專案</li>
                   </ul>
                 </div>
                 <div class="mt-6 pt-3 border-t border-white/5">
@@ -743,9 +913,9 @@
             <div class="fade-up-item delay-1 flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-4 border-b border-white/10 gap-2">
               <div>
                 <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest">SLIDE 03 // EVENT DOCUMENTARY TARIFF</div>
-                <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">活動紀錄攝影價目表</h2>
+                <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">聽團演出與展會紀錄價目表</h2>
               </div>
-              <div class="text-xs font-mono-tech text-zinc-400">展會聚會・樂團演出・專場全程紀實</div>
+              <div class="text-xs font-mono-tech text-zinc-400">樂團演出・獸展聚會・專場全程紀實</div>
             </div>
 
             <div class="fade-up-item delay-2 grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
@@ -770,7 +940,7 @@
                   </ul>
                 </div>
                 <div class="mt-6 pt-3 border-t border-white/5">
-                  <div class="text-[11px] font-mono-tech text-zinc-500 mb-3">適合單場演出 Set、小型毛聚或慶生派對</div>
+                  <div class="text-[11px] font-mono-tech text-zinc-500 mb-3">適合單場樂團演出 Set、小型毛聚或派對</div>
                   <button type="button" onclick="selectPlanAndJump('活動 Short ($3,000)')" class="w-full py-2 rounded-lg bg-white/5 hover:bg-[#e63946] text-zinc-300 hover:text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5">
                     <span>選擇此方案預約</span>
                     <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -802,7 +972,7 @@
                   </ul>
                 </div>
                 <div class="mt-6 pt-3 border-t border-white/10">
-                  <div class="text-[11px] font-mono-tech text-[#e63946] mb-3">★ 專場活動與半日展會最穩健配置</div>
+                  <div class="text-[11px] font-mono-tech text-[#e63946] mb-3">★ 樂團專場與半日展會最穩健配置</div>
                   <button type="button" onclick="selectPlanAndJump('活動 Standard ($5,500)')" class="w-full py-2 rounded-lg bg-[#e63946] hover:bg-rose-700 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-lg shadow-[#e63946]/25">
                     <span>立即預約主打方案</span>
                     <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -831,7 +1001,7 @@
                   </ul>
                 </div>
                 <div class="mt-6 pt-3 border-t border-white/5">
-                  <div class="text-[11px] font-mono-tech text-zinc-500 mb-3">適合大型慶典、全日獸展或跨日活動</div>
+                  <div class="text-[11px] font-mono-tech text-zinc-500 mb-3">適合大型音樂祭、全日獸展或跨日活動</div>
                   <button type="button" onclick="selectPlanAndJump('活動 Full Day ($9,500起)')" class="w-full py-2 rounded-lg bg-white/5 hover:bg-[#e63946] text-zinc-300 hover:text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5">
                     <span>選擇此方案預約</span>
                     <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -967,8 +1137,8 @@
 
                 <form onsubmit="submitCommissionForm(event)" class="space-y-3 text-xs">
                   <div>
-                    <label for="comm-name" class="block text-zinc-400 font-mono-tech mb-1">委託人稱呼 / 獸設名稱 *</label>
-                    <input type="text" id="comm-name" required placeholder="例如：孟孟 / 雷諾奇" 
+                    <label for="comm-name" class="block text-zinc-400 font-mono-tech mb-1">委託人稱呼 / 獸設或樂團名稱 *</label>
+                    <input type="text" id="comm-name" required placeholder="例如：孟孟 / 雷諾奇 / XX樂團" 
                            class="w-full px-3 py-2 rounded-lg bg-[#0a0b0e] border border-zinc-800 text-white focus:outline-none focus:border-[#e63946] transition-colors">
                   </div>
 
@@ -999,7 +1169,7 @@
 
                   <div>
                     <label for="comm-note" class="block text-zinc-400 font-mono-tech mb-1">拍攝地點與需求備註</label>
-                    <textarea id="comm-note" rows="2" placeholder="外拍場景、是否可公開作品、特殊需求..." 
+                    <textarea id="comm-note" rows="2" placeholder="外拍場景、Livehouse 場館、是否可公開作品..." 
                               class="w-full px-3 py-2 rounded-lg bg-[#0a0b0e] border border-zinc-800 text-white focus:outline-none focus:border-[#e63946] transition-colors"></textarea>
                   </div>
 
@@ -1073,7 +1243,7 @@
           
           <!-- 5 大投影片快速跳頁按鈕 -->
           <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-[calc(100%-88px)] sm:max-w-full py-0.5 no-scrollbar">
-            <button type="button" onclick="changePhotoSlide(0)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all bg-[#e63946] text-white font-bold" data-idx="0">01 簡介</button>
+            <button type="button" onclick="changePhotoSlide(0)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all bg-[#e63946] text-white font-bold" data-idx="0">01 簡介與作品</button>
             <button type="button" onclick="changePhotoSlide(1)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5" data-idx="1">02 人像價目</button>
             <button type="button" onclick="changePhotoSlide(2)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5" data-idx="2">03 活動價目</button>
             <button type="button" onclick="changePhotoSlide(3)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5" data-idx="3">04 委託流程</button>
@@ -1082,7 +1252,7 @@
 
           <!-- 左右切換鍵與操作提示 -->
           <div class="flex items-center gap-2 ml-auto shrink-0">
-            <span class="hidden lg:inline-block text-[10px] font-mono-tech text-zinc-500 mr-2">支援鍵盤 ← → 或手指左右滑動</span>
+            <span class="hidden lg:inline-block text-[10px] font-mono-tech text-zinc-500 mr-2">支援鍵盤 ← → 切換簡報</span>
             <button type="button" onclick="prevPhotoSlide()" aria-label="上一頁" class="w-8 h-8 rounded-full editorial-glass hover:border-[#e63946] text-zinc-300 hover:text-white flex items-center justify-center transition-all" title="上一頁">
               <i class="fa-solid fa-chevron-left text-xs"></i>
             </button>
@@ -1180,13 +1350,16 @@
     </div>
   </div>
 
-  <!-- ==================== 升級版全螢幕 Lightbox 相簿燈箱 (支援左右翻頁) ==================== -->
+  <!-- ==================== 升級版全螢幕 Lightbox 相簿燈箱 (支援 10-99 張左右翻頁) ==================== -->
   <div id="lightbox" role="dialog" aria-modal="true" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4" onclick="closeLightbox()">
     
     <!-- 頂部計數與關閉按鈕 -->
     <div class="absolute top-4 left-5 right-5 flex items-center justify-between z-20 pointer-events-none">
-      <div id="lightbox-counter" class="pointer-events-auto px-3 py-1 rounded-full bg-white/10 text-xs font-mono-tech text-slate-300 border border-white/10">
-        01 / 03
+      <div class="flex items-center gap-2">
+        <div id="lightbox-counter" class="pointer-events-auto px-3 py-1 rounded-full bg-white/10 text-xs font-mono-tech text-slate-200 border border-white/10">
+          01 / 12
+        </div>
+        <span id="lightbox-tag" class="hidden px-2.5 py-1 rounded-full bg-[#e63946]/25 text-[#e63946] border border-[#e63946]/40 text-[11px] font-mono-tech font-bold"></span>
       </div>
       <button type="button" aria-label="關閉相簿" class="pointer-events-auto w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center text-xl transition-all" onclick="closeLightbox()">
         <i class="fa-solid fa-xmark"></i>
@@ -1200,8 +1373,8 @@
     </button>
 
     <!-- 照片主體 -->
-    <div class="max-w-4xl max-h-[85dvh] flex flex-col items-center justify-center relative px-8 sm:px-12" onclick="event.stopPropagation()">
-      <img id="lightbox-img" src="" alt="寫真大圖" class="max-h-[75dvh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/10 transition-opacity duration-200">
+    <div class="max-w-5xl max-h-[86dvh] flex flex-col items-center justify-center relative px-8 sm:px-14" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="寫真大圖" class="max-h-[76dvh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/10 transition-opacity duration-200">
       <p id="lightbox-caption" class="text-xs sm:text-sm font-medium text-slate-200 mt-3.5 text-center bg-white/5 px-4 py-1.5 rounded-full border border-white/10"></p>
     </div>
 
@@ -1212,7 +1385,7 @@
     </button>
   </div>
 
-  <!-- ==================== 委託預約單複製成功彈窗 (取代生硬的 alert) ==================== -->
+  <!-- ==================== 委託預約單複製成功彈窗 ==================== -->
   <div id="commission-modal" role="dialog" aria-modal="true" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4" onclick="closeCommissionModal()">
     <div class="editorial-glass max-w-md w-full rounded-3xl p-6 sm:p-7 border border-[#e63946]/50 select-text shadow-2xl" onclick="event.stopPropagation()">
       <div class="flex items-center gap-3 mb-4">
@@ -1251,45 +1424,117 @@
   <!-- ==================== JavaScript 控制腳本 ==================== -->
   <script>
     /* ==========================================================================
-       【可隨時動態修改的相片設定中心 (GALLERY CONFIG)】
-       日後想更換照片或新增照片，只要在下方清單修改檔名或圖片網址即可！
+       【超簡單！批量照片張數設定中心 (PORTFOLIO_BATCH_CONFIG)】
+       日後你的照片變多（例如從 12 張變成 20 張、35 張），只要修改下面的數字：
+       - furryCount: 獸圈照片總張數（對應 ./images/furry-01.jpg ~ furry-20.jpg）
+       - bandCount:  聽團照片總張數（對應 ./images/band-01.jpg  ~ band-20.jpg）
        ========================================================================== */
+    const PORTFOLIO_BATCH_CONFIG = {
+      furryCount: 12, // 👈 這裡改獸圈照片總張數（可設 10 ~ 99）
+      bandCount: 12,  // 👈 這裡改聽團照片總張數（可設 10 ~ 99）
+
+      // 若你想針對某幾張編號自訂專屬文字說明，可寫在這裡（沒寫的編號會自動產生質感預設說明）
+      customCaptions: {
+        'furry-01': '毛毛街頭外拍｜自然光影與毛流感特寫',
+        'furry-02': '夜間霓虹企劃｜暗黑氛圍感毛裝寫真',
+        'furry-03': '獸展場次紀實｜Infurnity 獸無限現場抓拍',
+        'band-01': '獨立樂團專場｜舞台逆光與爆發張力',
+        'band-02': '重型音樂現場｜樂手瞬間神情與汗水凝結',
+        'band-03': '音樂祭全景紀實｜台下衝撞沸騰氛圍紀錄'
+      }
+    };
+
+    // 備用預覽圖池（當你的 ./images/ 還沒放滿對應編號時，自動循環墊檔，確保跑馬燈永遠滿版不破圖）
+    const FALLBACK_POOLS = {
+      furry: [
+        'https://i.postimg.cc/vc96L94v/renoqi-01.jpg',
+        'https://i.postimg.cc/qNT6mRKn/bear-01.jpg',
+        'https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg',
+        'https://i.postimg.cc/rKWtCWDN/bear-02.jpg',
+        'https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg',
+        'https://i.postimg.cc/YhgmfgvQ/bear-03.jpg'
+      ],
+      band: [
+        'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1400&q=85',
+        'https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?auto=format&fit=crop&w=1400&q=85',
+        'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=1400&q=85',
+        'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1400&q=85',
+        'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1400&q=85',
+        'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1400&q=85'
+      ]
+    };
+
+    // 自動批量建立作品陣列
+    function buildBatchPhotos(prefix, count, defaultTag, defaultTitle) {
+      const list = [];
+      const pool = FALLBACK_POOLS[prefix] || FALLBACK_POOLS.furry;
+      for (let i = 1; i <= count; i++) {
+        const numStr = String(i).padStart(2, '0');
+        const key = `${prefix}-${numStr}`;
+        list.push({
+          src: `./images/${key}.jpg`,
+          fallback: pool[(i - 1) % pool.length],
+          tag: `${defaultTag} #${numStr}`,
+          caption: PORTFOLIO_BATCH_CONFIG.customCaptions[key] || `${defaultTitle}｜精選實拍紀錄 #${numStr}`
+        });
+      }
+      return list;
+    }
+
     const SITE_CONFIG = {
       // 1. 雷諾奇專區
       renoqi: {
-        background: 'https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg',
+        background: './images/renoqi-bg.jpg',
+        backgroundFallback: 'https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg',
         photos: [
-          { src: 'https://i.postimg.cc/vc96L94v/renoqi-01.jpg', caption: '雷諾奇 - 戶外萌拍' },
-          { src: 'https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg', caption: '雷諾奇 - 場次出沒花絮' },
-          { src: 'https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg', caption: '雷諾奇 - 棚拍大頭貼特寫' }
+          { src: './images/renoqi-01.jpg', fallback: 'https://i.postimg.cc/vc96L94v/renoqi-01.jpg', tag: 'SHIBA INU', caption: '雷諾奇 - 戶外萌拍' },
+          { src: './images/renoqi-02.jpg', fallback: 'https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg', tag: 'EVENT', caption: '雷諾奇 - 場次出沒花絮' },
+          { src: './images/renoqi-03.jpg', fallback: 'https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg', tag: 'STUDIO', caption: '雷諾奇 - 棚拍大頭貼特寫' }
         ]
       },
       // 2. 雲青專區
       bear: {
-        background: 'https://i.postimg.cc/vc96L94z/bear-bg.jpg',
+        background: './images/bear-bg.jpg',
+        backgroundFallback: 'https://i.postimg.cc/vc96L94z/bear-bg.jpg',
         photos: [
-          { src: 'https://i.postimg.cc/qNT6mRKn/bear-01.jpg', caption: '雲青 - 霓虹階梯帥氣寫真' },
-          { src: 'https://i.postimg.cc/rKWtCWDN/bear-02.jpg', caption: '雲青 - 活力起飛大跳躍！' },
-          { src: 'https://i.postimg.cc/YhgmfgvQ/bear-03.jpg', caption: '雲青 - 藍粉肉球擊掌互動 🐾' }
+          { src: './images/bear-01.jpg', fallback: 'https://i.postimg.cc/qNT6mRKn/bear-01.jpg', tag: 'NEON STREET', caption: '雲青 - 霓虹階梯帥氣寫真' },
+          { src: './images/bear-02.jpg', fallback: 'https://i.postimg.cc/rKWtCWDN/bear-02.jpg', tag: 'ACTION', caption: '雲青 - 活力起飛大跳躍！' },
+          { src: './images/bear-03.jpg', fallback: 'https://i.postimg.cc/YhgmfgvQ/bear-03.jpg', tag: 'CUTE PAWS', caption: '雲青 - 藍粉肉球擊掌互動 🐾' }
         ]
+      },
+      // 3-A. 獸圈作品集（自動產生 furry-01.jpg ~ furry-XX.jpg）
+      furry: {
+        photos: buildBatchPhotos('furry', PORTFOLIO_BATCH_CONFIG.furryCount, 'FURSUIT', '獸圈場次與毛毛外拍')
+      },
+      // 3-B. 聽團作品集（自動產生 band-01.jpg ~ band-XX.jpg）
+      band: {
+        photos: buildBatchPhotos('band', PORTFOLIO_BATCH_CONFIG.bandCount, 'LIVE BAND', '聽團現場與樂團紀實')
       }
     };
 
-    // 智能容錯尋圖工具
-    function smartSrcFallback(imgEl, originalSrc) {
+    // 智慧容錯尋圖工具：優先讀取本地 ./images/ 高清圖 -> 嘗試 .jpeg/.png/.webp -> 退回 fallback
+    function smartSrcFallback(imgEl, primarySrc, fallbackUrl) {
+      let step = 0;
       imgEl.onerror = () => {
-        if (originalSrc.endsWith('.jpg')) {
-          imgEl.src = originalSrc.replace('.jpg', '.jpeg');
-        } else if (originalSrc.endsWith('.jpeg')) {
-          imgEl.src = originalSrc.replace('.jpeg', '.jpg');
+        step++;
+        if (step === 1 && primarySrc.endsWith('.jpg')) {
+          imgEl.src = primarySrc.replace('.jpg', '.jpeg');
+        } else if (step === 2 && primarySrc.endsWith('.jpg')) {
+          imgEl.src = primarySrc.replace('.jpg', '.png');
+        } else if (step === 3 && primarySrc.endsWith('.jpg')) {
+          imgEl.src = primarySrc.replace('.jpg', '.webp');
+        } else if (fallbackUrl && imgEl.src !== fallbackUrl) {
+          imgEl.src = fallbackUrl;
+          imgEl.onerror = null;
+        } else {
+          imgEl.onerror = null;
         }
-        imgEl.onerror = null;
       };
-      imgEl.src = originalSrc;
+      imgEl.src = primarySrc;
     }
 
-    // 渲染相簿卡片共用函式
-    function renderGalleryCards(containerId, galleryKey, accentColor) {
+    // 渲染角色相簿卡片 (雷諾奇 & 雲青)
+    function renderCharacterGallery(containerId, galleryKey, accentColor) {
       const box = document.getElementById(containerId);
       if (!box) return;
       box.innerHTML = '';
@@ -1303,29 +1548,283 @@
           openLightbox(galleryKey, idx);
         };
         card.innerHTML = `
-          <img src="${item.src}" loading="lazy" class="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" alt="${item.caption}">
+          <img loading="lazy" class="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" alt="${item.caption}">
           <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity p-3.5 flex items-end justify-between">
             <span class="text-xs font-medium text-white">${item.caption}</span>
             <i class="fa-solid fa-expand text-xs text-white/80"></i>
           </div>
         `;
-        smartSrcFallback(card.querySelector('img'), item.src);
+        smartSrcFallback(card.querySelector('img'), item.src, item.fallback);
         box.appendChild(card);
       });
     }
 
-    // 動態載入並渲染所有照片與表單預設值
+    // ==================== 雙模式動態畫廊引擎 (移動式膠卷 + 投影式放映) ====================
+    let currentPortfolioCategory = 'furry'; // 'furry' | 'band'
+    let currentDisplayMode = 'marquee';     // 'marquee' | 'projector'
+
+    // --- A. 移動式膠卷跑馬燈狀態 ---
+    let isMarqueePaused = false;
+    let isMarqueeHovered = false;
+    let marqueeSpeed = 0.85; // 滾動速度
+
+    function renderMarqueeReel() {
+      const track = document.getElementById('marquee-track');
+      const viewport = document.getElementById('marquee-viewport');
+      if (!track || !viewport) return;
+      track.innerHTML = '';
+      viewport.scrollLeft = 0;
+
+      const photos = SITE_CONFIG[currentPortfolioCategory].photos;
+      // 複製兩份達成無縫無限循環滾動
+      const loopPhotos = [...photos, ...photos];
+
+      loopPhotos.forEach((item, loopIdx) => {
+        const realIdx = loopIdx % photos.length;
+        const card = document.createElement('div');
+        card.className = 'w-64 sm:w-80 aspect-[4/3] shrink-0 rounded-2xl overflow-hidden cursor-pointer group/reel relative bg-[#0a0b0e] border border-white/10 hover:border-[#e63946] transition-all shadow-xl';
+        card.onclick = (e) => {
+          e.stopPropagation();
+          openLightbox(currentPortfolioCategory, realIdx);
+        };
+        card.innerHTML = `
+          <img loading="lazy" class="w-full h-full object-cover group-hover/reel:scale-108 transition-transform duration-500" alt="${item.caption}">
+          <div class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-black/75 backdrop-blur-md border border-white/15 text-[10px] font-mono-tech text-[#e63946] font-bold">
+            ${item.tag}
+          </div>
+          <div class="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-black/65 group-hover/reel:bg-[#e63946] text-white flex items-center justify-center text-xs transition-colors border border-white/15">
+            <i class="fa-solid fa-magnifying-glass-plus text-[10px]"></i>
+          </div>
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent p-3.5 pt-8">
+            <div class="text-xs font-bold text-white truncate group-hover/reel:text-rose-200">${item.caption}</div>
+            <div class="text-[10px] font-mono-tech text-zinc-400 mt-0.5">點擊放大檢視原圖</div>
+          </div>
+        `;
+        smartSrcFallback(card.querySelector('img'), item.src, item.fallback);
+        track.appendChild(card);
+      });
+    }
+
+    // RequestAnimationFrame 驅動平滑無縫跑馬燈
+    function animateMarqueeLoop() {
+      if (activeIndex === 3 && currentPhotoSlide === 0 && currentDisplayMode === 'marquee' && !isMarqueePaused && !isMarqueeHovered) {
+        const viewport = document.getElementById('marquee-viewport');
+        const track = document.getElementById('marquee-track');
+        if (viewport && track && track.scrollWidth > 0) {
+          viewport.scrollLeft += marqueeSpeed;
+          const halfWidth = track.scrollWidth / 2;
+          if (viewport.scrollLeft >= halfWidth) {
+            viewport.scrollLeft -= halfWidth;
+          }
+        }
+      }
+      requestAnimationFrame(animateMarqueeLoop);
+    }
+
+    function toggleMarqueePause() {
+      isMarqueePaused = !isMarqueePaused;
+      const icon = document.getElementById('marquee-pause-icon');
+      const text = document.getElementById('marquee-pause-text');
+      const btn = document.getElementById('marquee-pause-btn');
+      if (isMarqueePaused) {
+        icon.className = 'fa-solid fa-play text-[10px]';
+        text.textContent = '繼續流動';
+        btn.classList.add('bg-[#e63946]');
+      } else {
+        icon.className = 'fa-solid fa-pause text-[10px]';
+        text.textContent = '暫停流動';
+        btn.classList.remove('bg-[#e63946]');
+      }
+    }
+
+    function nudgeMarquee(delta) {
+      const viewport = document.getElementById('marquee-viewport');
+      if (viewport) {
+        viewport.scrollBy({ left: delta, behavior: 'smooth' });
+      }
+    }
+
+    // --- B. 投影式大銀幕放映機狀態 ---
+    let projectorIndex = 0;
+    let isProjectorPlaying = true;
+    let projectorProgress = 0;
+    let projectorTimer = null;
+
+    function renderProjectorView() {
+      const photos = SITE_CONFIG[currentPortfolioCategory].photos;
+      if (projectorIndex >= photos.length) projectorIndex = 0;
+      const item = photos[projectorIndex];
+
+      const mainImg = document.getElementById('projector-main-img');
+      const counter = document.getElementById('projector-counter');
+      const tag = document.getElementById('projector-tag');
+      const caption = document.getElementById('projector-caption');
+      const thumbsBox = document.getElementById('projector-thumbs');
+
+      if (mainImg) {
+        mainImg.classList.add('opacity-40');
+        setTimeout(() => {
+          smartSrcFallback(mainImg, item.src, item.fallback);
+          mainImg.classList.remove('opacity-40');
+        }, 90);
+      }
+      if (counter) {
+        counter.textContent = `${String(projectorIndex + 1).padStart(2, '0')} / ${String(photos.length).padStart(2, '0')}`;
+      }
+      if (tag) tag.textContent = item.tag;
+      if (caption) caption.textContent = item.caption;
+
+      // 渲染底部微縮圖導覽列
+      if (thumbsBox) {
+        thumbsBox.innerHTML = '';
+        photos.forEach((p, idx) => {
+          const thumb = document.createElement('button');
+          thumb.type = 'button';
+          const isCurrent = idx === projectorIndex;
+          thumb.className = `w-16 sm:w-20 aspect-[4/3] rounded-lg overflow-hidden shrink-0 border-2 transition-all ${isCurrent ? 'border-[#e63946] scale-105 opacity-100 shadow-lg' : 'border-transparent opacity-45 hover:opacity-80'}`;
+          thumb.onclick = () => {
+            projectorIndex = idx;
+            projectorProgress = 0;
+            renderProjectorView();
+          };
+          thumb.innerHTML = `<img loading="lazy" class="w-full h-full object-cover" alt="${p.caption}">`;
+          smartSrcFallback(thumb.querySelector('img'), p.src, p.fallback);
+          thumbsBox.appendChild(thumb);
+
+          if (isCurrent) {
+            thumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          }
+        });
+      }
+    }
+
+    function stepProjector(dir) {
+      const photos = SITE_CONFIG[currentPortfolioCategory].photos;
+      projectorIndex = (projectorIndex + dir + photos.length) % photos.length;
+      projectorProgress = 0;
+      renderProjectorView();
+    }
+
+    function toggleProjectorAutoplay() {
+      isProjectorPlaying = !isProjectorPlaying;
+      const icon = document.getElementById('projector-play-icon');
+      const text = document.getElementById('projector-play-text');
+      if (isProjectorPlaying) {
+        icon.className = 'fa-solid fa-pause text-[10px] text-[#e63946]';
+        text.textContent = '自動投影中';
+      } else {
+        icon.className = 'fa-solid fa-play text-[10px] text-zinc-400';
+        text.textContent = '已暫停投影';
+      }
+    }
+
+    function startProjectorTicker() {
+      if (projectorTimer) clearInterval(projectorTimer);
+      projectorTimer = setInterval(() => {
+        if (activeIndex === 3 && currentPhotoSlide === 0 && currentDisplayMode === 'projector' && isProjectorPlaying) {
+          const lb = document.getElementById('lightbox');
+          if (lb && !lb.classList.contains('hidden')) return; // 放大燈箱開啟時暫停背景輪播
+          projectorProgress += 2.8;
+          const bar = document.getElementById('projector-progress');
+          if (bar) bar.style.width = `${Math.min(projectorProgress, 100)}%`;
+          if (projectorProgress >= 100) {
+            projectorProgress = 0;
+            stepProjector(1);
+          }
+        }
+      }, 100);
+    }
+
+    // 切換「移動式膠卷」與「投影式放映」模式
+    function switchDisplayMode(mode) {
+      currentDisplayMode = mode;
+      const marqueeBtn = document.getElementById('mode-btn-marquee');
+      const projectorBtn = document.getElementById('mode-btn-projector');
+      const marqueeView = document.getElementById('view-marquee');
+      const projectorView = document.getElementById('view-projector');
+      const marqueeCtrls = document.getElementById('marquee-controls');
+
+      if (mode === 'marquee') {
+        marqueeBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-mono-tech font-bold transition-all flex items-center gap-1.5 bg-white/15 text-white';
+        projectorBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-mono-tech font-bold transition-all flex items-center gap-1.5 text-zinc-400 hover:text-white';
+        marqueeView.classList.remove('hidden');
+        projectorView.classList.add('hidden');
+        marqueeCtrls.classList.remove('hidden');
+        renderMarqueeReel();
+      } else {
+        projectorBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-mono-tech font-bold transition-all flex items-center gap-1.5 bg-white/15 text-white';
+        marqueeBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-mono-tech font-bold transition-all flex items-center gap-1.5 text-zinc-400 hover:text-white';
+        projectorView.classList.remove('hidden');
+        marqueeView.classList.add('hidden');
+        marqueeCtrls.classList.add('hidden');
+        projectorProgress = 0;
+        renderProjectorView();
+      }
+      updateCategoryDescText();
+    }
+
+    // 切換「獸圈」與「聽團」作品分類
+    function switchPortfolioCategory(cat, shouldScroll) {
+      currentPortfolioCategory = cat;
+      projectorIndex = 0;
+      projectorProgress = 0;
+
+      const furryBtn = document.getElementById('tab-btn-furry');
+      const bandBtn = document.getElementById('tab-btn-band');
+
+      if (cat === 'furry') {
+        furryBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 bg-[#e63946] text-white shadow-md';
+        bandBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 text-zinc-400 hover:text-white';
+      } else {
+        bandBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 bg-[#e63946] text-white shadow-md';
+        furryBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 text-zinc-400 hover:text-white';
+      }
+
+      updateCategoryDescText();
+      renderMarqueeReel();
+      if (currentDisplayMode === 'projector') {
+        renderProjectorView();
+      }
+
+      if (shouldScroll) {
+        const showcase = document.getElementById('portfolio-showcase');
+        if (showcase) showcase.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function updateCategoryDescText() {
+      const descEl = document.getElementById('portfolio-cat-desc');
+      if (!descEl) return;
+      const catName = currentPortfolioCategory === 'furry' ? '🐾 獸圈場次與毛毛外拍' : '🎸 聽團現場與樂團紀實';
+      const dotColor = currentPortfolioCategory === 'furry' ? 'bg-amber-400' : 'bg-[#e63946]';
+      const modeHint = currentDisplayMode === 'marquee' ? '滑鼠移上或手指按住可暫停膠卷，點擊喜歡的照片直接放大' : '每 3.5 秒自動投影下一張，點擊大銀幕或下方縮圖可切換與放大';
+      descEl.innerHTML = `<span class="w-2 h-2 rounded-full ${dotColor} animate-ping"></span><span>目前顯示：<strong>${catName}</strong>（${modeHint}）</span>`;
+    }
+
+    // 頁面初始化
     function initDynamicGalleries() {
       const renoqiBg = document.getElementById('img-renoqi-bg');
-      if (renoqiBg) smartSrcFallback(renoqiBg, SITE_CONFIG.renoqi.background);
+      if (renoqiBg) smartSrcFallback(renoqiBg, SITE_CONFIG.renoqi.background, SITE_CONFIG.renoqi.backgroundFallback);
 
       const bearBg = document.getElementById('img-bear-bg');
-      if (bearBg) smartSrcFallback(bearBg, SITE_CONFIG.bear.background);
+      if (bearBg) smartSrcFallback(bearBg, SITE_CONFIG.bear.background, SITE_CONFIG.bear.backgroundFallback);
 
-      renderGalleryCards('renoqi-gallery', 'renoqi', 'amber');
-      renderGalleryCards('bear-gallery', 'bear', 'sky');
+      renderCharacterGallery('renoqi-gallery', 'renoqi', 'amber');
+      renderCharacterGallery('bear-gallery', 'bear', 'sky');
 
-      // 設定預約日期欄位的最小值為今天，防止選到過去日期
+      // 更新分類張數徽章
+      const furryCount = document.getElementById('count-badge-furry');
+      const bandCount = document.getElementById('count-badge-band');
+      if (furryCount) furryCount.textContent = SITE_CONFIG.furry.photos.length;
+      if (bandCount) bandCount.textContent = SITE_CONFIG.band.photos.length;
+
+      // 初始化動態膠卷與投影器
+      renderMarqueeReel();
+      renderProjectorView();
+      requestAnimationFrame(animateMarqueeLoop);
+      startProjectorTicker();
+
+      // 設定預約日期欄位的最小值為今天
       const dateInput = document.getElementById('comm-date');
       if (dateInput) {
         const today = new Date().toISOString().split('T')[0];
@@ -1538,7 +2037,7 @@
       document.getElementById('bio-modal').classList.add('hidden');
     }
 
-    // ==================== 升級版相簿燈箱控制 (支援上下張切換) ====================
+    // ==================== 升級版全螢幕 Lightbox 燈箱 (支援兩位數計數 01 / 20) ====================
     let currentGalleryKey = null;
     let currentPhotoIdx = 0;
 
@@ -1556,12 +2055,21 @@
       const img = document.getElementById('lightbox-img');
       const cap = document.getElementById('lightbox-caption');
       const counter = document.getElementById('lightbox-counter');
+      const tagEl = document.getElementById('lightbox-tag');
 
       img.classList.add('opacity-0');
       setTimeout(() => {
-        smartSrcFallback(img, item.src);
+        smartSrcFallback(img, item.src, item.fallback);
         cap.textContent = item.caption || '';
-        counter.textContent = `0${currentPhotoIdx + 1} / 0${photos.length}`;
+        const curStr = String(currentPhotoIdx + 1).padStart(2, '0');
+        const totStr = String(photos.length).padStart(2, '0');
+        counter.textContent = `${curStr} / ${totStr}`;
+        if (item.tag && tagEl) {
+          tagEl.textContent = item.tag;
+          tagEl.classList.remove('hidden');
+        } else if (tagEl) {
+          tagEl.classList.add('hidden');
+        }
         img.classList.remove('opacity-0');
       }, 100);
     }
@@ -1578,7 +2086,7 @@
       currentGalleryKey = null;
     }
 
-    // ==================== 鍵盤與觸控手勢支援 ====================
+    // ==================== 鍵盤支援 ====================
     document.addEventListener('keydown', (e) => {
       const tag = e.target.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
@@ -1613,37 +2121,6 @@
         if (e.key === 'ArrowLeft') prevPhotoSlide();
       }
     });
-
-    // 手機觸控左右滑動切換 (支援第 3 區簡報 & 相簿燈箱)
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    document.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-      touchStartY = e.changedTouches[0].screenY;
-    }, { passive: true });
-
-    document.addEventListener('touchend', (e) => {
-      const touchEndX = e.changedTouches[0].screenX;
-      const touchEndY = e.changedTouches[0].screenY;
-      const diffX = touchStartX - touchEndX;
-      const diffY = Math.abs(touchStartY - touchEndY);
-
-      if (Math.abs(diffX) > 60 && diffY < 50) {
-        const lb = document.getElementById('lightbox');
-        // 優先控制燈箱滑動
-        if (!lb.classList.contains('hidden')) {
-          if (diffX > 0) navigateLightbox(1);
-          else navigateLightbox(-1);
-          return;
-        }
-        // 其次控制第 3 區簡報滑動
-        if (activeIndex === 3) {
-          if (diffX > 0) nextPhotoSlide();
-          else prevPhotoSlide();
-        }
-      }
-    }, { passive: true });
   </script>
 </body>
 </html>
