@@ -16,6 +16,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* 讓小圖在放大顯示時邊緣保持清晰、不抹糊 */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
 
     :root {
