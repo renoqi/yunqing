@@ -41,6 +41,12 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
+    /* 💡 抗模糊與銳利度增強引擎：避免幾百 KB 照片在手機拉大時被模糊抹平 */
+    img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+
     /* 客製化暗黑極細捲軸 */
     ::-webkit-scrollbar {
       width: 5px;
@@ -281,7 +287,7 @@
       
       <!-- 背景圖 -->
       <div class="absolute inset-0 -z-10 overflow-hidden bg-slate-900">
-        <img id="img-renoqi-bg" src="./images/renoqi-bg.jpg" alt="雷諾奇背景" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+        <img id="img-renoqi-bg" src="./renoqi_bg.jpg" alt="雷諾奇背景" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-slate-950/20"></div>
         <div class="absolute inset-0 bg-amber-950/25 mix-blend-color"></div>
       </div>
@@ -332,7 +338,7 @@
             </p>
             <div class="mt-4 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
               <div>毛裝製作：<span class="text-amber-400 font-bold">天偶毛工作室</span></div>
-              <div class="text-[11px] text-slate-500">點擊下方照片可開啟全螢幕高清相簿檢視</div>
+              <div class="text-[11px] text-slate-500">點擊下方照片可開啟全螢幕檢視</div>
             </div>
           </div>
 
@@ -373,7 +379,7 @@
               <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                 <i class="fa-solid fa-camera text-amber-400"></i> 雷諾奇的精選寫真
               </h3>
-              <span class="text-xs text-slate-400"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊放大高清原圖</span>
+              <span class="text-xs text-slate-400"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊放大照片</span>
             </div>
             <div id="renoqi-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-5"></div>
           </div>
@@ -388,7 +394,7 @@
       
       <!-- 雲青主背景圖 -->
       <div class="absolute inset-0 -z-10 overflow-hidden bg-slate-900">
-        <img id="img-bear-bg" src="./images/bear-bg.jpg" alt="雲青背景" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+        <img id="img-bear-bg" src="./bear_bg.jpg" alt="雲青背景" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-slate-950/20"></div>
         <div class="absolute inset-0 bg-sky-950/35 mix-blend-color"></div>
       </div>
@@ -463,13 +469,13 @@
             <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-white mr-2"></i>
           </a>
 
-          <!-- 精選寫真 -->
+          <!-- 精選寫真 (直接對應你的 bear-1.jpeg, bear-2.jpeg, bear-3.jpeg) -->
           <div>
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                 <i class="fa-solid fa-camera text-sky-400"></i> 雲青的偶像日常
               </h3>
-              <span class="text-xs text-slate-400"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊放大高清原圖</span>
+              <span class="text-xs text-slate-400"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊放大照片</span>
             </div>
             <div id="bear-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-5"></div>
           </div>
@@ -478,7 +484,7 @@
       </div>
     </section>
 
-    <!-- ==================== 3. 攝影師服務與價目委託專區 (含移動式膠卷 & 投影式放映畫廊) ==================== -->
+    <!-- ==================== 3. 攝影師服務與價目委託專區 (動態膠卷 ✕ 投影式大銀幕) ==================== -->
     <section id="panel-3" onclick="handlePanelClick(3)" 
              class="split-panel relative overflow-hidden flex flex-col justify-end group matte-dark-bg cursor-pointer">
       
@@ -539,7 +545,7 @@
         <!-- 簡報投影片主視窗 (5 Slides) -->
         <div id="photo-slider-viewport" class="flex-1 w-full overflow-y-auto px-4 sm:px-10 md:px-16 py-6 sm:py-8 relative block" style="-webkit-overflow-scrolling: touch; overscroll-behavior-y: contain;">
           
-          <!-- ========== SLIDE 01：攝影師簡介 + 移動式膠卷 / 投影式放映雙模式作品集 ========== -->
+          <!-- ========== SLIDE 01：攝影師簡介 + 動態膠卷 / 投影放映雙模式作品集 ========== -->
           <div class="photo-slide slide-active w-full max-w-5xl mx-auto relative z-10 pb-8" data-slide="0">
             <div class="watermark-text right-[-4%] top-[-3%] text-[24vw] sm:text-[15vw]">01</div>
             <div class="watermark-text left-[-2%] bottom-[20%] text-[18vw] sm:text-[12vw]">GALLERY</div>
@@ -635,10 +641,10 @@
               </div>
             </div>
 
-            <!-- ========== 升級版：移動式膠卷 (Marquee) ✕ 投影式放映機 (Projector) 雙模式作品集 ========== -->
+            <!-- ========== 移動式膠卷 (Marquee) ✕ 投影式放映機 (Projector) 雙模式作品集 ========== -->
             <div id="portfolio-showcase" class="fade-up-item delay-4 editorial-glass p-5 sm:p-7 rounded-2xl border border-white/10">
               
-              <!-- 控制列 Header：左側切換「獸圈 / 聽團」，右側切換「移動式膠卷 / 投影式放映」 -->
+              <!-- 控制列 Header -->
               <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 mb-4 border-b border-white/10">
                 <div>
                   <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest flex items-center gap-2">
@@ -668,7 +674,7 @@
                   <div class="inline-flex p-1 rounded-xl bg-[#0a0b0e] border border-zinc-800">
                     <button type="button" id="mode-btn-marquee" onclick="switchDisplayMode('marquee')"
                             class="px-3 py-1.5 rounded-lg text-xs font-mono-tech font-bold transition-all flex items-center gap-1.5 bg-white/15 text-white">
-                      <i class="fa-solid fa-Water"></i>
+                      <i class="fa-solid fa-water"></i>
                       <span>🔄 移動式膠卷</span>
                     </button>
                     <button type="button" id="mode-btn-projector" onclick="switchDisplayMode('projector')"
@@ -684,7 +690,7 @@
               <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 mb-3">
                 <p id="portfolio-cat-desc" class="flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-                  <span>目前顯示：<strong>🐾 獸圈場次與毛毛外拍</strong>（滑鼠移上或手指按住可暫停流動，點擊照片放大）</span>
+                  <span>目前顯示：<strong>🐾 獸圈場次與毛毛外拍</strong>（滑鼠移上或手指按住可暫停膠卷，點擊照片放大）</span>
                 </p>
 
                 <!-- 膠卷專用控制鈕 -->
@@ -746,7 +752,7 @@
                     <button type="button" onclick="openLightbox(currentPortfolioCategory, projectorIndex)"
                             class="px-3 py-1.5 rounded-full bg-[#e63946] hover:bg-rose-700 text-xs font-bold text-white shadow-lg flex items-center gap-1.5 transition-all">
                       <i class="fa-solid fa-expand text-[10px]"></i>
-                      <span>放大原圖</span>
+                      <span>放大照片</span>
                     </button>
                   </div>
 
@@ -773,9 +779,7 @@
                 </div>
 
                 <!-- 底部縮圖快速導覽列 (Filmstrip Thumbnails) -->
-                <div id="projector-thumbs" class="flex items-center gap-2 overflow-x-auto no-scrollbar mt-3 py-1">
-                  <!-- 由 JS 動態生成 10-20 張縮圖 -->
-                </div>
+                <div id="projector-thumbs" class="flex items-center gap-2 overflow-x-auto no-scrollbar mt-3 py-1"></div>
               </div>
 
             </div>
@@ -1113,7 +1117,7 @@
           </div>
 
           <!-- ========== SLIDE 05：委託攝影合約摘要 ========== -->
-          <div class="photo-slide w-full max-w-5xl mx-auto relative z-10" data-slide="4">
+          <div class="photo-slide w-full max-w-5xl mx-auto relative z-10 pb-16" data-slide="4">
             <div class="watermark-text right-[-4%] top-[-15%] text-[24vw] sm:text-[16vw]">05</div>
             <div class="watermark-text left-[-2%] bottom-[-10%] text-[16vw] sm:text-[11vw]">CONTRACT</div>
 
@@ -1238,7 +1242,7 @@
 
         </div>
 
-        <!-- 簡報底部導覽列 (跳頁切換 + 左右鍵控制) -->
+        <!-- 簡報底部導覽列 -->
         <footer class="w-full px-4 sm:px-10 py-3.5 sm:py-4 border-t border-white/10 z-20 bg-[#0a0b0e]/95 backdrop-blur-md flex flex-wrap items-center justify-between gap-2 shrink-0">
           
           <!-- 5 大投影片快速跳頁按鈕 -->
@@ -1350,7 +1354,7 @@
     </div>
   </div>
 
-  <!-- ==================== 升級版全螢幕 Lightbox 相簿燈箱 (支援 10-99 張左右翻頁) ==================== -->
+  <!-- ==================== 升級版全螢幕 Lightbox 相簿燈箱 ==================== -->
   <div id="lightbox" role="dialog" aria-modal="true" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4" onclick="closeLightbox()">
     
     <!-- 頂部計數與關閉按鈕 -->
@@ -1424,27 +1428,24 @@
   <!-- ==================== JavaScript 控制腳本 ==================== -->
   <script>
     /* ==========================================================================
-       【超簡單！批量照片張數設定中心 (PORTFOLIO_BATCH_CONFIG)】
-       日後你的照片變多（例如從 12 張變成 20 張、35 張），只要修改下面的數字：
-       - furryCount: 獸圈照片總張數（對應 ./images/furry-01.jpg ~ furry-20.jpg）
-       - bandCount:  聽團照片總張數（對應 ./images/band-01.jpg  ~ band-20.jpg）
+       【檔案路徑設定中心 (SITE_CONFIG)】
+       1. 雲青專區：精準對應你剛剛上傳的 ./bear-1.jpeg, ./bear-2.jpeg, ./bear-3.jpeg
+       2. 雷諾奇專區：對應 ./renoqi_01.jpg, ./renoqi_02.jpg, ./renoqi_03.jpg
+       3. 獸圈與聽團：支援 10~20 張動態輪播
        ========================================================================== */
     const PORTFOLIO_BATCH_CONFIG = {
-      furryCount: 12, // 👈 這裡改獸圈照片總張數（可設 10 ~ 99）
-      bandCount: 12,  // 👈 這裡改聽團照片總張數（可設 10 ~ 99）
-
-      // 若你想針對某幾張編號自訂專屬文字說明，可寫在這裡（沒寫的編號會自動產生質感預設說明）
+      furryCount: 12, // 獸圈照片總張數
+      bandCount: 12,  // 聽團照片總張數
       customCaptions: {
-        'furry-01': '毛毛街頭外拍｜自然光影與毛流感特寫',
-        'furry-02': '夜間霓虹企劃｜暗黑氛圍感毛裝寫真',
-        'furry-03': '獸展場次紀實｜Infurnity 獸無限現場抓拍',
-        'band-01': '獨立樂團專場｜舞台逆光與爆發張力',
-        'band-02': '重型音樂現場｜樂手瞬間神情與汗水凝結',
-        'band-03': '音樂祭全景紀實｜台下衝撞沸騰氛圍紀錄'
+        'furry-1': '毛毛街頭外拍｜自然光影與毛流感特寫',
+        'furry-2': '夜間霓虹企劃｜暗黑氛圍感毛裝寫真',
+        'furry-3': '獸展場次紀實｜Infurnity 獸無限現場抓拍',
+        'band-1': '獨立樂團專場｜舞台逆光與爆發張力',
+        'band-2': '重型音樂現場｜樂手瞬間神情與汗水凝結',
+        'band-3': '音樂祭全景紀實｜台下衝撞沸騰氛圍紀錄'
       }
     };
 
-    // 備用預覽圖池（當你的 ./images/ 還沒放滿對應編號時，自動循環墊檔，確保跑馬燈永遠滿版不破圖）
     const FALLBACK_POOLS = {
       furry: [
         'https://i.postimg.cc/vc96L94v/renoqi-01.jpg',
@@ -1464,18 +1465,20 @@
       ]
     };
 
-    // 自動批量建立作品陣列
     function buildBatchPhotos(prefix, count, defaultTag, defaultTitle) {
       const list = [];
       const pool = FALLBACK_POOLS[prefix] || FALLBACK_POOLS.furry;
       for (let i = 1; i <= count; i++) {
-        const numStr = String(i).padStart(2, '0');
-        const key = `${prefix}-${numStr}`;
+        const key = `${prefix}-${i}`;
+        const numPad = String(i).padStart(2, '0');
         list.push({
-          src: `./images/${key}.jpg`,
+          src: `./${key}.jpeg`,
+          altSrc1: `./${key}.jpg`,
+          altSrc2: `./${prefix}-${numPad}.jpeg`,
+          altSrc3: `./${prefix}-${numPad}.jpg`,
           fallback: pool[(i - 1) % pool.length],
-          tag: `${defaultTag} #${numStr}`,
-          caption: PORTFOLIO_BATCH_CONFIG.customCaptions[key] || `${defaultTitle}｜精選實拍紀錄 #${numStr}`
+          tag: `${defaultTag} #${numPad}`,
+          caption: PORTFOLIO_BATCH_CONFIG.customCaptions[key] || `${defaultTitle}｜精選實拍紀錄 #${numPad}`
         });
       }
       return list;
@@ -1484,53 +1487,57 @@
     const SITE_CONFIG = {
       // 1. 雷諾奇專區
       renoqi: {
-        background: './images/renoqi-bg.jpg',
+        background: './renoqi_bg.jpg',
         backgroundFallback: 'https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg',
         photos: [
-          { src: './images/renoqi-01.jpg', fallback: 'https://i.postimg.cc/vc96L94v/renoqi-01.jpg', tag: 'SHIBA INU', caption: '雷諾奇 - 戶外萌拍' },
-          { src: './images/renoqi-02.jpg', fallback: 'https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg', tag: 'EVENT', caption: '雷諾奇 - 場次出沒花絮' },
-          { src: './images/renoqi-03.jpg', fallback: 'https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg', tag: 'STUDIO', caption: '雷諾奇 - 棚拍大頭貼特寫' }
+          { src: './renoqi_01.jpg', fallback: 'https://i.postimg.cc/vc96L94v/renoqi-01.jpg', tag: 'SHIBA INU', caption: '雷諾奇 - 戶外萌拍' },
+          { src: './renoqi_02.jpg', fallback: 'https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg', tag: 'EVENT', caption: '雷諾奇 - 場次出沒花絮' },
+          { src: './renoqi_03.jpg', fallback: 'https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg', tag: 'STUDIO', caption: '雷諾奇 - 棚拍大頭貼特寫' }
         ]
       },
-      // 2. 雲青專區
+      // 2. 雲青專區 (直接對齊你 GitHub 上的 bear-1.jpeg ~ bear-3.jpeg)
       bear: {
-        background: './images/bear-bg.jpg',
+        background: './bear_bg.jpg',
         backgroundFallback: 'https://i.postimg.cc/vc96L94z/bear-bg.jpg',
         photos: [
-          { src: './images/bear-01.jpg', fallback: 'https://i.postimg.cc/qNT6mRKn/bear-01.jpg', tag: 'NEON STREET', caption: '雲青 - 霓虹階梯帥氣寫真' },
-          { src: './images/bear-02.jpg', fallback: 'https://i.postimg.cc/rKWtCWDN/bear-02.jpg', tag: 'ACTION', caption: '雲青 - 活力起飛大跳躍！' },
-          { src: './images/bear-03.jpg', fallback: 'https://i.postimg.cc/YhgmfgvQ/bear-03.jpg', tag: 'CUTE PAWS', caption: '雲青 - 藍粉肉球擊掌互動 🐾' }
+          { src: './bear-1.jpeg', altSrc1: './bear_01.jpg', fallback: 'https://i.postimg.cc/qNT6mRKn/bear-01.jpg', tag: 'NEON STREET', caption: '雲青 - 霓虹階梯帥氣寫真' },
+          { src: './bear-2.jpeg', altSrc1: './bear_02.jpeg', fallback: 'https://i.postimg.cc/rKWtCWDN/bear-02.jpg', tag: 'ACTION', caption: '雲青 - 活力起飛大跳躍！' },
+          { src: './bear-3.jpeg', altSrc1: './bear_03.jpeg', fallback: 'https://i.postimg.cc/YhgmfgvQ/bear-03.jpg', tag: 'CUTE PAWS', caption: '雲青 - 藍粉肉球擊掌互動 🐾' }
         ]
       },
-      // 3-A. 獸圈作品集（自動產生 furry-01.jpg ~ furry-XX.jpg）
+      // 3-A. 獸圈作品集
       furry: {
         photos: buildBatchPhotos('furry', PORTFOLIO_BATCH_CONFIG.furryCount, 'FURSUIT', '獸圈場次與毛毛外拍')
       },
-      // 3-B. 聽團作品集（自動產生 band-01.jpg ~ band-XX.jpg）
+      // 3-B. 聽團作品集
       band: {
         photos: buildBatchPhotos('band', PORTFOLIO_BATCH_CONFIG.bandCount, 'LIVE BAND', '聽團現場與樂團紀實')
       }
     };
 
-    // 智慧容錯尋圖工具：優先讀取本地 ./images/ 高清圖 -> 嘗試 .jpeg/.png/.webp -> 退回 fallback
-    function smartSrcFallback(imgEl, primarySrc, fallbackUrl) {
-      let step = 0;
+    // 全方位智慧多級容錯：依序嘗試多種可能副檔名與命名規則，最後才退回外部圖床
+    function smartSrcFallback(imgEl, item) {
+      const candidates = [];
+      if (typeof item === 'string') {
+        candidates.push(item);
+      } else {
+        if (item.src) candidates.push(item.src);
+        if (item.altSrc1) candidates.push(item.altSrc1);
+        if (item.altSrc2) candidates.push(item.altSrc2);
+        if (item.altSrc3) candidates.push(item.altSrc3);
+        if (item.fallback) candidates.push(item.fallback);
+      }
+
+      let idx = 0;
       imgEl.onerror = () => {
-        step++;
-        if (step === 1 && primarySrc.endsWith('.jpg')) {
-          imgEl.src = primarySrc.replace('.jpg', '.jpeg');
-        } else if (step === 2 && primarySrc.endsWith('.jpg')) {
-          imgEl.src = primarySrc.replace('.jpg', '.png');
-        } else if (step === 3 && primarySrc.endsWith('.jpg')) {
-          imgEl.src = primarySrc.replace('.jpg', '.webp');
-        } else if (fallbackUrl && imgEl.src !== fallbackUrl) {
-          imgEl.src = fallbackUrl;
-          imgEl.onerror = null;
+        idx++;
+        if (idx < candidates.length) {
+          imgEl.src = candidates[idx];
         } else {
           imgEl.onerror = null;
         }
       };
-      imgEl.src = primarySrc;
+      imgEl.src = candidates[0];
     }
 
     // 渲染角色相簿卡片 (雷諾奇 & 雲青)
@@ -1554,19 +1561,17 @@
             <i class="fa-solid fa-expand text-xs text-white/80"></i>
           </div>
         `;
-        smartSrcFallback(card.querySelector('img'), item.src, item.fallback);
+        smartSrcFallback(card.querySelector('img'), item);
         box.appendChild(card);
       });
     }
 
-    // ==================== 雙模式動態畫廊引擎 (移動式膠卷 + 投影式放映) ====================
-    let currentPortfolioCategory = 'furry'; // 'furry' | 'band'
-    let currentDisplayMode = 'marquee';     // 'marquee' | 'projector'
-
-    // --- A. 移動式膠卷跑馬燈狀態 ---
+    // ==================== 雙模式動態畫廊引擎 ====================
+    let currentPortfolioCategory = 'furry';
+    let currentDisplayMode = 'marquee';
     let isMarqueePaused = false;
     let isMarqueeHovered = false;
-    let marqueeSpeed = 0.85; // 滾動速度
+    let marqueeSpeed = 0.85;
 
     function renderMarqueeReel() {
       const track = document.getElementById('marquee-track');
@@ -1576,7 +1581,6 @@
       viewport.scrollLeft = 0;
 
       const photos = SITE_CONFIG[currentPortfolioCategory].photos;
-      // 複製兩份達成無縫無限循環滾動
       const loopPhotos = [...photos, ...photos];
 
       loopPhotos.forEach((item, loopIdx) => {
@@ -1597,15 +1601,14 @@
           </div>
           <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent p-3.5 pt-8">
             <div class="text-xs font-bold text-white truncate group-hover/reel:text-rose-200">${item.caption}</div>
-            <div class="text-[10px] font-mono-tech text-zinc-400 mt-0.5">點擊放大檢視原圖</div>
+            <div class="text-[10px] font-mono-tech text-zinc-400 mt-0.5">點擊放大檢視照片</div>
           </div>
         `;
-        smartSrcFallback(card.querySelector('img'), item.src, item.fallback);
+        smartSrcFallback(card.querySelector('img'), item);
         track.appendChild(card);
       });
     }
 
-    // RequestAnimationFrame 驅動平滑無縫跑馬燈
     function animateMarqueeLoop() {
       if (activeIndex === 3 && currentPhotoSlide === 0 && currentDisplayMode === 'marquee' && !isMarqueePaused && !isMarqueeHovered) {
         const viewport = document.getElementById('marquee-viewport');
@@ -1644,7 +1647,7 @@
       }
     }
 
-    // --- B. 投影式大銀幕放映機狀態 ---
+    // --- 投影式大銀幕放映機 ---
     let projectorIndex = 0;
     let isProjectorPlaying = true;
     let projectorProgress = 0;
@@ -1664,7 +1667,7 @@
       if (mainImg) {
         mainImg.classList.add('opacity-40');
         setTimeout(() => {
-          smartSrcFallback(mainImg, item.src, item.fallback);
+          smartSrcFallback(mainImg, item);
           mainImg.classList.remove('opacity-40');
         }, 90);
       }
@@ -1674,7 +1677,6 @@
       if (tag) tag.textContent = item.tag;
       if (caption) caption.textContent = item.caption;
 
-      // 渲染底部微縮圖導覽列
       if (thumbsBox) {
         thumbsBox.innerHTML = '';
         photos.forEach((p, idx) => {
@@ -1688,7 +1690,7 @@
             renderProjectorView();
           };
           thumb.innerHTML = `<img loading="lazy" class="w-full h-full object-cover" alt="${p.caption}">`;
-          smartSrcFallback(thumb.querySelector('img'), p.src, p.fallback);
+          smartSrcFallback(thumb.querySelector('img'), p);
           thumbsBox.appendChild(thumb);
 
           if (isCurrent) {
@@ -1723,7 +1725,7 @@
       projectorTimer = setInterval(() => {
         if (activeIndex === 3 && currentPhotoSlide === 0 && currentDisplayMode === 'projector' && isProjectorPlaying) {
           const lb = document.getElementById('lightbox');
-          if (lb && !lb.classList.contains('hidden')) return; // 放大燈箱開啟時暫停背景輪播
+          if (lb && !lb.classList.contains('hidden')) return;
           projectorProgress += 2.8;
           const bar = document.getElementById('projector-progress');
           if (bar) bar.style.width = `${Math.min(projectorProgress, 100)}%`;
@@ -1735,7 +1737,6 @@
       }, 100);
     }
 
-    // 切換「移動式膠卷」與「投影式放映」模式
     function switchDisplayMode(mode) {
       currentDisplayMode = mode;
       const marqueeBtn = document.getElementById('mode-btn-marquee');
@@ -1763,7 +1764,6 @@
       updateCategoryDescText();
     }
 
-    // 切換「獸圈」與「聽團」作品分類
     function switchPortfolioCategory(cat, shouldScroll) {
       currentPortfolioCategory = cat;
       projectorIndex = 0;
@@ -1797,34 +1797,31 @@
       if (!descEl) return;
       const catName = currentPortfolioCategory === 'furry' ? '🐾 獸圈場次與毛毛外拍' : '🎸 聽團現場與樂團紀實';
       const dotColor = currentPortfolioCategory === 'furry' ? 'bg-amber-400' : 'bg-[#e63946]';
-      const modeHint = currentDisplayMode === 'marquee' ? '滑鼠移上或手指按住可暫停膠卷，點擊喜歡的照片直接放大' : '每 3.5 秒自動投影下一張，點擊大銀幕或下方縮圖可切換與放大';
+      const modeHint = currentDisplayMode === 'marquee' ? '滑鼠移上或手指按住可暫停膠卷，點擊照片放大' : '每 3.5 秒自動投影下一張，點擊大銀幕可放大';
       descEl.innerHTML = `<span class="w-2 h-2 rounded-full ${dotColor} animate-ping"></span><span>目前顯示：<strong>${catName}</strong>（${modeHint}）</span>`;
     }
 
     // 頁面初始化
     function initDynamicGalleries() {
       const renoqiBg = document.getElementById('img-renoqi-bg');
-      if (renoqiBg) smartSrcFallback(renoqiBg, SITE_CONFIG.renoqi.background, SITE_CONFIG.renoqi.backgroundFallback);
+      if (renoqiBg) smartSrcFallback(renoqiBg, { src: SITE_CONFIG.renoqi.background, fallback: SITE_CONFIG.renoqi.backgroundFallback });
 
       const bearBg = document.getElementById('img-bear-bg');
-      if (bearBg) smartSrcFallback(bearBg, SITE_CONFIG.bear.background, SITE_CONFIG.bear.backgroundFallback);
+      if (bearBg) smartSrcFallback(bearBg, { src: SITE_CONFIG.bear.background, fallback: SITE_CONFIG.bear.backgroundFallback });
 
       renderCharacterGallery('renoqi-gallery', 'renoqi', 'amber');
       renderCharacterGallery('bear-gallery', 'bear', 'sky');
 
-      // 更新分類張數徽章
       const furryCount = document.getElementById('count-badge-furry');
       const bandCount = document.getElementById('count-badge-band');
       if (furryCount) furryCount.textContent = SITE_CONFIG.furry.photos.length;
       if (bandCount) bandCount.textContent = SITE_CONFIG.band.photos.length;
 
-      // 初始化動態膠卷與投影器
       renderMarqueeReel();
       renderProjectorView();
       requestAnimationFrame(animateMarqueeLoop);
       startProjectorTicker();
 
-      // 設定預約日期欄位的最小值為今天
       const dateInput = document.getElementById('comm-date');
       if (dateInput) {
         const today = new Date().toISOString().split('T')[0];
@@ -1913,7 +1910,6 @@
       });
     }
 
-    // 簡報切換
     function changePhotoSlide(idx) {
       if (idx < 0) idx = totalPhotoSlides - 1;
       if (idx >= totalPhotoSlides) idx = 0;
@@ -1957,7 +1953,6 @@
       changePhotoSlide(currentPhotoSlide - 1);
     }
 
-    // 一鍵選擇攝影方案並跳轉至第 5 頁合約預約單
     function selectPlanAndJump(planValue) {
       const selectEl = document.getElementById('comm-plan');
       const badgeEl = document.getElementById('selected-plan-badge');
@@ -1976,7 +1971,6 @@
       }, 450);
     }
 
-    // 數字計數動畫
     function triggerSlideCounters(slideIdx) {
       const activeSlideEl = document.querySelector(`.photo-slide[data-slide="${slideIdx}"]`);
       if (!activeSlideEl) return;
@@ -2003,7 +1997,6 @@
       });
     }
 
-    // 委託表單產生與彈窗確認
     function submitCommissionForm(e) {
       e.preventDefault();
       const name = document.getElementById('comm-name').value.trim();
@@ -2029,7 +2022,6 @@
       document.getElementById('commission-modal').classList.add('hidden');
     }
 
-    // 阿諾自介彈窗控制
     function openBioModal() {
       document.getElementById('bio-modal').classList.remove('hidden');
     }
@@ -2037,7 +2029,7 @@
       document.getElementById('bio-modal').classList.add('hidden');
     }
 
-    // ==================== 升級版全螢幕 Lightbox 燈箱 (支援兩位數計數 01 / 20) ====================
+    // ==================== 升級版全螢幕 Lightbox 燈箱 ====================
     let currentGalleryKey = null;
     let currentPhotoIdx = 0;
 
@@ -2059,7 +2051,7 @@
 
       img.classList.add('opacity-0');
       setTimeout(() => {
-        smartSrcFallback(img, item.src, item.fallback);
+        smartSrcFallback(img, item);
         cap.textContent = item.caption || '';
         const curStr = String(currentPhotoIdx + 1).padStart(2, '0');
         const totStr = String(photos.length).padStart(2, '0');
@@ -2108,14 +2100,12 @@
         return;
       }
 
-      // 如果燈箱開啟中，左右鍵控制相簿上下張
       if (!lb.classList.contains('hidden')) {
         if (e.key === 'ArrowRight') navigateLightbox(1);
         if (e.key === 'ArrowLeft') navigateLightbox(-1);
         return;
       }
 
-      // 如果在攝影簡報專區，左右鍵切換簡報頁
       if (activeIndex === 3) {
         if (e.key === 'ArrowRight') nextPhotoSlide();
         if (e.key === 'ArrowLeft') prevPhotoSlide();
