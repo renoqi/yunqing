@@ -1435,8 +1435,16 @@
        ========================================================================== */
     const PORTFOLIO_BATCH_CONFIG = {
       furryCount: 12, // 獸圈照片總張數
-      bandCount: 18,  // 聽團照片總張數
-      };
+      bandCount: 12,  // 聽團照片總張數
+      customCaptions: {
+        'furry-1': '毛毛街頭外拍｜自然光影與毛流感特寫',
+        'furry-2': '夜間霓虹企劃｜暗黑氛圍感毛裝寫真',
+        'furry-3': '獸展場次紀實｜Infurnity 獸無限現場抓拍',
+        'band-1': '獨立樂團專場｜舞台逆光與爆發張力',
+        'band-2': '重型音樂現場｜樂手瞬間神情與汗水凝結',
+        'band-3': '音樂祭全景紀實｜台下衝撞沸騰氛圍紀錄'
+      }
+    };
 
     const FALLBACK_POOLS = {
       furry: [
@@ -1482,9 +1490,9 @@
         background: './renoqi_bg.jpg',
         backgroundFallback: 'https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg',
         photos: [
-          { src: './renoqi_01.jpg', fallback: 'https://i.postimg.cc/vc96L94v/renoqi-01.jpg', tag: 'SHIBA INU' },
-          { src: './renoqi_02.jpg', fallback: 'https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg', tag: 'EVENT' },
-          { src: './renoqi_03.jpg', fallback: 'https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg', tag: 'STUDIO' }
+          { src: './renoqi_01.jpg', fallback: 'https://i.postimg.cc/vc96L94v/renoqi-01.jpg', tag: 'SHIBA INU', caption: '雷諾奇 - 戶外萌拍' },
+          { src: './renoqi_02.jpg', fallback: 'https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg', tag: 'EVENT', caption: '雷諾奇 - 場次出沒花絮' },
+          { src: './renoqi_03.jpg', fallback: 'https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg', tag: 'STUDIO', caption: '雷諾奇 - 棚拍大頭貼特寫' }
         ]
       },
       // 2. 雲青專區 (直接對齊你 GitHub 上的 bear-1.jpeg ~ bear-3.jpeg)
@@ -1492,9 +1500,9 @@
         background: './bear_bg.jpg',
         backgroundFallback: 'https://i.postimg.cc/vc96L94z/bear-bg.jpg',
         photos: [
-          { src: './bear-1.jpeg', altSrc1: './bear_01.jpg', fallback: 'https://i.postimg.cc/qNT6mRKn/bear-01.jpg', tag: 'NEON STREET',  },
-          { src: './bear-2.jpeg', altSrc1: './bear_02.jpeg', fallback: 'https://i.postimg.cc/rKWtCWDN/bear-02.jpg', tag: 'ACTION' },
-          { src: './bear-3.jpeg', altSrc1: './bear_03.jpeg', fallback: 'https://i.postimg.cc/YhgmfgvQ/bear-03.jpg', tag: 'CUTE PAWS' }
+          { src: './bear-1.jpeg', altSrc1: './bear_01.jpg', fallback: 'https://i.postimg.cc/qNT6mRKn/bear-01.jpg', tag: 'NEON STREET', caption: '雲青 - 霓虹階梯帥氣寫真' },
+          { src: './bear-2.jpeg', altSrc1: './bear_02.jpeg', fallback: 'https://i.postimg.cc/rKWtCWDN/bear-02.jpg', tag: 'ACTION', caption: '雲青 - 活力起飛大跳躍！' },
+          { src: './bear-3.jpeg', altSrc1: './bear_03.jpeg', fallback: 'https://i.postimg.cc/YhgmfgvQ/bear-03.jpg', tag: 'CUTE PAWS', caption: '雲青 - 藍粉肉球擊掌互動 🐾' }
         ]
       },
       // 3-A. 獸圈作品集
