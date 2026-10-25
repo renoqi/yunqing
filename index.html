@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ㄜ<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
@@ -243,7 +243,7 @@
     <button type="button" onclick="openBioModal()"
             class="pointer-events-auto flex items-center gap-2.5 bg-slate-900/90 backdrop-blur-md px-3 sm:px-4 py-2 rounded-full border border-slate-700/80 shadow-xl cursor-pointer hover:border-amber-400/60 hover:scale-[1.02] active:scale-95 transition-all text-left group">
       <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden bg-gradient-to-tr from-amber-500 via-orange-500 to-red-500 p-0.5 flex items-center justify-center shrink-0 shadow-md">
-        <span class="text-xs font-black text-white">阿諾</span>
+        <img id="img-nav-avatar" src="./avatar.jpeg" alt="阿諾頭貼" class="w-full h-full rounded-full object-cover">
       </div>
       <div>
         <div class="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5">
@@ -1190,8 +1190,8 @@
     <div class="glass-card max-w-lg w-full max-h-[85dvh] rounded-3xl p-6 sm:p-7 overflow-y-auto border border-slate-700 select-text shadow-2xl" onclick="event.stopPropagation()">
       <div class="flex items-center justify-between pb-4 border-b border-slate-800">
         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-tr from-amber-500 to-red-500 p-0.5 flex items-center justify-center shrink-0">
-            <span class="text-sm font-black text-white">阿諾</span>
+          <div onclick="openLightbox('avatar', 0)" class="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-tr from-amber-500 to-red-500 p-0.5 flex items-center justify-center shrink-0 cursor-pointer hover:scale-105 transition-transform" title="點擊放大頭貼">
+            <img id="img-bio-avatar" src="./avatar.jpeg" alt="阿諾頭貼" class="w-full h-full rounded-full object-cover">
           </div>
           <div>
             <h2 class="text-lg font-black text-white">阿諾 (Arnold) 的置頂自介</h2>
@@ -1955,6 +1955,23 @@
         if (e.key === 'ArrowRight') nextPhotoSlide();
         if (e.key === 'ArrowLeft') prevPhotoSlide();
       }
+    });
+        // 自動載入阿諾大頭貼（支援 avatar.jpeg / avatar.jpg / 備用圖）
+    SITE_CONFIG.avatar = {
+      src: './avatar.jpeg',
+      altSrc1: './avatar.jpg',
+      altSrc2: './avatar.png',
+      altSrc3: './bear-1.jpeg',
+      fallback: 'https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg',
+      photos: [
+        { src: './avatar.jpeg', altSrc1: './avatar.jpg', altSrc2: './bear-1.jpeg', fallback: 'https://i.postimg.cc/SnhYZs97/renoqi-bg.jpg' }
+      ]
+    };
+    window.addEventListener('DOMContentLoaded', () => {
+      const navAvatar = document.getElementById('img-nav-avatar');
+      if (navAvatar) smartSrcFallback(navAvatar, SITE_CONFIG.avatar);
+      const bioAvatar = document.getElementById('img-bio-avatar');
+      if (bioAvatar) smartSrcFallback(bioAvatar, SITE_CONFIG.avatar);
     });
   </script>
 </body>
