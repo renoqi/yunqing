@@ -119,47 +119,48 @@
     </div>
   </header>
 
-  <!-- 5 頁式簡報主內容區 (支援自然往下滑動) -->
+  <!-- 5 頁式簡報主內容區 -->
   <main id="photo-slider-viewport" class="flex-1 w-full px-4 sm:px-10 md:px-16 py-6 sm:py-8 pb-28 relative">
     
     <!-- ========== SLIDE 01：柴龐攝影工作室品牌主旨 + 純圖動態畫廊 ========== -->
     <div class="photo-slide slide-active w-full max-w-5xl mx-auto relative z-10" data-slide="0">
       <div class="watermark-text right-[-4%] top-[-1%] text-[22vw] sm:text-[13vw]">PUNK</div>
 
-      <!-- 頂部橫幅：左邊 Logo + 右邊文字 -->
-      <div class="relative rounded-3xl overflow-hidden border border-white/15 mb-6 shadow-2xl bg-zinc-950">
-        <!-- 封面背景照片 (修改 photo_bg.jpeg 即可更換) -->
-        <div class="absolute inset-0 z-0">
-          <img id="img-photo-hero-cover" src="./photo_bg.jpeg" alt="柴龐攝影封面" class="w-full h-full object-cover object-center opacity-40">
-          <div class="absolute inset-0 bg-gradient-to-r from-[#0a0b0e]/95 via-[#0a0b0e]/85 to-[#0a0b0e]/50"></div>
+      <!-- 頂部橫幅：左邊無框全黑融合 Logo + 右邊高亮文字 -->
+      <div class="relative rounded-3xl overflow-hidden border border-white/15 mb-6 shadow-2xl bg-[#0a0b0e]">
+        <!-- 背景照片圖層 (固定在最底層 z-0) -->
+        <div class="absolute inset-0 z-0 pointer-events-none">
+          <img id="img-photo-hero-cover" src="./photo_bg.jpeg" alt="柴龐攝影封面" class="w-full h-full object-cover object-center opacity-35">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#0a0b0e] via-[#0a0b0e]/80 to-[#0a0b0e]/40"></div>
         </div>
 
-        <!-- 左邊 Logo、右邊文字 並排容器 -->
-        <div class="relative z-10 p-4 sm:p-8 md:p-10 flex flex-row items-center justify-start gap-4 sm:gap-7 md:gap-          <!-- 左側：柴龐攝影工作室 Logo (與背景一致全黑底色、無白框) -->
+        <!-- 內容圖層 (固定在 z-20，強制左圖右文 flex-row) -->
+        <div class="relative z-20 p-4 sm:p-8 md:p-10 flex flex-row items-center justify-between gap-4 sm:gap-7 md:gap-9">
+          
+          <!-- 左側：柴龐攝影工作室 Logo (無白邊、全黑透明直接融入背景) -->
           <div id="studio-logo-card" onclick="openLogoLightbox()" 
-               class="w-32 sm:w-48 md:w-56 bg-[#0a0b0e]/90 p-1.5 sm:p-2 rounded-2xl border border-white/10 shrink-0 cursor-pointer hover:border-[#e63946]/60 hover:scale-[1.03] transition-all group overflow-hidden shadow-2xl"
+               class="w-28 sm:w-44 md:w-52 shrink-0 cursor-pointer group flex items-center justify-center"
                title="點擊放大檢視柴龐攝影工作室 Logo">
             <img id="img-studio-logo" src="./studio_logo.jpg" alt="柴龐攝影工作室 Logo" 
-                 class="w-full h-28 sm:h-40 md:h-44 object-contain mx-auto rounded-xl group-hover:scale-105 transition-transform duration-300">
+                 class="w-full h-28 sm:h-40 md:h-44 object-contain mx-auto rounded-xl group-hover:scale-105 transition-transform duration-300 drop-shadow-2xl">
           </div>
 
-          <!-- 右側：品牌名稱與標語文字 -->
-          <div class="flex-1 min-w-0">
-            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#e63946]/15 border border-[#e63946]/40 text-[#e63946] text-[9px] sm:text-[11px] font-mono-tech font-bold tracking-widest uppercase mb-2 sm:mb-3">
+          <!-- 右側：品牌名稱與標語文字 (100% 亮白不透明) -->
+          <div class="flex-1 min-w-0 text-left">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#e63946]/20 border border-[#e63946]/50 text-[#e63946] text-[9px] sm:text-[11px] font-mono-tech font-bold tracking-widest uppercase mb-2 sm:mb-3">
               <span>SLIDE 01 // SHIBA ✕ PUNK</span>
             </div>
 
-            <h1 class="text-lg sm:text-3xl md:text-4xl font-black tracking-tight text-white leading-snug mb-2 sm:mb-3">
+            <h1 class="text-base sm:text-3xl md:text-4xl font-black tracking-tight text-white leading-snug mb-2 sm:mb-3 drop-shadow">
               「柴龐攝影工作室 —<br>
               <span class="text-[#e63946]">不被定義，只留下影像。</span>」
             </h1>
 
-            <div class="text-[11px] sm:text-sm font-mono-tech tracking-wider text-zinc-300 flex flex-wrap items-center gap-x-2.5 gap-y-1">
+            <div class="text-[11px] sm:text-sm font-mono-tech tracking-wider text-zinc-200 flex flex-wrap items-center gap-x-2 gap-y-1">
               <span class="text-amber-400 font-bold">🐕 柴犬獸設初心</span>
-              <span class="text-zinc-600">✕</span>
+              <span class="text-zinc-500">✕</span>
               <span class="text-sky-400 font-bold">🎸 龐克高對比視覺</span>
-              <span class="hidden sm:inline text-zinc-600">|</span>
-              <a href="https://instagram.com/punk_photo23?psln=MWI5eXZjcHJjcnQ3bg%3D%3D" target="_blank" rel="noopener noreferrer" class="text-[#e63946] hover:underline flex items-center gap-1 font-bold">
+              <a href="https://instagram.com/punk_photo23?psln=MWI5eXZjcHJjcnQ3bg%3D%3D" target="_blank" rel="noopener noreferrer" class="text-[#e63946] hover:underline flex items-center gap-1 font-bold w-full sm:w-auto mt-0.5 sm:mt-0">
                 <i class="fa-brands fa-instagram"></i>@punk_photo23
               </a>
             </div>
@@ -644,12 +645,12 @@
     </div>
   </footer>
 
-  <!-- Lightbox 燈箱 -->
+  <!-- Lightbox 燈箱 (全黑無白邊) -->
   <div id="lightbox" role="dialog" aria-modal="true" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-2 sm:p-4" onclick="closeLightbox()">
     <button type="button" class="absolute top-4 right-5 z-20 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center text-xl" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
     <button type="button" id="lb-prev-btn" onclick="event.stopPropagation(); navigateLightbox(-1);" class="absolute left-2 sm:left-6 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 text-white flex items-center justify-center"><i class="fa-solid fa-chevron-left"></i></button>
     <div class="w-full h-full max-w-6xl max-h-[92dvh] flex items-center justify-center relative px-8 sm:px-16" onclick="event.stopPropagation()">
-      <img id="lightbox-img" src="" alt="作品大圖" class="max-h-[88dvh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/10">
+      <img id="lightbox-img" src="" alt="作品大圖" class="max-h-[88dvh] w-auto max-w-full rounded-2xl object-contain shadow-2xl">
     </div>
     <button type="button" id="lb-next-btn" onclick="event.stopPropagation(); navigateLightbox(1);" class="absolute right-2 sm:right-6 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 text-white flex items-center justify-center"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
@@ -886,12 +887,6 @@
       const isSingle = PHOTO_CONFIG[currentGalleryKey].photos.length <= 1;
       document.getElementById('lb-prev-btn').classList.toggle('hidden', isSingle);
       document.getElementById('lb-next-btn').classList.toggle('hidden', isSingle);
-
-      if (galleryKey === 'logo') {
-        lbImg.classList.add('bg-white', 'p-4');
-      } else {
-        lbImg.classList.remove('bg-white', 'p-4');
-      }
 
       smartSrcFallback(lbImg, PHOTO_CONFIG[currentGalleryKey].photos[currentPhotoIdx]);
       document.getElementById('lightbox').classList.remove('hidden');
