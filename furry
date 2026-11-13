@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>雷諾奇 ✕ 雲青 | 毛毛角色專屬天地</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      background-color: #020617;
+    }
+
+    .glass-card {
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen select-text">
+
+  <!-- 頂部導覽與角色切換器 -->
+  <header class="sticky top-0 z-30 bg-slate-950/85 backdrop-blur-md border-b border-slate-800 px-4 sm:px-8 py-3.5">
+    <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      
+      <a href="./index.html" class="px-3.5 py-2 rounded-full glass-card hover:bg-slate-800 hover:border-amber-400/50 text-xs text-slate-200 flex items-center gap-2 transition-all">
+        <i class="fa-solid fa-arrow-left text-amber-400"></i>
+        <span>返回雙分割首頁</span>
+      </a>
+
+      <!-- 角色切換 Tabs -->
+      <div class="inline-flex p-1 rounded-2xl bg-slate-900 border border-slate-800">
+        <button type="button" id="tab-renoqi" onclick="switchCharacter('renoqi')"
+                class="px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 bg-amber-500 text-slate-950 shadow-lg">
+          <span>🐕 雷諾奇 (Renoqi)</span>
+        </button>
+        <button type="button" id="tab-bear" onclick="switchCharacter('bear')"
+                class="px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white">
+          <span>🐻‍❄️ 雲青 (Qing Yun)</span>
+        </button>
+      </div>
+
+      <a href="./photo.html" class="hidden sm:inline-flex px-3.5 py-2 rounded-full bg-rose-500/15 border border-rose-500/30 hover:bg-rose-500/25 text-xs text-rose-300 items-center gap-1.5 transition-all">
+        <span>📷 前往攝影專區</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- 主內容區 -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-8 py-8 pb-20">
+
+    <!-- ==================== 1. 雷諾奇區塊 ==================== -->
+    <section id="section-renoqi" class="block">
+      <div class="mb-6 pb-4 border-b border-slate-800">
+        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Fursuit 01 // SHIBA INU</span>
+        <h1 class="text-2xl sm:text-4xl font-black text-white mt-1">雷諾奇 (Renoqi)</h1>
+      </div>
+
+      <div class="glass-card p-5 sm:p-6 rounded-2xl border-l-4 border-l-amber-500 mb-6">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">🐕 柴犬</span>
+          <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">✨ 情緒價值擔當</span>
+          <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">🤗 歡迎抱抱合照</span>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          雷諾奇是一隻超可愛的柴犬，他的超能力就是給予大家滿滿的情緒價值！在各大獸圈場次或戶外活動遇到時，非常歡迎主動來抱抱、握手或拍張可愛的合照喔～
+        </p>
+        <div class="mt-4 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
+          <div>毛裝製作：<span class="text-amber-400 font-bold">天偶毛工作室</span></div>
+          <div class="text-[11px] text-slate-500">點擊下方照片可全螢幕放大</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        <a href="https://www.facebook.com/share/1FNWYQXgBV/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
+           class="glass-card hover:border-blue-500/60 p-4 sm:p-5 rounded-2xl flex items-center justify-between group transition-all">
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+              <i class="fa-brands fa-facebook-f"></i>
+            </div>
+            <div>
+              <div class="text-[11px] text-slate-400">最新活動貼文與動態</div>
+              <div class="text-sm font-bold text-white group-hover:text-blue-300">雷諾奇 Facebook 粉專</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-white mr-1"></i>
+        </a>
+
+        <a href="https://instagram.com/punk_photo23?psln=MWI5eXZjcHJjcnQ3bg%3D%3D" target="_blank" rel="noopener noreferrer"
+           class="glass-card hover:border-pink-500/60 p-4 sm:p-5 rounded-2xl flex items-center justify-between group transition-all">
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-pink-600/20 text-pink-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+            <div>
+              <div class="text-[11px] text-slate-400">最常用的社群平台</div>
+              <div class="text-sm font-bold text-white group-hover:text-pink-300">雷諾奇 Instagram</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-white mr-1"></i>
+        </a>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-camera text-amber-400"></i> 雷諾奇精選寫真
+          </h3>
+          <span class="text-xs text-slate-400"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊放大看圖</span>
+        </div>
+        <div id="renoqi-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-5"></div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. 雲青區塊 ==================== -->
+    <section id="section-bear" class="hidden">
+      <div class="mb-6 pb-4 border-b border-slate-800">
+        <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Fursuit 02 // OCEAN BEAR</span>
+        <h1 class="text-2xl sm:text-4xl font-black text-white mt-1">雲青 (Qing Yun)</h1>
+      </div>
+
+      <div class="glass-card p-5 sm:p-6 rounded-2xl border-l-4 border-l-sky-400 mb-6 leading-relaxed">
+        <h3 class="text-base font-bold text-sky-300 mb-2">大家好！我叫雲青 🌊</h3>
+        <p class="text-sm text-slate-300 mb-3">
+          我是隻可愛的藍色海洋小熊呦～身上的藍色是海洋的顏色呦，白色花紋是海水的波光！
+        </p>
+        <p class="text-xs sm:text-sm text-slate-300 mb-4 italic bg-slate-900/75 p-3.5 rounded-xl border border-sky-500/20">
+          「為什麼要叫雲青呢？因為雲青的心像雲一樣自由高遠，像青天一樣廣闊，身體同時擁有包容整座海洋的胸襟。」
+        </p>
+        <div class="flex flex-wrap gap-2 text-xs text-slate-300 pt-1">
+          <span class="px-2.5 py-1 bg-sky-500/15 text-sky-300 rounded-lg border border-sky-500/25">🎵 聽音樂</span>
+          <span class="px-2.5 py-1 bg-sky-500/15 text-sky-300 rounded-lg border border-sky-500/25">📷 拍照</span>
+          <span class="px-2.5 py-1 bg-sky-500/15 text-sky-300 rounded-lg border border-sky-500/25">🎮 玩遊戲</span>
+          <span class="px-2.5 py-1 bg-sky-500/15 text-sky-300 rounded-lg border border-sky-500/25">🛏️ 慵懶躺平</span>
+          <span class="px-2.5 py-1 bg-sky-500/15 text-sky-300 rounded-lg border border-sky-500/25">💃 跳舞＆穿睡衣跑來跑去</span>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800/80 text-xs font-semibold text-pink-300">
+          🌟 目標：做一個大家心目中的可愛偶像！不管怎樣還是請大家多多指教囉🫶
+        </div>
+      </div>
+
+      <a href="https://www.facebook.com/share/1HWvTFsz7q/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
+         class="glass-card hover:border-sky-400/60 p-4 sm:p-5 rounded-2xl flex items-center justify-between mb-8 group transition-all">
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+            <i class="fa-brands fa-facebook-f"></i>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400">雲青的日常出沒與寫真</div>
+            <div class="text-sm sm:text-base font-bold text-white group-hover:text-sky-300">追蹤 雲青 Facebook 粉絲專頁 🐾</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-white mr-2"></i>
+      </a>
+
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-camera text-sky-400"></i> 雲青的偶像日常
+          </h3>
+          <span class="text-xs text-slate-400"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i>點擊放大看圖</span>
+        </div>
+        <div id="bear-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-5"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 純圖 Lightbox 燈箱 -->
+  <div id="lightbox" role="dialog" aria-modal="true" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-2 sm:p-4" onclick="closeLightbox()">
+    <button type="button" aria-label="關閉相簿" class="absolute top-4 right-5 z-20 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center text-xl transition-all" onclick="closeLightbox()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <button type="button" aria-label="上一張照片" onclick="event.stopPropagation(); navigateLightbox(-1);" class="absolute left-2 sm:left-6 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-all border border-white/15 shadow-lg">
+      <i class="fa-solid fa-chevron-left text-sm sm:text-base"></i>
+    </button>
+    <div class="w-full h-full max-w-6xl max-h-[92dvh] flex items-center justify-center relative px-8 sm:px-16" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="寫真大圖" class="max-h-[88dvh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/10 transition-opacity duration-200">
+    </div>
+    <button type="button" aria-label="下一張照片" onclick="event.stopPropagation(); navigateLightbox(1);" class="absolute right-2 sm:right-6 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-all border border-white/15 shadow-lg">
+      <i class="fa-solid fa-chevron-right text-sm sm:text-base"></i>
+    </button>
+  </div>
+
+  <!-- 毛毛專區獨立設定腳本 -->
+  <script>
+    const FURRY_CONFIG = {
+      renoqi: {
+        photos: [
+          { src: './renoqi_01.jpg', altSrc1: './renoqi-1.jpeg', fallback: 'https://i.postimg.cc/vc96L94v/renoqi-01.jpg' },
+          { src: './renoqi_02.jpg', altSrc1: './renoqi-2.jpeg', fallback: 'https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg' },
+          { src: './renoqi_03.jpg', altSrc1: './renoqi-3.jpeg', fallback: 'https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg' }
+        ]
+      },
+      bear: {
+        photos: [
+          { src: './bear-1.jpeg', altSrc1: './bear_01.jpg', fallback: 'https://i.postimg.cc/qNT6mRKn/bear-01.jpg' },
+          { src: './bear-2.jpeg', altSrc1: './bear_02.jpeg', fallback: 'https://i.postimg.cc/rKWtCWDN/bear-02.jpg' },
+          { src: './bear-3.jpeg', altSrc1: './bear_03.jpeg', fallback: 'https://i.postimg.cc/YhgmfgvQ/bear-03.jpg' }
+        ]
+      }
+    };
+
+    function smartSrcFallback(imgEl, item) {
+      const candidates = [item.src, item.altSrc1, item.altSrc2, item.fallback].filter(Boolean);
+      let idx = 0;
+      imgEl.onerror = () => {
+        idx++;
+        if (idx < candidates.length) imgEl.src = candidates[idx];
+        else imgEl.onerror = null;
+      };
+      imgEl.src = candidates[0];
+    }
+
+    function switchCharacter(charKey) {
+      const secRenoqi = document.getElementById('section-renoqi');
+      const secBear = document.getElementById('section-bear');
+      const tabRenoqi = document.getElementById('tab-renoqi');
+      const tabBear = document.getElementById('tab-bear');
+
+      if (charKey === 'renoqi') {
+        secRenoqi.classList.remove('hidden');
+        secBear.classList.add('hidden');
+        tabRenoqi.className = 'px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 bg-amber-500 text-slate-950 shadow-lg';
+        tabBear.className = 'px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white';
+      } else {
+        secBear.classList.remove('hidden');
+        secRenoqi.classList.add('hidden');
+        tabBear.className = 'px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 bg-sky-400 text-slate-950 shadow-lg';
+        tabRenoqi.className = 'px-4 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white';
+      }
+    }
+
+    function renderCharacterGallery(containerId, galleryKey, borderHoverClass) {
+      const box = document.getElementById(containerId);
+      if (!box) return;
+      box.innerHTML = '';
+      FURRY_CONFIG[galleryKey].photos.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = `aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group relative bg-slate-900 border border-slate-800 ${borderHoverClass} transition-all shadow-lg`;
+        card.onclick = () => openLightbox(galleryKey, idx);
+        card.innerHTML = `<img loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="寫真">`;
+        smartSrcFallback(card.querySelector('img'), item);
+        box.appendChild(card);
+      });
+    }
+
+    let currentGalleryKey = null;
+    let currentPhotoIdx = 0;
+
+    function openLightbox(galleryKey, idx) {
+      currentGalleryKey = galleryKey;
+      currentPhotoIdx = idx;
+      updateLightboxView();
+      document.getElementById('lightbox').classList.remove('hidden');
+    }
+
+    function updateLightboxView() {
+      if (!currentGalleryKey) return;
+      const item = FURRY_CONFIG[currentGalleryKey].photos[currentPhotoIdx];
+      const img = document.getElementById('lightbox-img');
+      img.classList.add('opacity-0');
+      setTimeout(() => {
+        smartSrcFallback(img, item);
+        img.classList.remove('opacity-0');
+      }, 90);
+    }
+
+    function navigateLightbox(dir) {
+      if (!currentGalleryKey) return;
+      const len = FURRY_CONFIG[currentGalleryKey].photos.length;
+      currentPhotoIdx = (currentPhotoIdx + dir + len) % len;
+      updateLightboxView();
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.add('hidden');
+      currentGalleryKey = null;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCharacterGallery('renoqi-gallery', 'renoqi', 'hover:border-amber-400/60');
+      renderCharacterGallery('bear-gallery', 'bear', 'hover:border-sky-400/60');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const lb = document.getElementById('lightbox');
+      if (!lb.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      }
+    });
+  </script>
+</body>
+</html>
