@@ -17,11 +17,13 @@
       --border-hairline: rgba(255, 255, 255, 0.08);
     }
 
-    body {
+    html, body {
       font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
-      height: 100vh;
-      height: 100dvh;
       background-color: var(--matte-black);
+      min-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .font-editorial { font-family: 'Cinzel', serif; }
@@ -69,8 +71,8 @@
     .photo-slide {
       display: none;
       opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(12px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
     }
     .photo-slide.slide-active {
       display: block;
@@ -89,10 +91,10 @@
     }
   </style>
 </head>
-<body class="text-slate-100 w-screen h-full flex flex-col justify-between matte-dark-bg select-text relative overflow-hidden">
+<body class="text-slate-100 min-h-screen flex flex-col matte-dark-bg select-text relative">
 
-  <!-- 頂部導覽列 -->
-  <header class="w-full px-4 sm:px-10 pt-4 sm:pt-5 pb-3 flex items-center justify-between border-b border-white/10 z-20 bg-[#0a0b0e]/90 backdrop-blur-md shrink-0">
+  <!-- 頂部固定導覽列 -->
+  <header class="sticky top-0 w-full px-4 sm:px-10 pt-3.5 sm:pt-4 pb-3 flex items-center justify-between border-b border-white/10 z-30 bg-[#0a0b0e]/90 backdrop-blur-md">
     <div class="flex items-center gap-2.5 sm:gap-3">
       <span class="w-2 h-2 rounded-full bg-[#e63946] animate-pulse"></span>
       <span class="tracking-wider text-xs sm:text-sm font-black text-white">柴龐攝影工作室</span>
@@ -117,54 +119,59 @@
     </div>
   </header>
 
-  <!-- 5 頁式簡報主視窗 -->
-  <div id="photo-slider-viewport" class="flex-1 w-full overflow-y-auto px-4 sm:px-10 md:px-16 py-6 sm:py-8 relative block">
+  <!-- 5 頁式簡報主內容區 (支援自然往下滑動) -->
+  <main id="photo-slider-viewport" class="flex-1 w-full px-4 sm:px-10 md:px-16 py-6 sm:py-8 pb-28 relative">
     
     <!-- ========== SLIDE 01：柴龐攝影工作室品牌主旨 + 純圖動態畫廊 ========== -->
-    <div class="photo-slide slide-active w-full max-w-5xl mx-auto relative z-10 pb-8" data-slide="0">
-      <div class="watermark-text right-[-4%] top-[-2%] text-[22vw] sm:text-[13vw]">PUNK</div>
+    <div class="photo-slide slide-active w-full max-w-5xl mx-auto relative z-10" data-slide="0">
+      <div class="watermark-text right-[-4%] top-[-1%] text-[22vw] sm:text-[13vw]">PUNK</div>
 
-      <!-- 頂部橫幅：封面背景視覺 + 柴龐 Logo 與品牌主標題 -->
+      <!-- 頂部橫幅：左邊 Logo + 右邊文字 -->
       <div class="relative rounded-3xl overflow-hidden border border-white/15 mb-6 shadow-2xl bg-zinc-950">
         <!-- 封面背景照片 (修改 photo_bg.jpeg 即可更換) -->
         <div class="absolute inset-0 z-0">
           <img id="img-photo-hero-cover" src="./photo_bg.jpeg" alt="柴龐攝影封面" class="w-full h-full object-cover object-center opacity-40">
-          <div class="absolute inset-0 bg-gradient-to-r from-[#0a0b0e] via-[#0a0b0e]/85 to-[#0a0b0e]/40"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-[#0a0b0e]/95 via-[#0a0b0e]/85 to-[#0a0b0e]/50"></div>
         </div>
 
-        <div class="relative z-10 p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div class="max-w-2xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e63946]/15 border border-[#e63946]/40 text-[#e63946] text-[11px] font-mono-tech font-bold tracking-widest uppercase mb-3">
-              <span>SLIDE 01 // SHIBA ✕ PUNK PHOTO STUDIO</span>
+        <!-- 左邊 Logo、右邊文字 並排容器 -->
+        <div class="relative z-10 p-4 sm:p-8 md:p-10 flex flex-row items-center justify-start gap-4 sm:gap-7 md:gap-9">
+          
+          <!-- 左側：柴龐攝影工作室 Logo (點擊可放大) -->
+          <div id="studio-logo-card" onclick="openLogoLightbox()" 
+               class="w-28 sm:w-48 md:w-60 bg-white hover:bg-zinc-50 p-2 sm:p-3.5 rounded-2xl shadow-2xl border-2 border-amber-400/80 shrink-0 cursor-pointer hover:scale-[1.03] transition-all group overflow-hidden"
+               title="點擊放大檢視柴龐攝影工作室 Logo">
+            <img id="img-studio-logo" src="./studio_logo.jpg" alt="柴龐攝影工作室 Logo" 
+                 class="w-full h-24 sm:h-36 md:h-44 object-contain mx-auto group-hover:scale-105 transition-transform duration-300">
+            <div class="text-[9px] sm:text-[10px] font-mono-tech font-bold text-zinc-500 text-center mt-1.5 pt-1 border-t border-zinc-200 group-hover:text-[#e63946] transition-colors truncate">
+              點擊放大 <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </div>
+          </div>
+
+          <!-- 右側：品牌名稱與標語文字 -->
+          <div class="flex-1 min-w-0">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#e63946]/15 border border-[#e63946]/40 text-[#e63946] text-[9px] sm:text-[11px] font-mono-tech font-bold tracking-widest uppercase mb-2 sm:mb-3">
+              <span>SLIDE 01 // SHIBA ✕ PUNK</span>
             </div>
 
-            <h1 class="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight mb-3">
-              「柴龐攝影工作室 —<br class="sm:hidden"> <span class="text-[#e63946]">不被定義，只留下影像。</span>」
+            <h1 class="text-lg sm:text-3xl md:text-4xl font-black tracking-tight text-white leading-snug mb-2 sm:mb-3">
+              「柴龐攝影工作室 —<br>
+              <span class="text-[#e63946]">不被定義，只留下影像。</span>」
             </h1>
 
-            <div class="text-xs sm:text-sm font-mono-tech tracking-wider text-zinc-300 flex flex-wrap items-center gap-2 sm:gap-3">
+            <div class="text-[11px] sm:text-sm font-mono-tech tracking-wider text-zinc-300 flex flex-wrap items-center gap-x-2.5 gap-y-1">
               <span class="text-amber-400 font-bold">🐕 柴犬獸設初心</span>
               <span class="text-zinc-600">✕</span>
               <span class="text-sky-400 font-bold">🎸 龐克高對比視覺</span>
-              <span class="text-zinc-600">|</span>
+              <span class="hidden sm:inline text-zinc-600">|</span>
               <a href="https://instagram.com/punk_photo23?psln=MWI5eXZjcHJjcnQ3bg%3D%3D" target="_blank" rel="noopener noreferrer" class="text-[#e63946] hover:underline flex items-center gap-1 font-bold">
                 <i class="fa-brands fa-instagram"></i>@punk_photo23
               </a>
             </div>
           </div>
 
-                    <!-- 柴龐攝影工作室專屬 Logo 展示牌 (手機滿版放大 + 電腦大尺寸橫幅) -->
-          <div id="studio-logo-card" onclick="openLogoLightbox()" 
-               class="w-full md:w-[380px] lg:w-[440px] bg-white hover:bg-zinc-50 px-4 py-5 sm:p-6 rounded-2xl shadow-2xl border-2 border-amber-400/80 shrink-0 cursor-pointer hover:scale-[1.02] transition-all group overflow-hidden"
-               title="點擊全螢幕放大檢視柴龐攝影工作室 Logo">
-            <div class="w-full flex items-center justify-center overflow-hidden">
-              <img id="img-studio-logo" src="./studio_logo.jpg" alt="柴龐攝影工作室 Logo" 
-                   class="w-full max-h-44 sm:max-h-56 object-contain scale-110 group-hover:scale-115 transition-transform duration-300 mx-auto">
-            </div>
-            <div class="text-[11px] font-mono-tech font-bold text-zinc-500 text-center mt-3 pt-2 border-t border-zinc-200 group-hover:text-[#e63946] transition-colors">
-              PUNK PHOTO STUDIO // 點擊放大檢視 <i class="fa-solid fa-magnifying-glass-plus ml-1"></i>
-            </div>
-          </div>
+        </div>
+      </div>
 
       <!-- 品牌主旨 & 品牌誕生故事 + 實績經歷 -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch mb-6">
@@ -559,7 +566,7 @@
     </div>
 
     <!-- ========== SLIDE 05：委託攝影合約摘要與表單 ========== -->
-    <div class="photo-slide w-full max-w-5xl mx-auto relative z-10 pb-16" data-slide="4">
+    <div class="photo-slide w-full max-w-5xl mx-auto relative z-10" data-slide="4">
       <div class="mb-5 pb-3 border-b border-white/10">
         <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest">SLIDE 05 // COMMISSION CONTRACT SUMMARY</div>
         <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">柴龐攝影工作室・委託合約與預約表單</h2>
@@ -624,10 +631,10 @@
       </div>
     </div>
 
-  </div>
+  </main>
 
-  <!-- 底部簡報切換列 -->
-  <footer class="w-full px-4 sm:px-10 py-3.5 sm:py-4 border-t border-white/10 z-20 bg-[#0a0b0e]/95 backdrop-blur-md flex flex-wrap items-center justify-between gap-2 shrink-0">
+  <!-- 底部固定簡報切換列 -->
+  <footer class="fixed bottom-0 left-0 right-0 w-full px-4 sm:px-10 py-3 sm:py-3.5 border-t border-white/10 z-30 bg-[#0a0b0e]/95 backdrop-blur-md flex flex-wrap items-center justify-between gap-2">
     <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-[calc(100%-88px)] sm:max-w-full py-0.5 no-scrollbar">
       <button type="button" onclick="changePhotoSlide(0)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all bg-[#e63946] text-white font-bold">01 品牌主旨與作品</button>
       <button type="button" onclick="changePhotoSlide(1)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5">02 人像價目</button>
@@ -667,9 +674,7 @@
 
   <!-- ==================== 柴龐攝影設定中心 ==================== -->
   <script>
-    // ★ 如需更換封面照片或 Logo，可直接替換對應檔名或修改下方 fallback 網址 ★
     const STUDIO_BRAND_ASSETS = {
-      // 柴龐攝影工作室 Logo (對應你上傳的圖片)
       logo: {
         src: './studio_logo.jpg',
         altSrc1: './studio_logo.png',
@@ -677,7 +682,6 @@
         altSrc3: './punk_logo.jpg',
         fallback: './renoqi_01.jpg'
       },
-      // 攝影專區封面大圖 (未來你要換封面照，覆蓋 photo_bg.jpeg 或改這裡的網址即可)
       coverBg: {
         src: './photo_bg.jpeg',
         altSrc1: './photo_bg.jpg',
@@ -839,7 +843,7 @@
 
     function changePhotoSlide(idx) {
       currentPhotoSlide = (idx + totalPhotoSlides) % totalPhotoSlides;
-      document.getElementById('photo-slider-viewport').scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       document.querySelectorAll('.photo-slide').forEach((s, i) => s.classList.toggle('slide-active', i === currentPhotoSlide));
       document.querySelectorAll('.photo-nav-btn').forEach((btn, i) => {
         btn.className = i === currentPhotoSlide
