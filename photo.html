@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>柴龐攝影工作室 (Shiba Punk Studio) | 阿諾攝影・獸圈外拍・聽團紀錄與委託價目</title>
+  <title>柴龐攝影工作室 (Punk Photo) | 不被定義，只留下影像</title>
+  <meta name="description" content="柴龐攝影工作室 — 不被定義，只留下影像。用相機記錄活動中的每一個精彩瞬間，用人像攝影留住每個人獨一無二的印象。">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -12,7 +13,7 @@
     :root {
       --matte-black: #0a0b0e;
       --crimson: #e63946;
-      --crimson-glow: rgba(230, 57, 70, 0.25);
+      --crimson-glow: rgba(230, 57, 70, 0.22);
       --border-hairline: rgba(255, 255, 255, 0.08);
     }
 
@@ -32,14 +33,14 @@
     .matte-dark-bg {
       background-color: var(--matte-black);
       background-image: 
-        radial-gradient(circle at 82% 18%, rgba(230, 57, 70, 0.11) 0%, transparent 45%),
-        radial-gradient(circle at 15% 85%, rgba(245, 158, 11, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(230, 57, 70, 0.11) 0%, transparent 45%),
+        radial-gradient(circle at 15% 80%, rgba(56, 189, 248, 0.07) 0%, transparent 40%),
         radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 0);
       background-size: 100% 100%, 100% 100%, 22px 22px;
     }
 
     .editorial-glass {
-      background: rgba(18, 20, 26, 0.78);
+      background: rgba(18, 20, 26, 0.82);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--border-hairline);
@@ -48,7 +49,7 @@
     }
 
     .editorial-glass-hover:hover {
-      border-color: rgba(230, 57, 70, 0.55);
+      border-color: rgba(230, 57, 70, 0.5);
       box-shadow: 0 14px 34px var(--crimson-glow);
       transform: translateY(-3px);
     }
@@ -82,16 +83,6 @@
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
     }
 
-    /* 龐克高對比封面遮罩 */
-    .punk-cover-gradient {
-      background: linear-gradient(
-        105deg,
-        rgba(10, 11, 14, 0.92) 0%,
-        rgba(10, 11, 14, 0.72) 48%,
-        rgba(230, 57, 70, 0.18) 100%
-      );
-    }
-
     input[type="date"]::-webkit-calendar-picker-indicator {
       filter: invert(0.8);
       cursor: pointer;
@@ -101,14 +92,11 @@
 <body class="text-slate-100 w-screen h-full flex flex-col justify-between matte-dark-bg select-text relative overflow-hidden">
 
   <!-- 頂部導覽列 -->
-  <header class="w-full px-4 sm:px-10 pt-4 sm:pt-5 pb-3 flex items-center justify-between border-b border-white/10 z-20 bg-[#0a0b0e]/85 backdrop-blur-md shrink-0">
+  <header class="w-full px-4 sm:px-10 pt-4 sm:pt-5 pb-3 flex items-center justify-between border-b border-white/10 z-20 bg-[#0a0b0e]/90 backdrop-blur-md shrink-0">
     <div class="flex items-center gap-2.5 sm:gap-3">
-      <span class="w-2.5 h-2.5 rounded-full bg-[#e63946] animate-pulse shadow-[0_0_10px_#e63946]"></span>
-      <div class="flex items-baseline gap-2">
-        <span class="tracking-wider text-xs sm:text-sm font-black text-white">柴龐攝影工作室</span>
-        <span class="font-editorial tracking-widest text-[10px] sm:text-xs font-bold text-[#e63946] uppercase">SHIBA PUNK STUDIO</span>
-      </div>
-      <span class="hidden lg:inline-block text-[10px] font-mono-tech text-zinc-500 border-l border-zinc-800 pl-3">BY ARNOLD // UNDEFINED & RAW</span>
+      <span class="w-2 h-2 rounded-full bg-[#e63946] animate-pulse"></span>
+      <span class="tracking-wider text-xs sm:text-sm font-black text-white">柴龐攝影工作室</span>
+      <span class="hidden sm:inline-block text-[10px] font-mono-tech text-sky-400 font-bold border-l border-zinc-800 pl-3">PUNK PHOTO STUDIO</span>
     </div>
 
     <div class="flex items-center gap-3 sm:gap-4">
@@ -132,118 +120,102 @@
   <!-- 5 頁式簡報主視窗 -->
   <div id="photo-slider-viewport" class="flex-1 w-full overflow-y-auto px-4 sm:px-10 md:px-16 py-6 sm:py-8 relative block">
     
-    <!-- ========== SLIDE 01：柴龐品牌封面 + 品牌主旨 + 動態畫廊 ========== -->
+    <!-- ========== SLIDE 01：柴龐攝影工作室品牌主旨 + 純圖動態畫廊 ========== -->
     <div class="photo-slide slide-active w-full max-w-5xl mx-auto relative z-10 pb-8" data-slide="0">
       <div class="watermark-text right-[-4%] top-[-2%] text-[22vw] sm:text-[13vw]">PUNK</div>
 
-      <!-- ★ 新增：可替換式封面照片視覺區 (Hero Cover Banner) ★ -->
-      <div class="relative w-full rounded-3xl overflow-hidden border border-white/15 shadow-2xl mb-6 group min-h-[260px] sm:min-h-[320px] flex items-end">
-        <!-- 封面背景圖片（由下方 JS COVER_IMAGE_CONFIG 控制） -->
-        <img id="studio-cover-img" src="" alt="柴龐攝影工作室封面" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter contrast-125">
-        
-        <!-- 龐克高對比漸層遮罩 -->
-        <div class="absolute inset-0 punk-cover-gradient"></div>
-
-        <!-- 右上角裝飾標籤 -->
-        <div class="absolute top-4 right-4 z-10 flex items-center gap-2">
-          <span class="px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[10px] font-mono-tech text-amber-400">
-            🐕 初代柴犬獸設 × 🎸 高對比龐克
-          </span>
+      <!-- 頂部橫幅：封面背景視覺 + 柴龐 Logo 與品牌主標題 -->
+      <div class="relative rounded-3xl overflow-hidden border border-white/15 mb-6 shadow-2xl bg-zinc-950">
+        <!-- 封面背景照片 (修改 photo_bg.jpeg 即可更換) -->
+        <div class="absolute inset-0 z-0">
+          <img id="img-photo-hero-cover" src="./photo_bg.jpeg" alt="柴龐攝影封面" class="w-full h-full object-cover object-center opacity-40">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#0a0b0e] via-[#0a0b0e]/85 to-[#0a0b0e]/40"></div>
         </div>
 
-        <!-- 封面主文字內容 -->
-        <div class="relative z-10 p-6 sm:p-9 w-full">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e63946]/20 border border-[#e63946]/50 text-[#e63946] text-[10px] sm:text-[11px] font-mono-tech font-bold tracking-widest uppercase mb-3">
-            <span>SHIBA PUNK PHOTOGRAPHY STUDIO // 柴龐攝影工作室</span>
+        <div class="relative z-10 p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e63946]/15 border border-[#e63946]/40 text-[#e63946] text-[11px] font-mono-tech font-bold tracking-widest uppercase mb-3">
+              <span>SLIDE 01 // SHIBA ✕ PUNK PHOTO STUDIO</span>
+            </div>
+
+            <h1 class="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight mb-3">
+              「柴龐攝影工作室 —<br class="sm:hidden"> <span class="text-[#e63946]">不被定義，只留下影像。</span>」
+            </h1>
+
+            <div class="text-xs sm:text-sm font-mono-tech tracking-wider text-zinc-300 flex flex-wrap items-center gap-2 sm:gap-3">
+              <span class="text-amber-400 font-bold">🐕 柴犬獸設初心</span>
+              <span class="text-zinc-600">✕</span>
+              <span class="text-sky-400 font-bold">🎸 龐克高對比視覺</span>
+              <span class="text-zinc-600">|</span>
+              <a href="https://instagram.com/punk_photo23?psln=MWI5eXZjcHJjcnQ3bg%3D%3D" target="_blank" rel="noopener noreferrer" class="text-[#e63946] hover:underline flex items-center gap-1 font-bold">
+                <i class="fa-brands fa-instagram"></i>@punk_photo23
+              </a>
+            </div>
           </div>
 
-          <h1 class="text-2xl sm:text-5xl font-black tracking-tight text-white leading-tight mb-2">
-            「不被定義，<span class="text-[#e63946]">只留下影像。</span>」
-          </h1>
-
-          <p class="text-xs sm:text-sm text-zinc-300 max-w-2xl leading-relaxed mb-4">
-            不需要過多言語，用行動證明一切。因為最真實的影像，往往來自最不刻意的瞬間。
-          </p>
-
-          <div class="text-xs font-mono-tech tracking-wider text-zinc-400 flex flex-wrap items-center gap-2 sm:gap-3 pt-2 border-t border-white/10">
-            <span class="text-white font-semibold">主理攝影師：阿諾 (Arnold)</span>
-            <span class="text-zinc-600">|</span>
-            <span>人像攝影・獸圈外拍・聽團紀錄</span>
-            <span class="text-zinc-600">|</span>
-            <a href="https://instagram.com/punk_photo23?psln=MWI5eXZjcHJjcnQ3bg%3D%3D" target="_blank" rel="noopener noreferrer" class="text-[#e63946] hover:underline flex items-center gap-1 font-bold">
-              <i class="fa-brands fa-instagram"></i>@punk_photo23
-            </a>
+          <!-- 柴龐攝影工作室專屬 Logo 展示牌 (支援點擊放大) -->
+          <div id="studio-logo-card" onclick="openLogoLightbox()" 
+               class="bg-white/95 hover:bg-white p-3 sm:p-4 rounded-2xl shadow-2xl border-2 border-amber-400/60 shrink-0 cursor-pointer hover:scale-[1.03] transition-all group self-center md:self-auto"
+               title="點擊放大檢視柴龐攝影工作室 Logo">
+            <img id="img-studio-logo" src="./studio_logo.jpg" alt="柴龐攝影工作室 Logo" 
+                 class="h-20 sm:h-28 w-auto object-contain mx-auto">
+            <div class="text-[10px] font-mono-tech text-zinc-500 text-center mt-1 group-hover:text-[#e63946] transition-colors">
+              PUNK PHOTO LOGO <i class="fa-solid fa-magnifying-glass-plus ml-0.5"></i>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- 品牌主旨 & 品牌起源 / 經歷雙欄 -->
+      <!-- 品牌主旨 & 品牌誕生故事 + 實績經歷 -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch mb-6">
+        
         <!-- 左欄：品牌主旨 Manifesto -->
-        <div class="md:col-span-7 editorial-glass editorial-glass-hover p-5 sm:p-7 rounded-2xl border-l-2 border-l-[#e63946] flex flex-col justify-between">
+        <div class="md:col-span-7 editorial-glass editorial-glass-hover p-6 sm:p-7 rounded-2xl border-l-4 border-l-[#e63946] flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest">BRAND MANIFESTO</span>
-              <span class="text-[10px] font-mono-tech text-zinc-500">柴龐核心精神</span>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest font-bold">BRAND MANIFESTO // 品牌主旨</span>
+              <span class="text-[10px] font-mono-tech px-2 py-0.5 rounded bg-white/5 text-zinc-400">阿諾 (Arnold)</span>
             </div>
-            <h3 class="text-lg sm:text-xl font-black text-white mb-3.5">品牌主旨｜柴龐攝影工作室</h3>
             
-            <div class="space-y-3 text-xs sm:text-sm text-zinc-300 leading-relaxed">
-              <p class="text-white font-semibold border-l-2 border-amber-400/80 pl-3">
-                用相機記錄活動中的每一個精彩瞬間，用人像攝影留住每個人獨一無二的印象。
-              </p>
-              <p>
-                不追求完美，不受既定框架定義，也不拘泥於形式。
-              </p>
-              <p>
-                我們相信，影像不該只是被安排好的畫面，而是透過每一次按下快門，將當下的情緒、故事與真實完整保留下來。
-              </p>
-              <p class="text-zinc-200 font-medium">
-                不需要過多言語，用行動證明一切。<br>
-                <span class="text-[#e63946] font-bold">因為最真實的影像，往往來自最不刻意的瞬間。</span>
-              </p>
-            </div>
+            <h3 class="text-lg sm:text-xl font-black text-white mb-4">
+              不被定義，只留下影像。
+            </h3>
 
-            <!-- 品牌命名起源小卡 -->
-            <div class="mt-4 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-xs text-zinc-400 leading-relaxed">
-              <div class="text-[11px] font-mono-tech text-amber-400 font-bold mb-1 flex items-center gap-1.5">
-                <i class="fa-solid fa-bolt"></i> ORIGIN // 為什麼叫「柴龐」？
-              </div>
-              修圖時迸發的靈感，加上來自<span class="text-zinc-200 font-semibold">石墨設計 Logo</span> 的視覺啟發——結合了我本身的第一隻<span class="text-amber-300 font-semibold">「柴犬」</span>獸設，以及攝影作品一貫濃烈、飽含大量<span class="text-[#e63946] font-semibold">高對比色調的「龐克（Punk）」</span>風格，淬鍊出屬於阿諾的影像廠牌。
+            <div class="space-y-3 text-xs sm:text-sm text-zinc-200 leading-relaxed border-l-2 border-zinc-800 pl-4 py-1">
+              <p>用相機記錄活動中的每一個精彩瞬間，用人像攝影留住每個人獨一無二的印象。</p>
+              <p class="text-amber-300/95 font-semibold">不追求完美，不受既定框架定義，也不拘泥於形式。</p>
+              <p>我們相信，影像不該只是被安排好的畫面，而是透過每一次按下快門，將當下的情緒、故事與真實完整保留下來。</p>
+              <p class="font-bold text-white">不需要過多言語，用行動證明一切。</p>
+              <p class="text-[#e63946] font-bold">因為最真實的影像，往往來自最不刻意的瞬間。</p>
             </div>
           </div>
 
-          <div class="mt-5 pt-4 border-t border-white/10 grid grid-cols-3 gap-2 text-center font-mono-tech">
-            <div>
-              <div class="text-lg sm:text-xl font-bold text-white"><span class="count-num" data-target="14">14</span>d</div>
-              <div class="text-[10px] text-zinc-500">最長交件天數</div>
+          <!-- 命名靈感與風格起源 -->
+          <div class="mt-5 pt-4 border-t border-white/10">
+            <div class="text-[11px] font-mono-tech text-amber-400 font-bold mb-1.5 flex items-center gap-1.5">
+              <i class="fa-solid fa-bolt"></i> ORIGIN // 為什麼叫「柴龐攝影工作室」？
             </div>
-            <div>
-              <div class="text-lg sm:text-xl font-bold text-[#e63946]"><span class="count-num" data-target="100">100</span>%</div>
-              <div class="text-[10px] text-zinc-500">高對比真實情緒</div>
-            </div>
-            <div>
-              <div class="text-lg sm:text-xl font-bold text-white"><span class="count-num" data-target="5">5</span>大</div>
-              <div class="text-[10px] text-zinc-500">標準透明流程</div>
-            </div>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              修圖修出靈感，一部分視覺靈感源自於石墨 Logo 的筆觸張力；加上自己本身第一個獸設就是一隻<strong class="text-amber-300">柴犬（雷諾奇）</strong>，而攝影作品又偏向<strong class="text-sky-300">龐克（Punk）</strong>搖滾現場並飽含大量的<strong class="text-rose-400">強烈對比色風格</strong>——「柴龐」因此誕生。
+            </p>
           </div>
         </div>
 
-        <!-- 右欄：實績經歷列表 -->
-        <div class="md:col-span-5 editorial-glass editorial-glass-hover p-5 sm:p-7 rounded-2xl flex flex-col justify-between">
+        <!-- 右欄：實績經歷與拍攝領域 -->
+        <div class="md:col-span-5 editorial-glass editorial-glass-hover p-6 sm:p-7 rounded-2xl flex flex-col justify-between">
           <div>
-            <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest mb-1">EXPERIENCE & ARCHIVE</div>
-            <h3 class="text-lg font-bold text-white mb-3.5">拍攝領域與實績紀錄</h3>
+            <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest mb-1 font-bold">EXPERIENCE & ARCHIVE</div>
+            <h3 class="text-lg font-bold text-white mb-4">主力拍攝領域</h3>
             <ul class="space-y-3.5 text-xs sm:text-sm text-zinc-300">
               <li class="flex items-start justify-between gap-2 pb-3 border-b border-white/5">
                 <div class="flex items-start gap-2.5">
                   <span class="font-mono-tech text-amber-400 font-bold">01</span>
                   <div>
                     <div class="font-bold text-white">獸圈各大展會與毛毛外拍寫真</div>
-                    <div class="text-[11px] text-zinc-500 mt-0.5">Infurnity 獸無限、獸宴、街頭毛裝高對比特寫</div>
+                    <div class="text-[11px] text-zinc-400 mt-0.5">Infurnity 獸無限、獸宴、毛裝街頭高對比特寫</div>
                   </div>
                 </div>
-                <button type="button" onclick="switchPortfolioCategory('furry', true)" class="shrink-0 px-2.5 py-1 rounded bg-amber-500/15 hover:bg-amber-500/30 text-amber-300 text-[10px] font-mono-tech border border-amber-500/30 transition-colors">
+                <button type="button" onclick="switchPortfolioCategory('furry', true)" class="shrink-0 px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500/30 text-amber-300 text-[10px] font-mono-tech border border-amber-500/30 transition-colors">
                   看獸圈 →
                 </button>
               </li>
@@ -252,24 +224,39 @@
                   <span class="font-mono-tech text-[#e63946] font-bold">02</span>
                   <div>
                     <div class="font-bold text-white">獨立樂團現場與音樂祭動態紀實</div>
-                    <div class="text-[11px] text-zinc-500 mt-0.5">龐克 / Metal 現場強烈對比光影、舞台張力與衝撞紀錄</div>
+                    <div class="text-[11px] text-zinc-400 mt-0.5">龐克 / Metal 現場強烈對比光影、舞台衝撞瞬間</div>
                   </div>
                 </div>
-                <button type="button" onclick="switchPortfolioCategory('band', true)" class="shrink-0 px-2.5 py-1 rounded bg-[#e63946]/15 hover:bg-[#e63946]/30 text-[#e63946] text-[10px] font-mono-tech border border-[#e63946]/30 transition-colors">
+                <button type="button" onclick="switchPortfolioCategory('band', true)" class="shrink-0 px-2.5 py-1 rounded-lg bg-[#e63946]/15 hover:bg-[#e63946]/30 text-[#e63946] text-[10px] font-mono-tech border border-[#e63946]/30 transition-colors">
                   看聽團 →
                 </button>
               </li>
               <li class="flex items-start gap-2.5">
-                <span class="font-mono-tech text-zinc-400 font-bold">03</span>
+                <span class="font-mono-tech text-sky-400 font-bold">03</span>
                 <div>
                   <div class="font-bold text-white">個人肖像與主題企劃創作委託</div>
-                  <div class="text-[11px] text-zinc-500 mt-0.5">街頭龐克暗黑風格人像、不刻意瞬間寫真拍攝</div>
+                  <div class="text-[11px] text-zinc-400 mt-0.5">不受既定框架定義，留住每個人獨一無二的印象</div>
                 </div>
               </li>
             </ul>
+
+            <div class="mt-5 pt-4 border-t border-white/10 grid grid-cols-3 gap-2 text-center font-mono-tech">
+              <div>
+                <div class="text-lg font-bold text-white">14d</div>
+                <div class="text-[10px] text-zinc-500">最長交件天數</div>
+              </div>
+              <div>
+                <div class="text-lg font-bold text-[#e63946]">100%</div>
+                <div class="text-[10px] text-zinc-500">真實瞬間保留</div>
+              </div>
+              <div>
+                <div class="text-lg font-bold text-amber-400">5大</div>
+                <div class="text-[10px] text-zinc-500">標準透明流程</div>
+              </div>
+            </div>
           </div>
 
-          <button type="button" onclick="changePhotoSlide(1)" class="mt-6 w-full py-2.5 rounded-xl bg-[#e63946] hover:bg-rose-700 text-white text-xs font-bold tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#e63946]/20">
+          <button type="button" onclick="changePhotoSlide(1)" class="mt-5 w-full py-2.5 rounded-xl bg-[#e63946] hover:bg-rose-700 text-white text-xs font-bold tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#e63946]/20">
             <span>NEXT: 查看人像與活動價目表</span>
             <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </button>
@@ -281,7 +268,7 @@
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 mb-4 border-b border-white/10">
           <div>
             <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest flex items-center gap-2">
-              <i class="fa-solid fa-film"></i> SHIBA PUNK ARCHIVE
+              <i class="fa-solid fa-film"></i> PUNK PHOTO PORTFOLIO
             </div>
             <h3 class="text-base sm:text-xl font-black text-white mt-0.5">柴龐實拍紀錄動態畫廊</h3>
           </div>
@@ -373,7 +360,7 @@
             <h3 class="text-xl font-black text-white mt-2">Essential</h3>
             <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
               <span class="text-xs font-mono-tech text-zinc-400">NT$</span>
-              <span class="text-3xl font-mono-tech font-black text-white count-num" data-target="1500">1,500</span>
+              <span class="text-3xl font-mono-tech font-black text-white">1,500</span>
             </div>
             <ul class="space-y-2.5 text-xs text-zinc-300">
               <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 拍攝時數：1 ~ 1.5 小時</li>
@@ -397,7 +384,7 @@
             <h3 class="text-xl font-black text-white mt-2">Signature</h3>
             <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
               <span class="text-xs font-mono-tech text-[#e63946]">NT$</span>
-              <span class="text-3xl font-mono-tech font-black text-[#e63946] count-num" data-target="2800">2,800</span>
+              <span class="text-3xl font-mono-tech font-black text-[#e63946]">2,800</span>
             </div>
             <ul class="space-y-2.5 text-xs text-zinc-200">
               <li class="flex items-center gap-2"><span class="text-[#e63946]">■</span> 拍攝時數：2.5 ~ 3 小時</li>
@@ -421,7 +408,7 @@
             <h3 class="text-xl font-black text-white mt-2">Professional</h3>
             <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
               <span class="text-xs font-mono-tech text-zinc-400">NT$</span>
-              <span class="text-3xl font-mono-tech font-black text-white count-num" data-target="4800">4,800</span>
+              <span class="text-3xl font-mono-tech font-black text-white">4,800</span>
               <span class="text-xs font-mono-tech text-zinc-400">起</span>
             </div>
             <ul class="space-y-2.5 text-xs text-zinc-300">
@@ -461,7 +448,7 @@
             <h3 class="text-xl font-black text-white mt-2">Short</h3>
             <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
               <span class="text-xs font-mono-tech text-zinc-400">NT$</span>
-              <span class="text-3xl font-mono-tech font-black text-white count-num" data-target="3000">3,000</span>
+              <span class="text-3xl font-mono-tech font-black text-white">3,000</span>
             </div>
             <ul class="space-y-2.5 text-xs text-zinc-300">
               <li><span class="text-[#e63946]">■</span> 拍攝時數：2 小時內</li>
@@ -482,7 +469,7 @@
             <h3 class="text-xl font-black text-white mt-2">Standard</h3>
             <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
               <span class="text-xs font-mono-tech text-[#e63946]">NT$</span>
-              <span class="text-3xl font-mono-tech font-black text-[#e63946] count-num" data-target="5500">5,500</span>
+              <span class="text-3xl font-mono-tech font-black text-[#e63946]">5,500</span>
             </div>
             <ul class="space-y-2.5 text-xs text-zinc-200">
               <li><span class="text-[#e63946]">■</span> 拍攝時數：4 小時完整紀錄</li>
@@ -503,7 +490,7 @@
             <h3 class="text-xl font-black text-white mt-2">Full Day</h3>
             <div class="my-4 pb-4 border-b border-white/10 flex items-baseline gap-1">
               <span class="text-xs font-mono-tech text-zinc-400">NT$</span>
-              <span class="text-3xl font-mono-tech font-black text-white count-num" data-target="9500">9,500</span>
+              <span class="text-3xl font-mono-tech font-black text-white">9,500</span>
               <span class="text-xs font-mono-tech text-zinc-400">起</span>
             </div>
             <ul class="space-y-2.5 text-xs text-zinc-300">
@@ -574,14 +561,14 @@
     <!-- ========== SLIDE 05：委託攝影合約摘要與表單 ========== -->
     <div class="photo-slide w-full max-w-5xl mx-auto relative z-10 pb-16" data-slide="4">
       <div class="mb-5 pb-3 border-b border-white/10">
-        <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest">SLIDE 05 // SHIBA PUNK COMMISSION CONTRACT</div>
-        <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">柴龐攝影工作室・合約摘要與預約表單</h2>
+        <div class="text-[11px] font-mono-tech text-[#e63946] uppercase tracking-widest">SLIDE 05 // COMMISSION CONTRACT SUMMARY</div>
+        <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">柴龐攝影工作室・委託合約與預約表單</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
         <div class="md:col-span-5 editorial-glass p-5 sm:p-6 rounded-2xl border-t-2 border-t-[#e63946]">
           <div class="flex items-center justify-between mb-1">
-            <span class="text-xs font-mono-tech text-[#e63946] font-bold uppercase">COMMISSION FORM</span>
+            <span class="text-xs font-mono-tech text-[#e63946] font-bold uppercase">PUNK PHOTO FORM</span>
             <span id="selected-plan-badge" class="hidden text-[10px] font-mono-tech px-2 py-0.5 rounded bg-[#e63946]/20 text-[#e63946]">已帶入方案</span>
           </div>
           <h3 class="text-base font-bold text-white mb-4">委託人基本資料填寫表</h3>
@@ -629,7 +616,7 @@
             <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5"><div class="font-mono-tech text-[#e63946] font-bold">01 / 檔期與訂金規範</div><p class="text-zinc-400 text-[11px] mt-1">確認報價後預付 30% 訂金保留檔期；尾款 70% 於當日拍攝結束結清。</p></div>
             <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5"><div class="font-mono-tech text-[#e63946] font-bold">02 / 改期與取消條款</div><p class="text-zinc-400 text-[11px] mt-1">遇天災或豪雨可免費順延乙次；個人因素於前 3 日內取消訂金恕不退還。</p></div>
             <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5"><div class="font-mono-tech text-[#e63946] font-bold">03 / 交件與挑片時程</div><p class="text-zinc-400 text-[11px] mt-1">挑片確認後 3 至 14 日內交付精修成品；全方案交付 JPG，不含 RAW 檔。</p></div>
-            <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5"><div class="font-mono-tech text-[#e63946] font-bold">04 / 後製風格與重修</div><p class="text-zinc-400 text-[11px] mt-1">精修成品提供微調乙次，不接受大幅度改色或合成。</p></div>
+            <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5"><div class="font-mono-tech text-[#e63946] font-bold">04 / 後製風格與重修</div><p class="text-zinc-400 text-[11px] mt-1">委託前請確認熟悉柴龐高對比光影風格；精修成品提供微調乙次。</p></div>
             <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5"><div class="font-mono-tech text-[#e63946] font-bold">05 / 著作權與商業授權</div><p class="text-zinc-400 text-[11px] mt-1">委託人享個人非營利分享權，若需印製販售周邊須另簽商用授權。</p></div>
             <div class="p-3 rounded-xl bg-[#0a0b0e]/70 border border-white/5"><div class="font-mono-tech text-[#e63946] font-bold">06 / 肖像公開與隱私</div><p class="text-zinc-400 text-[11px] mt-1">公開展示須經雙方同意，私密設定照片絕不外流。</p></div>
           </div>
@@ -642,7 +629,7 @@
   <!-- 底部簡報切換列 -->
   <footer class="w-full px-4 sm:px-10 py-3.5 sm:py-4 border-t border-white/10 z-20 bg-[#0a0b0e]/95 backdrop-blur-md flex flex-wrap items-center justify-between gap-2 shrink-0">
     <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-[calc(100%-88px)] sm:max-w-full py-0.5 no-scrollbar">
-      <button type="button" onclick="changePhotoSlide(0)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all bg-[#e63946] text-white font-bold">01 柴龐品牌與作品</button>
+      <button type="button" onclick="changePhotoSlide(0)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all bg-[#e63946] text-white font-bold">01 品牌主旨與作品</button>
       <button type="button" onclick="changePhotoSlide(1)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5">02 人像價目</button>
       <button type="button" onclick="changePhotoSlide(2)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5">03 活動價目</button>
       <button type="button" onclick="changePhotoSlide(3)" class="photo-nav-btn shrink-0 px-3 py-1.5 rounded-full text-[11px] font-mono-tech transition-all text-zinc-400 hover:text-white bg-white/5">04 委託流程</button>
@@ -658,11 +645,11 @@
   <!-- Lightbox 燈箱 -->
   <div id="lightbox" role="dialog" aria-modal="true" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-2 sm:p-4" onclick="closeLightbox()">
     <button type="button" class="absolute top-4 right-5 z-20 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center text-xl" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
-    <button type="button" onclick="event.stopPropagation(); navigateLightbox(-1);" class="absolute left-2 sm:left-6 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 text-white flex items-center justify-center"><i class="fa-solid fa-chevron-left"></i></button>
+    <button type="button" id="lb-prev-btn" onclick="event.stopPropagation(); navigateLightbox(-1);" class="absolute left-2 sm:left-6 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 text-white flex items-center justify-center"><i class="fa-solid fa-chevron-left"></i></button>
     <div class="w-full h-full max-w-6xl max-h-[92dvh] flex items-center justify-center relative px-8 sm:px-16" onclick="event.stopPropagation()">
       <img id="lightbox-img" src="" alt="作品大圖" class="max-h-[88dvh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/10">
     </div>
-    <button type="button" onclick="event.stopPropagation(); navigateLightbox(1);" class="absolute right-2 sm:right-6 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 text-white flex items-center justify-center"><i class="fa-solid fa-chevron-right"></i></button>
+    <button type="button" id="lb-next-btn" onclick="event.stopPropagation(); navigateLightbox(1);" class="absolute right-2 sm:right-6 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 text-white flex items-center justify-center"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
 
   <!-- 預約單複製成功彈窗 -->
@@ -678,18 +665,26 @@
     </div>
   </div>
 
+  <!-- ==================== 柴龐攝影設定中心 ==================== -->
   <script>
-    /* =========================================================================
-       ★ 封面照片設定區 (COVER_IMAGE_CONFIG) ★
-       想換封面照片時：
-       1. 把照片命名為 cover.jpg 或 cover.jpeg 放在同一個資料夾，系統會自動優先讀取！
-       2. 或者直接把下方 fallback 網址換成你的圖片連結（例如 postimg 圖床網址）。
-       ========================================================================= */
-    const COVER_IMAGE_CONFIG = {
-      src: './cover.jpg',
-      altSrc1: './cover.jpeg',
-      altSrc2: './shiba-punk-cover.jpg',
-      fallback: 'https://i.postimg.cc/vc96L94v/renoqi-01.jpg' // 預設使用雷諾奇帥照作為備援封面
+    // ★ 如需更換封面照片或 Logo，可直接替換對應檔名或修改下方 fallback 網址 ★
+    const STUDIO_BRAND_ASSETS = {
+      // 柴龐攝影工作室 Logo (對應你上傳的圖片)
+      logo: {
+        src: './studio_logo.jpg',
+        altSrc1: './studio_logo.png',
+        altSrc2: './studio_logo.jpeg',
+        altSrc3: './punk_logo.jpg',
+        fallback: './renoqi_01.jpg'
+      },
+      // 攝影專區封面大圖 (未來你要換封面照，覆蓋 photo_bg.jpeg 或改這裡的網址即可)
+      coverBg: {
+        src: './photo_bg.jpeg',
+        altSrc1: './photo_bg.jpg',
+        altSrc2: './photo-bg.jpeg',
+        altSrc3: './band-1.jpeg',
+        fallback: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1400&q=85'
+      }
     };
 
     const PORTFOLIO_BATCH_CONFIG = { furryCount: 12, bandCount: 18 };
@@ -729,7 +724,8 @@
 
     const PHOTO_CONFIG = {
       furry: { photos: buildBatchPhotos('furry', PORTFOLIO_BATCH_CONFIG.furryCount) },
-      band: { photos: buildBatchPhotos('band', PORTFOLIO_BATCH_CONFIG.bandCount) }
+      band: { photos: buildBatchPhotos('band', PORTFOLIO_BATCH_CONFIG.bandCount) },
+      logo: { photos: [STUDIO_BRAND_ASSETS.logo] }
     };
 
     function smartSrcFallback(imgEl, item) {
@@ -879,22 +875,41 @@
 
     let currentGalleryKey = null;
     let currentPhotoIdx = 0;
+
+    function openLogoLightbox() {
+      openLightbox('logo', 0);
+    }
+
     function openLightbox(galleryKey, idx) {
       currentGalleryKey = galleryKey;
       currentPhotoIdx = idx;
-      smartSrcFallback(document.getElementById('lightbox-img'), PHOTO_CONFIG[currentGalleryKey].photos[currentPhotoIdx]);
+      const lbImg = document.getElementById('lightbox-img');
+      const isSingle = PHOTO_CONFIG[currentGalleryKey].photos.length <= 1;
+      document.getElementById('lb-prev-btn').classList.toggle('hidden', isSingle);
+      document.getElementById('lb-next-btn').classList.toggle('hidden', isSingle);
+
+      if (galleryKey === 'logo') {
+        lbImg.classList.add('bg-white', 'p-4');
+      } else {
+        lbImg.classList.remove('bg-white', 'p-4');
+      }
+
+      smartSrcFallback(lbImg, PHOTO_CONFIG[currentGalleryKey].photos[currentPhotoIdx]);
       document.getElementById('lightbox').classList.remove('hidden');
     }
+
     function navigateLightbox(dir) {
       const len = PHOTO_CONFIG[currentGalleryKey].photos.length;
       currentPhotoIdx = (currentPhotoIdx + dir + len) % len;
       smartSrcFallback(document.getElementById('lightbox-img'), PHOTO_CONFIG[currentGalleryKey].photos[currentPhotoIdx]);
     }
+
     function closeLightbox() { document.getElementById('lightbox').classList.add('hidden'); }
 
     document.addEventListener('DOMContentLoaded', () => {
-      // 載入柴龐封面照片
-      smartSrcFallback(document.getElementById('studio-cover-img'), COVER_IMAGE_CONFIG);
+      smartSrcFallback(document.getElementById('img-studio-logo'), STUDIO_BRAND_ASSETS.logo);
+      smartSrcFallback(document.getElementById('img-photo-hero-cover'), STUDIO_BRAND_ASSETS.coverBg);
+
       renderMarqueeReel();
       renderProjectorView();
       requestAnimationFrame(animateMarqueeLoop);
