@@ -191,28 +191,29 @@
     </button>
   </div>
 
-  <!-- 毛毛專區獨立設定腳本 (100% 讀取本地檔案，完全不使用外部網路圖床) -->
+  <!-- 毛毛專區獨立設定腳本 (支援檔名開頭有空白鍵與一般本地檔名) -->
   <script>
-    // 自動產生單張照片的所有常見本地命名組合（不連外網）
     function buildLocalPhotoCandidates(prefix, num) {
       const pad = String(num).padStart(2, '0');
       return [
+        // 優先偵測 GitHub 上開頭不小心帶有空白鍵 (%20) 的檔案
+        `./%20${prefix}_${pad}.jpeg`,
+        `./%20${prefix}_${pad}.jpg`,
+        `./ ${prefix}_${pad}.jpeg`,
+        `./ ${prefix}_${pad}.jpg`,
+        // 標準無空白檔名
+        `./${prefix}_${pad}.jpeg`,
+        `./${prefix}_${pad}.jpg`,
         `./${prefix}-${num}.jpeg`,
         `./${prefix}-${num}.jpg`,
-        `./${prefix}_${pad}.jpg`,
-        `./${prefix}_${pad}.jpeg`,
-        `./${prefix}_${num}.jpg`,
-        `./${prefix}_${num}.jpeg`,
         `./${prefix}-${pad}.jpeg`,
         `./${prefix}-${pad}.jpg`,
-        `./${prefix}-${num}.JPG`,
-        `./${prefix}_${pad}.JPG`,
-        `./images/${prefix}-${num}.jpeg`,
-        `./images/${prefix}_${pad}.jpg`
+        // 備用：若特定檔案為空檔，自動讀取你倉庫裡的 furry 系列照片
+        `./furry-${num}.jpeg`,
+        `./furry-${num + 4}.jpeg`
       ];
     }
 
-    // ★ 如果以後雷諾奇或雲青想增加到 6 張或 9 張照片，只要把 count 數字改大即可 ★
     const FURRY_PHOTO_COUNT = {
       renoqi: 3,
       bear: 3
@@ -227,18 +228,31 @@
       }
     };
 
+    // 強化版圖片載入器：先在背景確認圖片存在且寬度 > 0 才掛載，徹底消滅問號破圖
     function smartSrcFallback(imgEl, candidates) {
       if (!imgEl || !candidates || !candidates.length) return;
       let idx = 0;
-      imgEl.onerror = () => {
-        idx++;
-        if (idx < candidates.length) {
-          imgEl.src = candidates[idx];
-        } else {
-          imgEl.onerror = null;
-        }
-      };
-      imgEl.src = candidates[0];
+
+      function tryNext() {
+        if (idx >= candidates.length) return;
+        const testUrl = candidates[idx];
+        const probe = new Image();
+        probe.onload = () => {
+          if (probe.naturalWidth > 0) {
+            imgEl.src = testUrl;
+          } else {
+            idx++;
+            tryNext();
+          }
+        };
+        probe.onerror = () => {
+          idx++;
+          tryNext();
+        };
+        probe.src = testUrl;
+      }
+
+      tryNext();
     }
 
     function switchCharacter(charKey) {
@@ -268,7 +282,7 @@
         const card = document.createElement('div');
         card.className = `aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group relative bg-slate-900 border border-slate-800 ${borderHoverClass} transition-all shadow-lg`;
         card.onclick = () => openLightbox(galleryKey, idx);
-        card.innerHTML = `<img loading="eager" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${galleryKey}-${idx + 1}">`;
+        card.innerHTML = `<img loading="eager" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="">`;
         smartSrcFallback(card.querySelector('img'), candidates);
         box.appendChild(card);
       });
