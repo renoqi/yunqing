@@ -9,9 +9,13 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
 
-    body {
+    html, body {
       font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
       background-color: #020617;
+      min-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .glass-card {
@@ -25,7 +29,7 @@
 <body class="bg-slate-950 text-slate-100 min-h-screen select-text">
 
   <!-- 頂部導覽與角色切換器 -->
-  <header class="sticky top-0 z-30 bg-slate-950/85 backdrop-blur-md border-b border-slate-800 px-4 sm:px-8 py-3.5">
+  <header class="sticky top-0 z-30 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 px-4 sm:px-8 py-3.5">
     <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3">
       
       <a href="./index.html" class="px-3.5 py-2 rounded-full glass-card hover:bg-slate-800 hover:border-amber-400/50 text-xs text-slate-200 flex items-center gap-2 transition-all">
@@ -46,7 +50,7 @@
       </div>
 
       <a href="./photo.html" class="hidden sm:inline-flex px-3.5 py-2 rounded-full bg-rose-500/15 border border-rose-500/30 hover:bg-rose-500/25 text-xs text-rose-300 items-center gap-1.5 transition-all">
-        <span>📷 前往攝影專區</span>
+        <span>📷 柴龐攝影專區</span>
       </a>
     </div>
   </header>
@@ -187,32 +191,52 @@
     </button>
   </div>
 
-  <!-- 毛毛專區獨立設定腳本 -->
+  <!-- 毛毛專區獨立設定腳本 (100% 讀取本地檔案，完全不使用外部網路圖床) -->
   <script>
+    // 自動產生單張照片的所有常見本地命名組合（不連外網）
+    function buildLocalPhotoCandidates(prefix, num) {
+      const pad = String(num).padStart(2, '0');
+      return [
+        `./${prefix}-${num}.jpeg`,
+        `./${prefix}-${num}.jpg`,
+        `./${prefix}_${pad}.jpg`,
+        `./${prefix}_${pad}.jpeg`,
+        `./${prefix}_${num}.jpg`,
+        `./${prefix}_${num}.jpeg`,
+        `./${prefix}-${pad}.jpeg`,
+        `./${prefix}-${pad}.jpg`,
+        `./${prefix}-${num}.JPG`,
+        `./${prefix}_${pad}.JPG`,
+        `./images/${prefix}-${num}.jpeg`,
+        `./images/${prefix}_${pad}.jpg`
+      ];
+    }
+
+    // ★ 如果以後雷諾奇或雲青想增加到 6 張或 9 張照片，只要把 count 數字改大即可 ★
+    const FURRY_PHOTO_COUNT = {
+      renoqi: 3,
+      bear: 3
+    };
+
     const FURRY_CONFIG = {
       renoqi: {
-        photos: [
-          { src: './renoqi_01.jpg', altSrc1: './renoqi-1.jpeg', fallback: 'https://i.postimg.cc/vc96L94v/renoqi-01.jpg' },
-          { src: './renoqi_02.jpg', altSrc1: './renoqi-2.jpeg', fallback: 'https://i.postimg.cc/9rTqtTD1/renoqi-02.jpg' },
-          { src: './renoqi_03.jpg', altSrc1: './renoqi-3.jpeg', fallback: 'https://i.postimg.cc/hfx7bxX8/renoqi-03.jpg' }
-        ]
+        photos: Array.from({ length: FURRY_PHOTO_COUNT.renoqi }, (_, i) => buildLocalPhotoCandidates('renoqi', i + 1))
       },
       bear: {
-        photos: [
-          { src: './bear-1.jpeg', altSrc1: './bear_01.jpg', fallback: 'https://i.postimg.cc/qNT6mRKn/bear-01.jpg' },
-          { src: './bear-2.jpeg', altSrc1: './bear_02.jpeg', fallback: 'https://i.postimg.cc/rKWtCWDN/bear-02.jpg' },
-          { src: './bear-3.jpeg', altSrc1: './bear_03.jpeg', fallback: 'https://i.postimg.cc/YhgmfgvQ/bear-03.jpg' }
-        ]
+        photos: Array.from({ length: FURRY_PHOTO_COUNT.bear }, (_, i) => buildLocalPhotoCandidates('bear', i + 1))
       }
     };
 
-    function smartSrcFallback(imgEl, item) {
-      const candidates = [item.src, item.altSrc1, item.altSrc2, item.fallback].filter(Boolean);
+    function smartSrcFallback(imgEl, candidates) {
+      if (!imgEl || !candidates || !candidates.length) return;
       let idx = 0;
       imgEl.onerror = () => {
         idx++;
-        if (idx < candidates.length) imgEl.src = candidates[idx];
-        else imgEl.onerror = null;
+        if (idx < candidates.length) {
+          imgEl.src = candidates[idx];
+        } else {
+          imgEl.onerror = null;
+        }
       };
       imgEl.src = candidates[0];
     }
@@ -240,12 +264,12 @@
       const box = document.getElementById(containerId);
       if (!box) return;
       box.innerHTML = '';
-      FURRY_CONFIG[galleryKey].photos.forEach((item, idx) => {
+      FURRY_CONFIG[galleryKey].photos.forEach((candidates, idx) => {
         const card = document.createElement('div');
         card.className = `aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group relative bg-slate-900 border border-slate-800 ${borderHoverClass} transition-all shadow-lg`;
         card.onclick = () => openLightbox(galleryKey, idx);
-        card.innerHTML = `<img loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="寫真">`;
-        smartSrcFallback(card.querySelector('img'), item);
+        card.innerHTML = `<img loading="eager" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${galleryKey}-${idx + 1}">`;
+        smartSrcFallback(card.querySelector('img'), candidates);
         box.appendChild(card);
       });
     }
@@ -262,13 +286,13 @@
 
     function updateLightboxView() {
       if (!currentGalleryKey) return;
-      const item = FURRY_CONFIG[currentGalleryKey].photos[currentPhotoIdx];
+      const candidates = FURRY_CONFIG[currentGalleryKey].photos[currentPhotoIdx];
       const img = document.getElementById('lightbox-img');
       img.classList.add('opacity-0');
       setTimeout(() => {
-        smartSrcFallback(img, item);
+        smartSrcFallback(img, candidates);
         img.classList.remove('opacity-0');
-      }, 90);
+      }, 60);
     }
 
     function navigateLightbox(dir) {
