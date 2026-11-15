@@ -29,11 +29,6 @@
     .font-editorial { font-family: 'Cinzel', serif; }
     .font-mono-tech { font-family: 'JetBrains Mono', monospace; }
 
-    img {
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-    }
-
     /* 電腦版左右雙分割平滑懸停放大動畫 */
     @media (min-width: 768px) {
       .split-panel {
@@ -79,7 +74,7 @@
       line-height: 0.82;
       pointer-events: none;
       user-select: none;
-      z-index: 0;
+      z-index: 5;
       letter-spacing: -0.04em;
     }
   </style>
@@ -92,7 +87,7 @@
     <button type="button" onclick="openBioModal()"
             class="pointer-events-auto flex items-center gap-2.5 bg-slate-900/90 backdrop-blur-md px-3 sm:px-4 py-2 rounded-full border border-slate-700/80 shadow-xl cursor-pointer hover:border-amber-400/60 hover:scale-[1.02] active:scale-95 transition-all text-left group">
       <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden bg-gradient-to-tr from-amber-500 via-orange-500 to-red-500 p-0.5 flex items-center justify-center shrink-0 shadow-md">
-        <img id="img-nav-avatar" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="w-full h-full rounded-full object-cover bg-slate-800">
+        <img id="img-nav-avatar" src="./avatar.jpeg" alt="" class="w-full h-full rounded-full object-cover">
       </div>
       <div>
         <div class="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5">
@@ -124,28 +119,28 @@
   <main class="w-full h-full flex flex-col md:flex-row overflow-hidden">
 
     <!-- ==================== 選項 01：毛毛專區 (雷諾奇 ✕ 雲青) ==================== -->
-    <a href="./furry.html" class="split-panel relative overflow-hidden flex flex-col justify-end group border-b md:border-b-0 md:border-r border-slate-800/80 cursor-pointer">
+    <a href="./furry.html" class="split-panel relative overflow-hidden flex flex-col justify-end group border-b md:border-b-0 md:border-r border-slate-800/80 cursor-pointer bg-slate-900">
       
-      <!-- 左右雙角色拼接背景 -->
-      <div class="absolute inset-0 -z-10 overflow-hidden bg-slate-900">
-        <div class="absolute inset-0 grid grid-cols-2">
+      <!-- 左右雙角色拼接背景 (z-0 正數圖層，確保不被黑底蓋住) -->
+      <div class="absolute inset-0 z-0 overflow-hidden">
+        <div class="w-full h-full grid grid-cols-2">
           <!-- 左半：雷諾奇背景 -->
           <div class="relative overflow-hidden h-full bg-slate-900">
-            <img id="img-renoqi-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+            <img id="img-renoqi-bg" src="./renoqi-bg.jpeg" alt="" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
             <div class="absolute inset-0 bg-amber-950/20 mix-blend-color"></div>
           </div>
           <!-- 右半：雲青背景 -->
           <div class="relative overflow-hidden h-full border-l border-white/10 bg-slate-900">
-            <img id="img-bear-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+            <img id="img-bear-bg" src="./bear-1.jpeg" alt="" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
             <div class="absolute inset-0 bg-sky-950/25 mix-blend-color"></div>
           </div>
         </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-slate-950/15"></div>
         <div class="watermark-text right-[-5%] top-[12%] text-[28vw] md:text-[15vw]">01</div>
       </div>
 
-      <!-- 文字區 (無多餘圖示框) -->
-      <div class="p-6 sm:p-10 md:p-14 transition-all duration-300 z-10">
+      <!-- 文字區 (z-10 在背景圖之上) -->
+      <div class="relative z-10 p-6 sm:p-10 md:p-14 transition-all duration-300">
         <div class="text-[11px] sm:text-xs uppercase tracking-widest text-amber-400 font-mono-tech font-bold">01 / Fursuit Characters</div>
         <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-white mt-1">
           雷諾奇 <span class="text-amber-400">✕</span> 雲青
@@ -161,17 +156,18 @@
     </a>
 
     <!-- ==================== 選項 02：柴龐攝影工作室專區 ==================== -->
-    <a href="./photo.html" class="split-panel relative overflow-hidden flex flex-col justify-end group cursor-pointer">
+    <a href="./photo.html" class="split-panel relative overflow-hidden flex flex-col justify-end group cursor-pointer bg-slate-950">
       
-      <div class="absolute inset-0 -z-10 overflow-hidden bg-slate-950">
-        <img id="img-photo-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0b0e] via-[#0a0b0e]/75 to-[#0a0b0e]/25"></div>
-        <div class="absolute inset-0 bg-rose-950/30 mix-blend-color"></div>
+      <!-- 攝影背景大圖 (z-0 正數圖層) -->
+      <div class="absolute inset-0 z-0 overflow-hidden">
+        <img id="img-photo-bg" src="./photo_bg.jpeg" alt="" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0b0e] via-[#0a0b0e]/70 to-[#0a0b0e]/20"></div>
+        <div class="absolute inset-0 bg-rose-950/25 mix-blend-color"></div>
         <div class="watermark-text right-[-5%] top-[12%] text-[28vw] md:text-[15vw]">02</div>
       </div>
 
-      <!-- 文字區 (無多餘白框) -->
-      <div class="p-6 sm:p-10 md:p-14 transition-all duration-300 z-10">
+      <!-- 文字區 (z-10 在背景圖之上) -->
+      <div class="relative z-10 p-6 sm:p-10 md:p-14 transition-all duration-300">
         <div class="text-[11px] sm:text-xs uppercase tracking-widest text-[#e63946] font-mono-tech font-bold">02 / Shiba ✕ Punk Photo Studio</div>
         <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-white mt-1">
           柴龐攝影工作室
@@ -197,7 +193,7 @@
       <div class="flex items-center justify-between pb-4 border-b border-slate-800">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-tr from-amber-500 to-red-500 p-0.5 flex items-center justify-center shrink-0">
-            <img id="img-bio-avatar" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="w-full h-full rounded-full object-cover bg-slate-800">
+            <img id="img-bio-avatar" src="./avatar.jpeg" alt="" class="w-full h-full rounded-full object-cover">
           </div>
           <div>
             <h2 class="text-lg font-black text-white">阿諾 (Arnold) 的置頂自介</h2>
@@ -251,13 +247,12 @@
     </div>
   </div>
 
-  <!-- ==================== 首頁圖片智慧載入腳本 (100% 本地圖片、無問號破圖) ==================== -->
+  <!-- ==================== 圖片自動備援載入腳本 ==================== -->
   <script>
-    const HOME_IMAGE_CANDIDATES = {
+    const HOME_IMAGES = {
       avatar: [
         './avatar.jpeg',
         './avatar.jpg',
-        './avatar.png',
         './bear-1.jpeg'
       ],
       renoqiBg: [
@@ -269,62 +264,44 @@
         './renoqi-1.jpg',
         './renoqi_01.jpeg',
         './renoqi_01.jpg',
-        './%20renoqi_bg.jpeg',
-        './%20renoqi_bg.jpg',
-        './%20renoqi_01.jpeg',
-        './%20renoqi_01.jpg'
+        './furry-1.jpeg'
       ],
       bearBg: [
+        './bear-1.jpeg',
         './bear_bg.jpg',
         './bear_bg.jpeg',
         './bear-bg.jpeg',
         './bear-bg.jpg',
-        './bear-1.jpeg',
         './bear_01.jpg'
       ],
       photoBg: [
         './photo_bg.jpeg',
         './photo_bg.jpg',
         './photo-bg.jpeg',
-        './photo-bg.jpg',
-        './band-1.jpeg',
-        './band-1.jpg'
+        './band-1.jpeg'
       ]
     };
 
-    // 先在背景測試哪一個檔名存在且有效，確認有圖才顯示，徹底杜絕破圖問號
-    function loadVerifiedImage(imgEl, candidates) {
+    function smartSrcFallback(imgEl, candidates) {
       if (!imgEl || !candidates || !candidates.length) return;
       let idx = 0;
-
-      function tryNext() {
-        if (idx >= candidates.length) return;
-        const url = candidates[idx];
-        const probe = new Image();
-        probe.onload = () => {
-          if (probe.naturalWidth > 0) {
-            imgEl.src = url;
-          } else {
-            idx++;
-            tryNext();
-          }
-        };
-        probe.onerror = () => {
-          idx++;
-          tryNext();
-        };
-        probe.src = url;
-      }
-
-      tryNext();
+      imgEl.onerror = () => {
+        idx++;
+        if (idx < candidates.length) {
+          imgEl.src = candidates[idx];
+        } else {
+          imgEl.onerror = null;
+        }
+      };
+      imgEl.src = candidates[0];
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      loadVerifiedImage(document.getElementById('img-nav-avatar'), HOME_IMAGE_CANDIDATES.avatar);
-      loadVerifiedImage(document.getElementById('img-bio-avatar'), HOME_IMAGE_CANDIDATES.avatar);
-      loadVerifiedImage(document.getElementById('img-renoqi-bg'), HOME_IMAGE_CANDIDATES.renoqiBg);
-      loadVerifiedImage(document.getElementById('img-bear-bg'), HOME_IMAGE_CANDIDATES.bearBg);
-      loadVerifiedImage(document.getElementById('img-photo-bg'), HOME_IMAGE_CANDIDATES.photoBg);
+      smartSrcFallback(document.getElementById('img-nav-avatar'), HOME_IMAGES.avatar);
+      smartSrcFallback(document.getElementById('img-bio-avatar'), HOME_IMAGES.avatar);
+      smartSrcFallback(document.getElementById('img-renoqi-bg'), HOME_IMAGES.renoqiBg);
+      smartSrcFallback(document.getElementById('img-bear-bg'), HOME_IMAGES.bearBg);
+      smartSrcFallback(document.getElementById('img-photo-bg'), HOME_IMAGES.photoBg);
     });
 
     function openBioModal() { document.getElementById('bio-modal').classList.remove('hidden'); }
