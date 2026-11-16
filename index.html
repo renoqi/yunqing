@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#0a0b0e">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
 
@@ -108,8 +108,11 @@
       <a href="https://www.facebook.com/share/1FNWYQXgBV/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-8 h-8 rounded-full glass-btn text-blue-400 flex items-center justify-center" title="Facebook (定期刪好友🙂)">
         <i class="fa-brands fa-facebook-f text-xs sm:text-sm"></i>
       </a>
-      <button type="button" onclick="handleTwitterClick()" aria-label="Twitter / X" class="w-8 h-8 rounded-full glass-btn text-purple-300 flex items-center justify-center relative group" title="Twitter / X (🔞 慎入)">
-        <i class="fa-brands fa-x-twitter text-xs sm:text-sm"></i>
+      <!-- 內嵌官方 SVG 的 X 圖示，永不消失 -->
+      <button type="button" onclick="handleTwitterClick()" aria-label="Twitter / X" class="w-8 h-8 rounded-full glass-btn text-white flex items-center justify-center relative group" title="Twitter / X (🔞 慎入)">
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
         <span class="absolute -bottom-1 -right-1 text-[8px] bg-red-600 text-white px-1 rounded-full font-bold leading-tight">18</span>
       </button>
     </div>
@@ -118,49 +121,66 @@
   <!-- ==================== 雙分割主選單容器 (01 毛毛專區 vs 02 柴龐攝影) ==================== -->
   <main class="w-full h-full flex flex-col md:flex-row overflow-hidden">
 
-    <!-- ==================== 選項 01：毛毛專區 (雷諾奇 ✕ 雲青) ==================== -->
-    <a href="./furry.html" class="split-panel relative overflow-hidden flex flex-col justify-end group border-b md:border-b-0 md:border-r border-slate-800/80 cursor-pointer bg-slate-900">
+    <!-- ==================== 選項 01：毛毛專區 (點左圖進雷諾奇、點右圖進雲青) ==================== -->
+    <section class="split-panel relative overflow-hidden flex flex-col justify-end border-b md:border-b-0 md:border-r border-slate-800/80 bg-slate-900">
       
-      <!-- 左右雙角色拼接背景 (z-0 正數圖層，確保不被黑底蓋住) -->
-      <div class="absolute inset-0 z-0 overflow-hidden">
-        <div class="w-full h-full grid grid-cols-2">
-          <!-- 左半：雷諾奇背景 -->
-          <div class="relative overflow-hidden h-full bg-slate-900">
-            <img id="img-renoqi-bg" src="./renoqi-bg.jpeg" alt="" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
-            <div class="absolute inset-0 bg-amber-950/20 mix-blend-color"></div>
-          </div>
-          <!-- 右半：雲青背景 -->
-          <div class="relative overflow-hidden h-full border-l border-white/10 bg-slate-900">
-            <img id="img-bear-bg" src="./bear-1.jpeg" alt="" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
-            <div class="absolute inset-0 bg-sky-950/25 mix-blend-color"></div>
-          </div>
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-slate-950/15"></div>
-        <div class="watermark-text right-[-5%] top-[12%] text-[28vw] md:text-[15vw]">01</div>
+      <!-- 左右雙角色獨立點擊照片區 (z-0) -->
+      <div class="absolute inset-0 z-0 grid grid-cols-2">
+        
+        <!-- 左半：點擊直接進入「雷諾奇」 -->
+        <a href="./furry.html?char=renoqi" class="relative overflow-hidden h-full bg-slate-900 group/renoqi cursor-pointer block" title="點擊進入雷諾奇專區">
+          <img id="img-renoqi-bg" src="./renoqi-bg.jpeg" alt="" 
+               class="w-full h-full object-cover object-[58%_25%] group-hover/renoqi:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-amber-950/15 mix-blend-color"></div>
+          <div class="absolute inset-0 bg-amber-500/0 group-hover/renoqi:bg-amber-500/10 transition-colors duration-300"></div>
+        </a>
+
+        <!-- 右半：點擊直接進入「雲青」 -->
+        <a href="./furry.html?char=bear" class="relative overflow-hidden h-full border-l border-white/15 bg-slate-900 group/bear cursor-pointer block" title="點擊進入雲青專區">
+          <img id="img-bear-bg" src="./bear-1.jpeg" alt="" 
+               class="w-full h-full object-cover object-[32%_22%] group-hover/bear:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-sky-950/20 mix-blend-color"></div>
+          <div class="absolute inset-0 bg-sky-400/0 group-hover/bear:bg-sky-400/10 transition-colors duration-300"></div>
+        </a>
+
       </div>
 
-      <!-- 文字區 (z-10 在背景圖之上) -->
-      <div class="relative z-10 p-6 sm:p-10 md:p-14 transition-all duration-300">
+      <!-- 底部漸層遮罩 (pointer-events-none 讓點擊可以穿透到後面左右照片) -->
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-transparent pointer-events-none z-[1]"></div>
+      <div class="watermark-text right-[-5%] top-[12%] text-[28vw] md:text-[15vw]">01</div>
+
+      <!-- 文字與直達按鈕區 (pointer-events-none 外框，內部按鈕開啟點擊) -->
+      <div class="relative z-10 p-6 sm:p-10 md:p-14 pointer-events-none">
         <div class="text-[11px] sm:text-xs uppercase tracking-widest text-amber-400 font-mono-tech font-bold">01 / Fursuit Characters</div>
         <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-white mt-1">
-          雷諾奇 <span class="text-amber-400">✕</span> 雲青
+          <a href="./furry.html?char=renoqi" class="pointer-events-auto hover:text-amber-300 transition-colors">雷諾奇</a>
+          <span class="text-amber-400 mx-1">✕</span>
+          <a href="./furry.html?char=bear" class="pointer-events-auto hover:text-sky-300 transition-colors">雲青</a>
         </h2>
         <p class="text-xs sm:text-sm text-slate-300 mt-2 max-w-md leading-relaxed">
-          情緒價值滿滿的柴犬「雷諾奇」與藍色海洋小熊「雲青」專屬天地！包含角色設定介紹、社群傳送門與精選寫真。
+          點擊左邊照片進入柴犬「雷諾奇」、點擊右邊照片直接進入海洋小熊「雲青」專屬天地！
         </p>
-        <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500/20 to-sky-500/20 border border-amber-400/40 text-xs font-bold text-amber-300 group-hover:translate-x-2 transition-transform">
-          <span>進入毛毛專區</span>
-          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+
+        <!-- 兩個角色的直達按鈕 -->
+        <div class="mt-4 flex flex-wrap items-center gap-2.5 pointer-events-auto">
+          <a href="./furry.html?char=renoqi" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/50 text-xs font-bold text-amber-300 transition-all hover:translate-x-1">
+            <span>🐕 雷諾奇專區</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+          <a href="./furry.html?char=bear" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-sky-500/20 hover:bg-sky-500/35 border border-sky-400/50 text-xs font-bold text-sky-300 transition-all hover:translate-x-1">
+            <span>🐻‍❄️ 雲青專區</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
         </div>
       </div>
-    </a>
+    </section>
 
     <!-- ==================== 選項 02：柴龐攝影工作室專區 ==================== -->
     <a href="./photo.html" class="split-panel relative overflow-hidden flex flex-col justify-end group cursor-pointer bg-slate-950">
       
-      <!-- 攝影背景大圖 (z-0 正數圖層) -->
+      <!-- 攝影背景大圖 (z-0 正數圖層，微調焦點至相機與人物) -->
       <div class="absolute inset-0 z-0 overflow-hidden">
-        <img id="img-photo-bg" src="./photo_bg.jpeg" alt="" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+        <img id="img-photo-bg" src="./photo_bg.jpeg" alt="" class="w-full h-full object-cover object-[50%_30%] group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0b0e] via-[#0a0b0e]/70 to-[#0a0b0e]/20"></div>
         <div class="absolute inset-0 bg-rose-950/25 mix-blend-color"></div>
         <div class="watermark-text right-[-5%] top-[12%] text-[28vw] md:text-[15vw]">02</div>
