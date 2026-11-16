@@ -321,10 +321,17 @@
       currentGalleryKey = null;
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
       renderCharacterGallery('renoqi-gallery', 'renoqi', 'hover:border-amber-400/60');
       renderCharacterGallery('bear-gallery', 'bear', 'hover:border-sky-400/60');
+
+      // 如果從首頁點擊雲青的照片或按鈕進來 (?char=bear)，直接打開雲青分頁
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('char') === 'bear') {
+        switchCharacter('bear');
+      }
     });
+
 
     document.addEventListener('keydown', (e) => {
       const lb = document.getElementById('lightbox');
