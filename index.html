@@ -87,7 +87,7 @@
     <button type="button" onclick="openBioModal()"
             class="pointer-events-auto flex items-center gap-2.5 bg-slate-900/90 backdrop-blur-md px-3 sm:px-4 py-2 rounded-full border border-slate-700/80 shadow-xl cursor-pointer hover:border-amber-400/60 hover:scale-[1.02] active:scale-95 transition-all text-left group">
       <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden bg-gradient-to-tr from-amber-500 via-orange-500 to-red-500 p-0.5 flex items-center justify-center shrink-0 shadow-md">
-        <img id="img-nav-avatar" src="./avatar.jpeg" alt="" class="w-full h-full rounded-full object-cover">
+        <img id="img-nav-avatar" src="https://renoqi.github.io/avatar.jpeg" alt="" class="w-full h-full rounded-full object-cover">
       </div>
       <div>
         <div class="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5">
@@ -122,53 +122,55 @@
   <main class="w-full h-full flex flex-col md:flex-row overflow-hidden">
 
     <!-- ==================== 選項 01：毛毛專區 (點左圖進雷諾奇、點右圖進雲青) ==================== -->
-    <section class="split-panel relative overflow-hidden flex flex-col justify-end border-b md:border-b-0 md:border-r border-slate-800/80 bg-slate-900">
+    <section class="split-panel relative overflow-hidden flex flex-col justify-end border-b md:border-b-0 md:border-r border-slate-800/80 bg-slate-950">
       
-      <!-- 左右雙角色獨立點擊照片區 (z-0) -->
-      <div class="absolute inset-0 z-0 grid grid-cols-2">
+      <!-- 左右雙角色獨立點擊照片區 (z-0)：手機版將圖片高度縮減為 68% 讓照片自然縮小不爆框，底部漸層無縫銜接文字區 -->
+      <div class="absolute inset-x-0 top-0 h-[68%] md:h-full z-0 grid grid-cols-2">
         
         <!-- 左半：點擊直接進入「雷諾奇」 -->
-        <a href="./furry.html?char=renoqi" class="relative overflow-hidden h-full bg-slate-900 group/renoqi cursor-pointer block" title="點擊進入雷諾奇專區">
-          <img id="img-renoqi-bg" src="./renoqi-bg.jpeg" alt="" 
-               class="w-full h-full object-cover object-[58%_25%] group-hover/renoqi:scale-105 transition-transform duration-700">
+        <a href="https://renoqi.github.io/furry.html?char=renoqi" onclick="return navigateTo('./furry.html?char=renoqi', event)" class="relative overflow-hidden h-full bg-slate-950 group/renoqi cursor-pointer block" title="點擊進入雷諾奇專區">
+          <img id="img-renoqi-bg" src="https://renoqi.github.io/renoqi-bg.jpeg" alt="" 
+               class="w-full h-full object-cover object-[50%_20%] group-hover/renoqi:scale-105 transition-transform duration-700">
           <div class="absolute inset-0 bg-amber-950/15 mix-blend-color"></div>
           <div class="absolute inset-0 bg-amber-500/0 group-hover/renoqi:bg-amber-500/10 transition-colors duration-300"></div>
         </a>
 
-        <!-- 右半：點擊直接進入「雲青」 -->
-        <a href="./furry.html?char=bear" class="relative overflow-hidden h-full border-l border-white/15 bg-slate-900 group/bear cursor-pointer block" title="點擊進入雲青專區">
-          <img id="img-bear-bg" src="./bear-1.jpeg" alt="" 
-               class="w-full h-full object-cover object-[32%_22%] group-hover/bear:scale-105 transition-transform duration-700">
+        <!-- 右半：點擊直接進入「雲青」（水平焦點由 32% 改為 86%，直接對準右方雲青的頭，不再切到半張臉） -->
+        <a href="https://renoqi.github.io/furry.html?char=bear" onclick="return navigateTo('./furry.html?char=bear', event)" class="relative overflow-hidden h-full border-l border-white/15 bg-slate-950 group/bear cursor-pointer block" title="點擊進入雲青專區">
+          <img id="img-bear-bg" src="https://renoqi.github.io/bear-1.jpeg" alt="" 
+               class="w-full h-full object-cover object-[86%_18%] group-hover/bear:scale-105 transition-transform duration-700">
           <div class="absolute inset-0 bg-sky-950/20 mix-blend-color"></div>
           <div class="absolute inset-0 bg-sky-400/0 group-hover/bear:bg-sky-400/10 transition-colors duration-300"></div>
         </a>
 
+        <!-- 圖片區底部柔和漸層遮罩，讓 68% 高度的照片自然融入深色背景 -->
+        <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent pointer-events-none"></div>
       </div>
 
-      <!-- 底部漸層遮罩 (pointer-events-none 讓點擊可以穿透到後面左右照片) -->
-      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-transparent pointer-events-none z-[1]"></div>
+      <!-- 整體底部漸層遮罩 (pointer-events-none 讓點擊可以穿透到後面左右照片) -->
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 from-28% via-slate-950/80 via-48% to-transparent pointer-events-none z-[1]"></div>
       <div class="watermark-text right-[-5%] top-[12%] text-[28vw] md:text-[15vw]">01</div>
 
       <!-- 文字與直達按鈕區 (pointer-events-none 外框，內部按鈕開啟點擊) -->
-      <div class="relative z-10 p-6 sm:p-10 md:p-14 pointer-events-none">
+      <div class="relative z-10 p-5 sm:p-10 md:p-14 pointer-events-none">
         <div class="text-[11px] sm:text-xs uppercase tracking-widest text-amber-400 font-mono-tech font-bold">01 / Fursuit Characters</div>
         <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-white mt-1">
-          <a href="./furry.html?char=renoqi" class="pointer-events-auto hover:text-amber-300 transition-colors">雷諾奇</a>
+          <a href="https://renoqi.github.io/furry.html?char=renoqi" onclick="return navigateTo('./furry.html?char=renoqi', event)" class="pointer-events-auto hover:text-amber-300 transition-colors">雷諾奇</a>
           <span class="text-amber-400 mx-1">✕</span>
-          <a href="./furry.html?char=bear" class="pointer-events-auto hover:text-sky-300 transition-colors">雲青</a>
+          <a href="https://renoqi.github.io/furry.html?char=bear" onclick="return navigateTo('./furry.html?char=bear', event)" class="pointer-events-auto hover:text-sky-300 transition-colors">雲青</a>
         </h2>
-        <p class="text-xs sm:text-sm text-slate-300 mt-2 max-w-md leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-300 mt-1.5 max-w-md leading-relaxed">
           點擊左邊照片進入柴犬「雷諾奇」、點擊右邊照片直接進入海洋小熊「雲青」專屬天地！
         </p>
 
         <!-- 兩個角色的直達按鈕 -->
-        <div class="mt-4 flex flex-wrap items-center gap-2.5 pointer-events-auto">
-          <a href="./furry.html?char=renoqi" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/50 text-xs font-bold text-amber-300 transition-all hover:translate-x-1">
+        <div class="mt-3.5 flex flex-wrap items-center gap-2.5 pointer-events-auto">
+          <a href="https://renoqi.github.io/furry.html?char=renoqi" onclick="return navigateTo('./furry.html?char=renoqi', event)" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/50 text-xs font-bold text-amber-300 transition-all hover:translate-x-1">
             <span>🐕 雷諾奇專區</span>
             <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </a>
-          <a href="./furry.html?char=bear" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-sky-500/20 hover:bg-sky-500/35 border border-sky-400/50 text-xs font-bold text-sky-300 transition-all hover:translate-x-1">
-            <span>🐻‍❄️ 雲青專區</span>
+          <a href="https://renoqi.github.io/furry.html?char=bear" onclick="return navigateTo('./furry.html?char=bear', event)" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-sky-500/20 hover:bg-sky-500/35 border border-sky-400/50 text-xs font-bold text-sky-300 transition-all hover:translate-x-1">
+            <span>🐻❄️ 雲青專區</span>
             <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </a>
         </div>
@@ -176,18 +178,18 @@
     </section>
 
     <!-- ==================== 選項 02：柴龐攝影工作室專區 ==================== -->
-    <a href="./photo.html" class="split-panel relative overflow-hidden flex flex-col justify-end group cursor-pointer bg-slate-950">
+    <a href="https://renoqi.github.io/photo.html" onclick="return navigateTo('./photo.html', event)" class="split-panel relative overflow-hidden flex flex-col justify-end group cursor-pointer bg-slate-950">
       
       <!-- 攝影背景大圖 (z-0 正數圖層，微調焦點至相機與人物) -->
       <div class="absolute inset-0 z-0 overflow-hidden">
-        <img id="img-photo-bg" src="./photo_bg.jpeg" alt="" class="w-full h-full object-cover object-[50%_30%] group-hover:scale-105 transition-transform duration-700">
+        <img id="img-photo-bg" src="https://renoqi.github.io/photo_bg.jpeg" alt="" class="w-full h-full object-cover object-[50%_28%] group-hover:scale-105 transition-transform duration-700">
         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0b0e] via-[#0a0b0e]/70 to-[#0a0b0e]/20"></div>
         <div class="absolute inset-0 bg-rose-950/25 mix-blend-color"></div>
         <div class="watermark-text right-[-5%] top-[12%] text-[28vw] md:text-[15vw]">02</div>
       </div>
 
       <!-- 文字區 (z-10 在背景圖之上) -->
-      <div class="relative z-10 p-6 sm:p-10 md:p-14 transition-all duration-300">
+      <div class="relative z-10 p-5 sm:p-10 md:p-14 transition-all duration-300">
         <div class="text-[11px] sm:text-xs uppercase tracking-widest text-[#e63946] font-mono-tech font-bold">02 / Shiba ✕ Punk Photo Studio</div>
         <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-white mt-1">
           柴龐攝影工作室
@@ -195,10 +197,10 @@
         <p class="text-sm sm:text-base font-bold text-amber-300 mt-1">
           「不被定義，只留下影像。」
         </p>
-        <p class="text-xs sm:text-sm text-slate-300 mt-2 max-w-md leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-300 mt-1.5 max-w-md leading-relaxed">
           用相機記錄活動中的每一個精彩瞬間，用人像攝影留住每個人獨一無二的印象。不追求完美，因為最真實的影像往往來自最不刻意的瞬間。
         </p>
-        <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e63946]/20 border border-[#e63946]/50 text-xs font-bold text-[#e63946] group-hover:translate-x-2 transition-transform">
+        <div class="mt-3.5 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e63946]/20 border border-[#e63946]/50 text-xs font-bold text-[#e63946] group-hover:translate-x-2 transition-transform">
           <span>進入柴龐作品集與委託簡報</span>
           <i class="fa-solid fa-arrow-right text-[10px]"></i>
         </div>
@@ -213,7 +215,7 @@
       <div class="flex items-center justify-between pb-4 border-b border-slate-800">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-tr from-amber-500 to-red-500 p-0.5 flex items-center justify-center shrink-0">
-            <img id="img-bio-avatar" src="./avatar.jpeg" alt="" class="w-full h-full rounded-full object-cover">
+            <img id="img-bio-avatar" src="https://renoqi.github.io/avatar.jpeg" alt="" class="w-full h-full rounded-full object-cover">
           </div>
           <div>
             <h2 class="text-lg font-black text-white">阿諾 (Arnold) 的置頂自介</h2>
@@ -267,12 +269,14 @@
     </div>
   </div>
 
-  <!-- ==================== 圖片自動備援載入腳本 ==================== -->
+  <!-- ==================== 圖片自動備援載入與導覽腳本 ==================== -->
   <script>
     const HOME_IMAGES = {
       avatar: [
         './avatar.jpeg',
         './avatar.jpg',
+        'https://renoqi.github.io/avatar.jpeg',
+        'https://renoqi.github.io/avatar.jpg',
         './bear-1.jpeg'
       ],
       renoqiBg: [
@@ -284,7 +288,9 @@
         './renoqi-1.jpg',
         './renoqi_01.jpeg',
         './renoqi_01.jpg',
-        './furry-1.jpeg'
+        './furry-1.jpeg',
+        'https://renoqi.github.io/renoqi-bg.jpeg',
+        'https://renoqi.github.io/renoqi-1.jpeg'
       ],
       bearBg: [
         './bear-1.jpeg',
@@ -292,13 +298,17 @@
         './bear_bg.jpeg',
         './bear-bg.jpeg',
         './bear-bg.jpg',
-        './bear_01.jpg'
+        './bear_01.jpg',
+        'https://renoqi.github.io/bear-1.jpeg',
+        'https://renoqi.github.io/bear_bg.jpg'
       ],
       photoBg: [
         './photo_bg.jpeg',
         './photo_bg.jpg',
         './photo-bg.jpeg',
-        './band-1.jpeg'
+        './band-1.jpeg',
+        'https://renoqi.github.io/photo_bg.jpeg',
+        'https://renoqi.github.io/band-1.jpeg'
       ]
     };
 
@@ -314,6 +324,15 @@
         }
       };
       imgEl.src = candidates[0];
+    }
+
+    function navigateTo(relPath, event) {
+      if (window.location.hostname.endsWith('github.io') || window.location.protocol === 'file:') {
+        if (event) event.preventDefault();
+        window.location.href = relPath;
+        return false;
+      }
+      return true;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
